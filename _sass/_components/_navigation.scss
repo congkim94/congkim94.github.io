@@ -1,0 +1,248 @@
+
+header {
+  display: grid;
+  grid-template-columns: 20% auto;
+  padding: 20px 140px;
+  margin: auto;
+  z-index: 100;
+  position: absolute;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+
+    @include tablet1{
+      padding: 20px 50px;
+    }
+
+    @include phone {
+      padding: 10px;
+      top: 0;
+      position: fixed;
+
+      a{
+        z-index:300;
+      }
+    }
+
+    @include xldesktop {
+        padding-left: 200px;
+        padding-right: 200px;
+    }
+
+    img{
+    width: 30%;
+    padding-left: 20px;
+    
+
+    @include tablet1 {
+      width: 55%;
+    } 
+    
+    @include phone {
+      width: 80%;
+      padding-left: 0px;
+    } 
+  }
+
+  .navigation{
+    @include phone {
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: 1;
+      float: none;
+     z-index: 100;
+      margin: auto;
+      
+      
+    
+      
+    }
+    justify-self: right;
+    .main-nav-mobile{
+      list-style-type:none;
+      /*margin-right:20px;*/
+
+      @include phone {
+        text-align: left;
+        display: block;
+        list-style: none;
+        margin-top: 55%;
+        margin-left: 30px;
+        padding:0;
+
+      }
+      li{
+        display: inline;
+        padding-left: 30px;
+        &:nth-child(3){
+          @include phone{
+            display: none;
+          }
+        }
+        @include phone {
+          display: block;
+          margin: 10px 0;
+          padding:0;
+          font-size: 2em;
+        } 
+      }
+
+        a{
+          padding: 8px 20px;
+          
+          text-decoration: none;
+          font-size: 1em;
+          color: black;
+          transition: .2s all;
+            
+            &:hover{
+              color: #8b8b8b;
+
+            }
+
+          
+
+          /*@include tablet{
+            font-size: .8em;
+          }*/
+          @include tablet1 {
+            padding:0;
+          }
+
+          @include phone {
+            padding:0;
+            font-family: 'starling';
+            font-size: 60px;
+          }
+
+          @include xldesktop {
+        
+            font-size: 22px;
+          }
+
+
+        }
+
+
+    }
+
+    .secondary-nav-mobile{
+      display: none;
+
+      @include phone {
+        display: block;
+        list-style-type:none;
+        margin-top: 150px;
+        font-size: 28px;
+
+        li {
+          margin-bottom: 10px;
+          a {
+            color: black;
+          }
+
+        }
+
+      }
+    }
+
+
+  }
+
+
+
+  .box {
+    float: right;
+    @include phone {
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: -50rem;
+      z-index: 100;
+      background-color: white;
+      opacity: 1;
+      right: 1;
+      width: 80%;
+      transition: right 0.5s ease;
+        @include phone {
+          width: 100%;
+        }
+      
+    }
+
+}
+
+
+.box.active{
+  @include phone {
+        background: url(../images/opporty/mobile-background.png) no-repeat;
+        background-color: #c0a4c6;
+        right: 0px;
+        overflow: auto;
+        background-size: cover;
+
+
+        
+  }
+
+}
+
+.menu-toggle{
+
+  display: none;
+    @include phone {
+    position: fixed;
+        top: 24px;
+        right: 12px;
+        height: 2 0px;
+        width: 40px;
+        cursor: pointer;
+        z-index:200;
+        display: inherit;
+
+    div{ 
+      width: 35px;
+          height: 2px;
+          margin-bottom: 8px;
+          background-color: black;
+          transition: .2s ease-in-out;
+          justify-self:end;
+       
+        }
+     #bottom {
+          width:20px;
+          justify-self:end;
+          margin-bottom: 0;
+
+          
+
+        }
+    
+}
+  }
+
+
+.menu-toggle.active {
+      @include phone {
+        transform-origin: center;
+        -webkit-transform-style: flat;
+  
+    #bottom{
+      transform: translatex(-15px);
+          }
+    }
+      }
+
+
+
+
+/*@keyframes yourAnimation{
+    0%{
+        transform: translateX(400px);
+        }
+    100%{
+        transform: translateX(0px);
+        }
+}*/
+}

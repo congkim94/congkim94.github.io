@@ -1,0 +1,103 @@
+
+body,
+html{
+  
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: white;
+ 
+}
+
+@font-face {
+  font-family: "argesta";
+  src: url("../fonts/argestadisplay-regular-webfont.woff2");
+}
+
+@font-face {
+  font-family: "salome";
+  src: url("../fonts/salome-webfont.woff2");
+}
+
+h1,h2,h3,h4,h5,h6,p,li,a,span,div {
+  font-family: 'Libre Franklin', sans-serif;
+  color: #2b2b2b;
+}
+
+.pswp__bg { transform: translateZ(0); }
+
+
+
+//Initial
+
+$screen-xs: 1px;
+// Smart smartphones (portrait view)
+
+$screen-s: 320px;
+
+// Small tablets (portrait view)
+$screen-md: 550px;
+
+$screen-md1: 1001px;
+
+// Large tablets and small desktops
+$screen-lg: 1240px;
+
+
+// Desktops
+$screen-xl: 1600px;
+
+
+// Desktops
+$screen-xxl: 2200px;
+
+
+@mixin xsphone {
+  @media (min-width: #{$screen-xs}) and (max-width: #{$screen-s - 1px}) {
+    @content;
+  }
+}
+
+
+@mixin phone {
+  @media (min-width: #{$screen-s}) and (max-width: #{$screen-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet1 {
+  @media (min-width: #{$screen-md}) and (max-width: #{$screen-md1 - 1px}) {
+    @content;
+  }
+}
+
+
+@mixin tablet {
+  @media (min-width: #{$screen-md1}) and (max-width: #{$screen-lg - 1px}) {
+    @content;
+  }
+}
+
+@mixin xsdesktop {
+  @media (min-width: #{$screen-lg}) {
+    @content;
+   }
+}
+
+@mixin desktop {
+  @media (min-width: #{$screen-xl}) {
+    @content;
+   }
+}
+
+@mixin xldesktop {
+  @media (min-width: #{$screen-xxl}) {
+    @content;
+   }
+}
+
+
+/*Animation*/
+
+
+// 

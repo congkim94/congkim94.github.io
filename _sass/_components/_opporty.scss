@@ -1,0 +1,994 @@
+///BASE STYLE///
+    h1{
+
+    padding-top: 80px;
+    font-family: starling, serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 42px;
+       @include tablet1 {
+        font-size: 38px;      
+    }  
+
+      @include phone {
+        font-size: 28px;      
+    }  
+
+}
+
+#opporty-content{
+
+
+
+    .project-section-title{
+    h2{
+        font-family: starling, serif;
+        font-size: 42px;
+
+        @include phone {
+            font-size: 30px;
+    }
+        span{
+            background-color: #97D5EB;
+            height: 5px;
+            display: block;
+            width: 15%;
+            margin-top: 5px;
+        }
+        }
+    }
+
+    h3 {
+    
+        font-size: 32px;
+        margin-bottom: 15px;
+        font-weight: 600;
+        @include phone {
+            font-size: 24px;
+        }
+    }
+
+    h4{
+    
+        color: #B5B5B5;
+        font-size: 16px;
+        margin-bottom: 15px;
+        @include phone {
+            font-size: 14px;
+    }
+
+    }
+
+    h5{
+    
+        font-size: 16px;
+        font-weight: 700;
+        margin-bottom: 15px;
+        opacity: 0.8;
+
+        @include phone {
+                font-size: 14px;
+        }
+
+    }
+
+    h6{
+    
+        font-size: 18px;
+        margin-bottom: 7px;
+
+    }
+
+
+    p{
+    
+        font-size: 18px;
+        line-height: 30px;
+        margin: 0;
+        @include tablet1 {
+            width: 80%;
+            font-size: 22px; 
+    } 
+        @include phone {
+            font-size: 16px;
+    }
+
+
+
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+        font-size: 18px;
+        line-height: 30px;
+            @include phone {
+                font-size: 16px;
+                margin-top: 10px;
+    }
+    
+    
+
+    li{
+        margin-bottom: 10px;
+            @include phone {
+                margin-bottom: 0;
+
+    }
+    }
+    }
+    }
+
+
+
+
+
+///HEADER////
+
+#opporty-header {
+    background-color: #d2e8ef;
+    top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6%;
+
+    h1{
+	margin-bottom: 0;
+
+    }
+
+    p{
+    	font-family: "starling";
+    	font-size: 24px;
+        font-weight: 500;
+        text-align: center;
+
+            @include phone {
+                font-size: 18px;  
+                width: 90%;    
+    }  
+
+    }
+
+    img{
+    	max-width: 70%;
+	    margin-top: 40px;
+	    border-radius: 10px;
+	    box-shadow: 0 4px 25px 0 rgba(25,25,25,.25);
+        margin-bottom: -80px;
+           @include phone {
+                max-width: 90%;      
+    }
+
+    }
+}
+
+
+///PROJECT OVERVIEW///
+
+#opporty-overview {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 200px;
+
+    @include phone {
+        display: block;
+        margin-top: 150px;
+    }
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+
+    .project-section-content{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+        .project-background{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            @include phone {
+                flex-wrap: wrap;
+            }
+        }
+
+        .overview-text {
+            margin-bottom: 20px;
+    }
+    }
+}
+
+
+
+/// PROJECT OVERVIEW END ////////
+
+
+/// COMPARATIVE ANALYSIS /////
+#opporty-competitive-analysis{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+        margin-top: 100px;
+    }
+
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+    .project-section-content{
+        
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+        ul{
+           margin: 10px 20px;
+        li{
+            list-style-image: url(../images/opporty/bulletpoints.jpg);
+        }}
+    }
+
+    .competitors-logo {
+        grid-column: 2 / span 10;
+        width: 100%;
+
+        img {
+
+            width: 100%;
+        
+        }
+    }
+
+}
+
+/////////////////// COMPARATIVE ANALYSIS END//////////////////
+
+
+////////////////// USER RESEACH/////////////////////
+
+#opporty-user-research{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+            display: block;
+            max-width: 100%;
+        }
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+        @include phone {
+            width: 90%;
+            margin: auto;
+        }
+    }
+
+
+    .interview-image{
+        grid-column: 3 / span 8;
+        width:100%;
+        margin-top: 20px;
+        @include tablet1 {
+            grid-column: 2 / span 10;
+        }
+    }   
+
+    .project-section-content{
+        
+        margin: auto;
+        grid-column: 4 / span 6;
+        margin-top: 30px;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+        @include phone {
+            width: 90%;
+        }
+
+        ul{
+            margin: 10px 20px;
+
+            li{
+                list-style-image: url(../images/opporty/bulletpoints.jpg);
+            }
+        }
+    }
+
+    // .interview-findings{
+    //     grid-column: 1 / span 12;
+    //     width:100%;
+    // }
+
+
+ .findings-box{
+        grid-column: 2 / span 10;
+        background: #788d94;
+        border-radius: 10px;
+        box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
+        margin-top: 40px;
+        padding-bottom:30px;
+
+        @include phone {
+                    margin-bottom: 50px;
+                    border-radius: initial;
+                    box-shadow: none;
+                }
+       
+
+        .box-content{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            row-gap: 30px;
+            column-gap: 30px;
+            width: 80%;
+            justify-content: space-around;
+            margin: auto;
+            margin-top: 3%;
+
+            @include tablet1 {
+                grid-template-columns: repeat(2,1fr);
+            }
+
+            @include phone {
+                display: block;
+                padding-top: 30px;
+        }
+
+            h5{
+                margin-top: 0px;
+                color: white;
+                grid-column: 1/span 3;
+
+                @include tablet1 {
+                    grid-column: 1/span 2;
+                }
+
+                @include phone {
+                    margin-bottom: 30px;
+                }
+
+
+            }
+
+
+            .point{
+                margin-right: 8%;
+                display: flex;
+                align-items: start;
+                margin-bottom: 6%;
+                @include phone {
+                    margin-bottom: 12%;
+                    margin-right: 0;
+
+                    &:last-child{
+                        margin-bottom: 0;
+                    }
+
+                }
+
+                img{
+                    border-radius: 3px;
+                    margin-top: 5px;
+                    margin-right: 5px;
+                }
+
+                h6{
+                    margin-top: 0px;
+                    color: white;
+                    font-weight: 600;
+                }
+                p{
+                    font-size: 16px;
+                    color: white;
+                    line-height: 25px;
+                }
+
+
+            }
+
+            }
+        }
+
+
+    }
+
+////////////////// USER RESEACH END /////////////////////
+
+
+
+////////////////// RESEARCH SYNTHESIS /////////////////////
+
+#opporty-research-synthesis{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+    }
+
+    .affinity-diagram{
+        margin-top: 50px;
+        grid-column: 2 / span 10;
+        position: relative;
+        overflow: hidden;
+        padding-top: 56.25%;
+
+        .affinity-iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    }
+}
+
+////////////////// RESEARCH SYNTHESIS END/////////////////////
+
+
+
+////////////////// IDEATION /////////////////////
+
+
+#opporty-ideation{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+    }
+
+}
+
+    .ideation-content{
+        margin-top: 50px;
+        background-color: #F7F7F7;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-row-gap: 40px;
+        padding: 50px 0px;
+
+        @include tablet1 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @include phone {
+        display: block;
+    }
+
+        .idea{
+            display: flex;
+            position: relative;
+            align-items: start;
+            width: 70%;
+            flex-direction: column;
+
+            @include phone {
+                width: 90%;
+                margin: auto;
+                margin-bottom: 30px;
+            }
+            .idea-number{
+                font-size: 90px;
+                font-family: "starling";
+                font-weight: 700;
+                color: #97D5EB;
+                opacity: .5;
+                position: absolute;
+            }
+
+            .idea-text{
+                z-index: 10;
+                margin-left: 50px;
+                margin-top: 10px;
+             
+            p{
+                font-size: 16px !important;
+            }
+        }
+
+        }
+
+        .left-column{
+           @include tablet1 {
+                margin-left: 50px;
+           }
+        }
+        .right-column{
+            @include tablet1 {
+                margin-right: 50px;
+            }
+        }
+
+        .idea1{
+            grid-column: 1 / span 1;
+            justify-self: end;
+
+            @include tablet1 {
+            grid-column: 1 / span 1;
+            justify-self: center;
+        }
+        }
+
+        .idea2{
+            grid-column: 2 / span 1;
+            justify-self: center;
+
+            @include tablet1 {
+            grid-column: 2 / span 1;
+        }
+        }
+
+        .idea3{
+            grid-column: 3 / span 1;
+            justify-self: start;
+            @include tablet1 {
+            grid-column: 1 / span 1;
+            justify-self: center;
+        }
+        }
+
+        .idea4{
+            grid-column: 1 / span 1;
+            justify-self: end;
+            @include tablet1 {
+            grid-column: 2 / span 1;
+            justify-self: center;
+        }
+        }
+
+        .idea5{
+            grid-column: 2 / span 1;
+            justify-self: center;
+            @include tablet1 {
+            grid-column: 1 / span 1;
+        }
+        }
+
+        .idea6{
+            grid-column: 3 / span 1;
+            justify-self: start;
+            @include tablet1 {
+            grid-column: 2 / span 1;
+            justify-self: center;
+        }
+        }
+    }
+
+
+////////////////// IDEATION END /////////////////////
+
+////////////////// RESEARCH SYNTHESIS /////////////////////
+
+#opporty-userflow{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+    }
+
+    .userflow-diagram{
+        margin-top: 50px;
+        grid-column: 1 / span 12;
+        position: relative;
+        overflow: hidden;
+        padding-top: 40.25%;;
+
+        .userflow-iframe{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    }
+}
+
+////////////////// RESEARCH SYNTHESIS END/////////////////////
+
+
+////////////////// WIREFRAME ///////////////////
+
+
+#opporty-wireframe{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+
+    }
+
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+        display: grid;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+        
+
+         }
+
+
+    .opporty-wireframe-section{
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: auto;
+            grid-gap:10px;
+            grid-row-gap: 50px;
+            grid-column: 1 / span 12;
+            margin: auto;
+            margin-top: 50px;
+            margin-bottom: 50px;
+
+            @include phone {
+                display: block;
+            }
+
+
+        .old-design{
+            grid-column: 2/span 5;
+            grid-row: 1/span 2;
+            width: 100%;
+            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
+
+            @include phone {
+                width: 80%;
+                margin: auto;
+                display: block;
+            }
+
+        }
+
+        .arrow{
+            grid-column: 7/span 3;
+            grid-row: 1/span 3;
+            align-self: center;
+            width: 53%;
+
+            img{
+                width: 100%;
+                @include phone {
+                width: 5%;
+
+                }}
+
+            @include phone {
+                display: block;
+                margin: auto;
+                text-align: center;
+
+            }
+        }
+
+        
+
+        .new-design{
+            grid-column: 6/span 6;
+            grid-row: 3/span 2;
+            width: 100%;
+            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
+        }
+
+    }
+
+} 
+
+////////////////// WIREFRAME END /////////////////////
+
+
+////////////////// USER TEST /////////////////////
+
+
+
+#opporty-user-test{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone{
+        display: block;
+    }
+    .project-section-title{
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+        display: grid;
+        margin-bottom: 50px;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+
+         }
+
+    .quote{
+        grid-column: 3/span 8;
+        @include tablet1 {
+            grid-column: 2 / span 10;
+        }
+
+
+
+        img{
+            width: 100%;
+            opacity: .5;
+        }
+     }
+
+    ul{
+        margin-top: 50px;
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+        @include phone {
+            width: 90%;
+            margin: auto;
+            margin-top: 40px;
+        }
+        li{
+                list-style-image: url(../images/opporty/bulletpoints.jpg);
+            }
+
+    }
+
+}
+
+////////////////// USER TEST END /////////////////////
+
+
+////////////////// FINAL DESIGN /////////////////////
+
+
+#opporty-final-design{
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+        margin-bottom: 50px;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+        @include phone {
+            margin-bottom: 30px;
+        }
+
+         }
+
+     .style-guide {
+        
+        grid-column: 1 / span 12;
+        width: 100%;
+        margin-bottom: 50px; 
+
+
+        img{
+          width: 100%;  
+
+        @include phone {
+            margin-bottom: 30px;
+           
+            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
+        }
+    }
+     }
+
+     .final-prototype{
+        grid-column: 3 / span 8;
+     }
+
+
+}
+
+////////////////// FINAL DESIGN END /////////////////////
+
+
+
+////////////////// REFLECTION /////////////////////
+
+
+
+#opporty-reflection{
+
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 70px;
+
+    @include phone {
+        display: block;
+    }
+
+    .project-section-title{
+        grid-column: 4 / span 6;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+    .project-section-content{
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+        margin-bottom: 50px;
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+        @include phone {
+            margin-bottom: 30px;
+        }
+
+         }}
+
+////////////////// REFLECTION END /////////////////////
+

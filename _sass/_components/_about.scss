@@ -1,0 +1,100 @@
+#about-page {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    justify-items: center;
+    margin: 0px 150px;
+    margin-bottom: 100px;
+    padding-top: 200px;
+
+
+    @include phone {
+    	display: flex;
+    	flex-direction: column;
+    	margin: 97px 20px;
+    	padding-top: 30px;
+
+    }
+
+    @include tablet1 {
+    	margin: 0px 50px;
+    }
+
+
+	.about-text-header{
+	    justify-self: left;
+
+	h1{
+		font-family: starling, serif;
+	    font-weight: 700;
+	    font-style: normal;
+	    font-size: 120px;
+	    margin: 0.1em;
+        margin-right: 10px;
+        padding-top: 50px;
+
+        @include phone {
+        	font-size: 5em;
+        	margin: none;
+        }
+
+     	@include tablet1 {
+     		padding-top: 0px;
+			font-size: 6em;
+    }
+
+	}
+
+		}
+    .about-text{
+
+		.about-text-paragraph {
+			font-size: 18px;
+			margin-bottom: 40px;
+
+			@include phone{
+				font-size: 16px;
+			    line-height: 1.5;
+			    margin-bottom: 40px;
+			}
+
+			@include tablet1 {
+				font-size: 16px;
+    }
+
+		}	
+
+		.resume{
+			margin-top: 40px;
+			text-decoration: none;
+			font-size: 22px;
+			font-weight: 600;	
+
+			@include phone{
+				display: block;
+				margin: auto;
+			}
+
+
+			span {
+				background-color: black;
+	            height: 4px;
+	            display: block;
+	            width: 90px;
+	            margin-top: 5px;
+	            transition: .5s;	
+			}
+
+
+		}}
+
+	.about-image {
+		width: 75%;
+		justify-self: end;
+
+		@include phone {
+			width: 70%;
+		    display: block;
+		    margin: auto;
+		}
+	}
+}
