@@ -1,0 +1,77 @@
+.other-projects {
+
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+    
+         @include phone{
+            width: 90%;
+            
+        }
+
+
+    h2{
+    font-family: 'starling';
+    font-size: 42px;
+         @include phone{
+                font-size: 2em; 
+        }
+
+}
+
+    .op-container{
+        margin-top: 60px;
+        display:grid;
+        position: relative;
+        grid-template-columns: 1fr 1fr 1fr;
+        @include phone{
+            display: block; 
+        }
+        @include tablet1{
+            display: block; 
+        }
+        @include tablet{
+            display: block; 
+        }
+
+
+        h3{
+            font-family: 'starling';
+            font-size: 1.5em;
+            margin-bottom: 0px;
+    
+        }
+
+        p{
+            font-style: italic;
+            margin-top: 0;
+            color: #949494;
+            line-height: 32px;
+                }
+
+        .project{
+            @include phone{
+            margin-bottom: 50px;
+        }
+        }
+
+        img{
+            border-radius: 5px;
+            width: 90%;
+            @include phone{
+            width: 100%; 
+        }
+
+        }
+
+        .bagel{
+            img{
+
+                filter: blur(4px);
+                -webkit-filter: blur(4px);
+           
+            }
+        }
+    }
+}

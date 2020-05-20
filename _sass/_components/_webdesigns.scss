@@ -190,8 +190,8 @@
     img{
 		transform: scaleX(1) scaleY(1);
 		transition: .5s all;
-		filter: blur(10px);
-  		-webkit-filter: blur(10px);
+		filter: blur(5px);
+  		-webkit-filter: blur(5px);
 		&:hover{
 			transform: scaleX(1.05) scaleY(1.05);
 		}
