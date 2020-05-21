@@ -1,9 +1,22 @@
+
+.divider{
+    height: 1px;
+    width: 80%;
+    display: block;
+    margin: auto;
+    margin-top: 150px;
+    background-color:#cccccc;
+     @include phone{
+        width: 90%;
+}
+ }
+
 .other-projects {
 
     width: 80%;
     display: block;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 150px;
     
          @include phone{
             width: 90%;
@@ -38,7 +51,7 @@
 
         h3{
             font-family: 'starling';
-            font-size: 1.5em;
+            font-size: 1.3em;
             margin-bottom: 0px;
     
         }

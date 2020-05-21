@@ -479,15 +479,5 @@
 }
 
 
- .divider{
-            height: 1px;
-            width: 80%;
-            display: block;
-            margin: auto;
-            margin-top: 150px;
-            background-color:#cccccc;
-             @include phone{
-                width: 90%;
-        }
-         }
+
 //// ORDERING SYSTEM END/////

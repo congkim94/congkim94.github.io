@@ -913,7 +913,6 @@
         margin-left: auto;
         margin-right: auto;
         grid-column: 4 / span 6;
-        margin-bottom: 50px;
         @include tablet1 {
             grid-column: 3 / span 8;
         }
@@ -980,7 +979,7 @@
         margin-left: auto;
         margin-right: auto;
         grid-column: 4 / span 6;
-        margin-bottom: 50px;
+    
         @include tablet1 {
             grid-column: 3 / span 8;
         }
@@ -990,20 +989,9 @@
 
          }}
 
-         .divider{
-            height: 1px;
-            width: 80%;
-            display: block;
-            margin: auto;
-            margin-top: 100px;
-            background-color:#cccccc;
-             @include phone{
-                width: 90%;
-        }
-         }
+ 
 
 ////////////////// REFLECTION END /////////////////////
-
 
 
 
