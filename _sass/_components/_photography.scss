@@ -26,7 +26,7 @@
 
 	
 	span{
-		font-family: 'starling';
+		font-family: starling;
 	    font-size: 26px;
 	    font-weight: 600;
 
@@ -53,6 +53,7 @@
 
 		img{
 			width: 100%;
+			margin-bottom: 15px;
 
 			@include phone{
 				width: 100%
@@ -73,6 +74,7 @@
 		display: inline-block;
 		img{
 			width: 100%;
+			margin-bottom: 15px;
 			@include phone{
 				width: 100%
 			}

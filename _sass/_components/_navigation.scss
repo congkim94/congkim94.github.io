@@ -30,7 +30,7 @@ header {
     }
 
     img{
-    width: 30%;
+    width: 25%;
     padding-left: 20px;
     
 
@@ -74,7 +74,7 @@ header {
       }
       li{
         display: inline;
-        padding-left: 30px;
+        padding-left: 40px;
         &:nth-child(3){
           @include phone{
             display: none;
@@ -88,9 +88,7 @@ header {
         } 
       }
 
-        a{
-          padding: 8px 20px;
-          
+        a{          
           text-decoration: none;
           font-size: 1em;
           color: black;
