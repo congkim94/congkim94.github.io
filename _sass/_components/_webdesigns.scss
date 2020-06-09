@@ -1,9 +1,9 @@
 #webdesigns {
-	width:80%;
+	width: 80%;
 	margin: auto;
 	margin-top: 140px;
-    padding-top: 50px;
-	margin-bottom:100px;
+	padding-top: 50px;
+	margin-bottom: 100px;
 
 	@include tablet {
 		margin-top: 100px;
@@ -11,217 +11,171 @@
 
 	@include phone {
 		width: 95%;
-
 	}
-.title1{
-	position: relative;
-    display: block;
-	display: flex;
-	justify-content: flex-start;
-	@include tablet {
-		margin-top: 25px;
-	}
-
-	@include phone {
-		margin-top: 10px;
-	}
-	
-	@media (min-width: 319px) and (max-width: 600px) {
-    		width: 90vw;
-    		margin-left: 10px;
-    	}
-
-    
-
-	
-	h2{
-		font-family: 'Starling', serif;
-	    font-size: 2.8em;
-	    font-weight: 500;
-		top: 100px;
-		left: 5vw;
-		text-align: start;
-
-		@include tablet1 {	
-			font-size: 2.5em;
-
+	.title1 {
+		position: relative;
+		display: block;
+		display: flex;
+		justify-content: flex-start;
+		@include tablet {
+			margin-top: 25px;
 		}
 
 		@include phone {
-			font-size: 2.3em;
+			margin-top: 10px;
 		}
 
-	
-	    span{
-	    	font-family: 'Starling', serif;
-	    	font-size: 22px;
-	    	display: block;
-			@include tablet {	
-				font-size: 0.5em;
-	    		line-height: 30px;
-
-		}	    	
-			@include tablet1 {	
-				font-size: 0.65em;
-	    		line-height: 30px;
-
+		@media (min-width: 319px) and (max-width: 600px) {
+			width: 90vw;
+			margin-left: 10px;
 		}
 
-			@include phone {
-				font-size: 18px;
-	    		line-height: 25px;
-		}
+		h2 {
+			font-family: "Starling", serif;
+			font-size: 2.8em;
+			font-weight: 500;
+			top: 100px;
+			left: 5vw;
+			text-align: start;
 
-
-	    	a{
-	    		color: #053EFF;
-	    		text-decoration: none;
-	    		font-weight: 600;
-	    		font-size: 1.1em;
-   		
-
-	    	}
-
-	    }
-	}
-}
-
-
-
-.projects-container{
-	margin-top: 10px;
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-    grid-column-gap: 50px;
-    grid-row-gap: 25px;
-
-
-    @include tablet {
-    	margin-top: 50px;
-    	grid-column-gap: inherit;
-
-    }
-
-
-
-    @include phone {
-    	display: block;
-    	margin-top: 20px;
-    }
-
-  
-
-    .project-description{
-    	align-items: center;
-	    display: flex;
-	    flex-direction: column;
-	    margin-top: 20px;
-	    margin-bottom: 20px;
-
-	    @include phone {
-	    	margin-bottom: 40px;
-	   
-	    }
-
-	    @include xldesktop {
-	    	margin-top: 20px;
-	    }
-
-	    h3{
-	    	font-family: starling;
-		    font-size: 23px;
-		    font-weight: 600;
-		    margin-top: 0px;
-		    margin-bottom: 0px;
-
-		    @include phone {
-		    	font-size: 22px;
-		    }
-
-		     @include xldesktop {
-	    		font-size: 32px;
-	    }	
-	    }
-
-	    p{
-	    	
-		    font-size: 18px;
-		    font-style: italic;
-		    margin-top: 0;
-		    color: #949494;
-		    width: 60%;
-		    text-align: center;
-		    line-height: 32px;
-
-		    @include phone {
-		    	font-size: 16px;
-		    }
-
-		     @include xldesktop {
-	    		font-size: 22px;
-	    }	
-	    }
-
-    }
-
-	
-
-	img{
-		width: 100%;
-		display: block;
-		margin: auto;
-		transform: scaleX(1) scaleY(1);
-		transition: .5s all;
-		&:hover{
-				transform: scaleX(1.01) scaleY(1.01);
-				box-shadow: 0 4px 20px 0 rgba(100,100,100,0.25);
+			@include tablet1 {
+				font-size: 2.5em;
 			}
 
-		@include tablet {
-			width: 85%;
+			@include phone {
+				font-size: 2.3em;
+			}
+
+			span {
+				font-family: "Starling", serif;
+				font-size: 22px;
+				display: block;
+				@include tablet {
+					font-size: 0.5em;
+					line-height: 30px;
+				}
+				@include tablet1 {
+					font-size: 0.65em;
+					line-height: 30px;
+				}
+
+				@include phone {
+					font-size: 18px;
+					line-height: 25px;
+				}
+
+				a {
+					color: #053eff;
+					text-decoration: none;
+					font-weight: 600;
+					font-size: 1.1em;
+				}
+			}
 		}
-		
-		
-
 	}
 
+	.projects-container {
+		margin-top: 10px;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-column-gap: 50px;
+		grid-row-gap: 25px;
 
+		@include tablet {
+			margin-top: 50px;
+			grid-column-gap: inherit;
+		}
 
-	.bagel{
-	grid-column: 1/2;
-	grid-row: 1/2;
-	
+		@include phone {
+			display: block;
+			margin-top: 20px;
+		}
 
+		.project-description {
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+			margin-top: 20px;
+			margin-bottom: 20px;
 
+			@include phone {
+				margin-bottom: 40px;
+			}
 
+			@include xldesktop {
+				margin-top: 20px;
+			}
+
+			h3 {
+				font-family: starling;
+				font-size: 23px;
+				font-weight: 600;
+				margin-top: 0px;
+				margin-bottom: 0px;
+
+				@include phone {
+					font-size: 22px;
+				}
+
+				@include xldesktop {
+					font-size: 32px;
+				}
+			}
+
+			p {
+				font-size: 18px;
+				font-style: italic;
+				margin-top: 0;
+				color: #949494;
+				width: 60%;
+				text-align: center;
+				line-height: 32px;
+
+				@include phone {
+					font-size: 16px;
+				}
+
+				@include xldesktop {
+					font-size: 22px;
+				}
+			}
+		}
+
+		img {
+			width: 100%;
+			display: block;
+			margin: auto;
+			transform: scaleX(1) scaleY(1);
+			transition: 0.5s all;
+			&:hover {
+				transform: scaleX(1.01) scaleY(1.01);
+				box-shadow: 0 4px 20px 0 rgba(100, 100, 100, 0.25);
+			}
+
+			@include tablet {
+				width: 85%;
+			}
+		}
+
+		.bagel {
+			grid-column: 1/2;
+			grid-row: 1/2;
+		}
+
+		.opporty {
+			grid-column: 2/3;
+			grid-row: 1/2;
+		}
+
+		.dries {
+			grid-column: 1/2;
+			grid-row: 2/3;
+		}
+
+		.peer {
+			grid-column: 2/3;
+			grid-row: 2/3;
+			justify-self: center;
+		}
 	}
-
-	.opporty{
-	grid-column: 2/3;
-	grid-row: 1/2;
-
-
-	}
-
-
-
-	.dries{
-		grid-column: 1/2;
-		grid-row: 2/3;
-
-	}
-	
-	.peer{
-			
-		grid-column: 2/3;
-		grid-row: 2/3;
-		justify-self:center;
-
-
-
-	}
-
-}
-
-
 }

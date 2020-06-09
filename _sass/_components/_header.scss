@@ -1,10 +1,7 @@
-#header{
-
+#header {
 	padding-top: 150px;
 	display: flex;
 	justify-content: center;
-	
-
 
 	@include phone {
 		display: block;
@@ -14,27 +11,20 @@
 
 	@media (min-width: 319px) and (max-width: 518px) {
 		margin-bottom: 60px;
-	    }
-
-
-	
-
-
-
-
+	}
 }
 
-.webshape{
+.webshape {
 	position: absolute;
 	// top:-200px;
 	left: -120px;
 
-	@include phone{
-		top:10%;
+	@include phone {
+		top: 10%;
 		width: 120%;
 	}
 
-	@include tablet1{
+	@include tablet1 {
 		width: 70%;
 	}
 }
@@ -42,7 +32,7 @@
 .profile {
 	margin-bottom: 70px;
 	position: relative;
-    text-align: center;
+	text-align: center;
 	@include tablet1 {
 		margin-bottom: 0;
 		margin-left: 0;
@@ -52,25 +42,21 @@
 		margin-bottom: 40px;
 		margin-left: 0;
 		text-align: left;
-
 	}
 
-	.name{
-	    font-family: starling, serif;
-	    position: relative;
-	    z-index: 2;
-	    font-weight: 700;
-	    font-style: normal;
-	    font-size: 12em;
-	    margin: 0.1em;
-	    font-style: italic;
-	    visibility:hidden;
-	   
-	    color: transparent;
-	    -webkit-text-stroke: 1px #ffcb78 ;
+	.name {
+		font-family: starling, serif;
+		position: relative;
+		z-index: 2;
+		font-weight: 700;
+		font-style: normal;
+		font-size: 12em;
+		margin: 0.1em;
+		font-style: italic;
+		visibility: hidden;
 
-	
-
+		color: transparent;
+		-webkit-text-stroke: 1px #ffcb78;
 
 		@include tablet {
 			font-size: 9em;
@@ -78,120 +64,107 @@
 
 		@include tablet1 {
 			font-size: 8em;
-    }
-    	@include phone {
-			font-size: 7.5em;
-			padding-top: 50px
-    }
-
-
-
-	    @media (min-width: 910px) and (max-width: 999px) {
-				font-size: 8em;
-	    }
-
-
-	    @media (min-width: 319px) and (max-width: 518px) {
-				font-size: 7.5em;
-				line-height: 1em;
-	    }
-	}
-
-.tag{
-
-    position: absolute;
-    width: 100%;
-    top: 60%;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 2;
-    visibility:hidden;
-
-	@include phone {
-		position: relative;
-	    width: 90%;
-    }
-
-
-	.title{
-	    font-family: "argesta", serif;
-	    font-style: normal;
-	    font-size: 52px;
-	    margin: 0.1em;
-	    margin-left: 0px;
-	    font-weight: 200;
-	   
-
-
-		@include tablet {
-			font-size: 3em;
 		}
-
-		@include tablet1 {
-			font-size: 3em;
-    }
-    	@include phone {
-			font-size: 2.3em;
-    }
-
-     @media (min-width: 910px) and (max-width: 999px) {
-			font-size: 3em;
-	    }
-
-
-}
-
-
-	.bio{
-		font-size: 22px;
-		font-weight: 400;
-		width: 100%;
-		line-height: 1.5;
-		margin-top: 10px;
-
-		
-		@include tablet {
-			font-size: 1.2em;
-		}
-
-		@include tablet1 {
-			font-size: 1.2em;
-		}
-
 		@include phone {
-			font-size: 1em;
-			width: 100%;
+			font-size: 7.5em;
+			padding-top: 50px;
 		}
 
 		@media (min-width: 910px) and (max-width: 999px) {
-			font-size: 1.2em;
-	    }
+			font-size: 8em;
+		}
 
 		@media (min-width: 319px) and (max-width: 518px) {
-				font-size: 18px;
-	    }
-	}
-}
-
-.mainpic{
-	width: 13%;
-	z-index: 1;
-    position: absolute;
-    top: 20%;
-    left: 94%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    z-index: 1;
-    visibility:hidden;
-    @include phone {
-	    width: 23%;
-	    top: 45%;
-	    left: 80%;
-	    -webkit-transform: translateX(-50%);
-	    transform: translateX(-50%);
-	    z-index: 1;
+			font-size: 7.5em;
+			line-height: 1em;
 		}
-}
+	}
 
+	.tag {
+		position: absolute;
+		width: 100%;
+		top: 60%;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: 2;
+		visibility: hidden;
 
+		@include phone {
+			position: relative;
+			width: 90%;
+		}
+
+		.title {
+			font-family: "argesta", serif;
+			font-style: normal;
+			font-size: 52px;
+			margin: 0.1em;
+			margin-left: 0px;
+			font-weight: 200;
+
+			@include tablet {
+				font-size: 3em;
+			}
+
+			@include tablet1 {
+				font-size: 3em;
+			}
+			@include phone {
+				font-size: 2.3em;
+			}
+
+			@media (min-width: 910px) and (max-width: 999px) {
+				font-size: 3em;
+			}
+		}
+
+		.bio {
+			font-size: 22px;
+			font-weight: 400;
+			width: 100%;
+			line-height: 1.5;
+			margin-top: 10px;
+
+			@include tablet {
+				font-size: 1.2em;
+			}
+
+			@include tablet1 {
+				font-size: 1.2em;
+			}
+
+			@include phone {
+				font-size: 1em;
+				width: 100%;
+			}
+
+			@media (min-width: 910px) and (max-width: 999px) {
+				font-size: 1.2em;
+			}
+
+			@media (min-width: 319px) and (max-width: 518px) {
+				font-size: 18px;
+			}
+		}
+	}
+
+	.mainpic {
+		width: 13%;
+		z-index: 1;
+		position: absolute;
+		top: 20%;
+		left: 94%;
+		-webkit-transform: translateX(-50%);
+		transform: translateX(-50%);
+		z-index: 1;
+		visibility: hidden;
+		@include phone {
+			width: 23%;
+			top: 45%;
+			left: 80%;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			z-index: 1;
+		}
+	}
 }

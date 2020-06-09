@@ -1,45 +1,39 @@
 ///BASE STYLE///
-    h1{
-
+h1 {
     padding-top: 80px;
     font-family: starling, serif;
     font-weight: 700;
     font-style: normal;
     font-size: 42px;
-       @include tablet1 {
-        font-size: 38px;      
-    }  
+    @include tablet1 {
+        font-size: 38px;
+    }
 
-      @include phone {
-        font-size: 28px;      
-    }  
-
+    @include phone {
+        font-size: 28px;
+    }
 }
 
-#bagels-content{
+#bagels-content {
+    .project-section-title {
+        h2 {
+            font-family: starling, serif;
+            font-size: 42px;
 
-
-
-    .project-section-title{
-    h2{
-        font-family: starling, serif;
-        font-size: 42px;
-
-        @include phone {
-            font-size: 30px;
-    }
-        span{
-            background-color: #DF9E85;
-            height: 5px;
-            display: block;
-            width: 15%;
-            margin-top: 5px;
-        }
+            @include phone {
+                font-size: 30px;
+            }
+            span {
+                background-color: #df9e85;
+                height: 5px;
+                display: block;
+                width: 15%;
+                margin-top: 5px;
+            }
         }
     }
 
     h3 {
-    
         font-size: 32px;
         margin-top: 0;
         margin-bottom: 15px;
@@ -49,51 +43,37 @@
         }
     }
 
-    h4{
-    
-        color: #B5B5B5;
+    h4 {
+        color: #b5b5b5;
         font-size: 16px;
         margin-bottom: 15px;
         @include phone {
             font-size: 14px;
+        }
     }
 
-    }
-
-    h5{
-    
+    h5 {
         font-size: 22px;
         font-weight: 700;
         margin-bottom: 15px;
         margin-top: 20px;
 
         @include phone {
-                font-size: 14px;
+            font-size: 14px;
         }
-
     }
 
-
-
-
-
-
-
-    p{
-    
+    p {
         font-size: 18px;
         line-height: 30px;
         margin: 0;
         @include tablet1 {
             width: 80%;
-            font-size: 22px; 
-    } 
+            font-size: 22px;
+        }
         @include phone {
             font-size: 16px;
-    }
-
-
-
+        }
     }
 
     ul {
@@ -101,26 +81,21 @@
         padding: 0;
         font-size: 18px;
         line-height: 30px;
-            @include phone {
-                font-size: 16px;
-                margin-top: 10px;
-    }
-    
-    
+        @include phone {
+            font-size: 16px;
+            margin-top: 10px;
+        }
 
-    li{
-        margin-bottom: 10px;
+        li {
+            margin-bottom: 10px;
             @include phone {
                 margin-bottom: 0;
-
+            }
+        }
     }
-    }
-    }
-    }
+}
 
-
-
-    ///HEADER////
+///HEADER////
 
 #bagels-header {
     background-color: #efd9d2;
@@ -130,37 +105,33 @@
     align-items: center;
     padding-top: 6%;
 
-    h1{
-    margin-bottom: 0;
-
+    h1 {
+        margin-bottom: 0;
     }
 
-    p{
+    p {
         font-family: "starling";
         font-size: 24px;
         font-weight: 500;
         text-align: center;
         line-height: 140%;
 
-            @include phone {
-                font-size: 18px;  
-                width: 90%;    
-    }  
-
+        @include phone {
+            font-size: 18px;
+            width: 90%;
+        }
     }
 
-    img{
+    img {
         max-width: 80%;
         margin-top: 40px;
         border-radius: 10px;
         margin-bottom: -100px;
-           @include phone {
-                max-width: 90%;      
-    }
-
+        @include phone {
+            max-width: 90%;
+        }
     }
 }
-
 
 ///PROJECT OVERVIEW///
 
@@ -178,8 +149,7 @@
         margin-top: 150px;
     }
 
-
-    .project-section-title{
+    .project-section-title {
         grid-column: 4 / span 6;
 
         @include tablet1 {
@@ -187,38 +157,34 @@
         }
     }
 
-
-    .project-section-content{
+    .project-section-content {
         grid-column: 4 / span 6;
 
         @include tablet1 {
             grid-column: 3 / span 8;
         }
 
-            .overview-text{
-                margin-bottom: 30px;
+        .overview-text {
+            margin-bottom: 30px;
+        }
+
+        .project-goal {
+            margin-bottom: 30px;
+            p {
+                margin-bottom: 10px;
             }
 
-            .project-goal{
-                margin-bottom: 30px;
-                p{
-                    margin-bottom: 10px;
-            
-                }
+            ul {
+                margin: 10px 20px;
+                margin-bottom: 20px;
 
-                ul{
-                    margin:10px 20px;
-                    margin-bottom: 20px;
-
-                li{
+                li {
                     list-style-image: url(../images/bagels/bulletpoints.jpg);
                 }
             }
-            }
+        }
 
-
-
-        .project-background{
+        .project-background {
             display: flex;
             justify-content: space-between;
             margin-top: 20px;
@@ -227,21 +193,14 @@
                 flex-wrap: wrap;
             }
         }
-
-
-
-
     }
-
 }
-
 
 ///PROJECT OVERVIEW END///
 
-
 //// RESEARCH PHASE /////
 
-#research-phase{
+#research-phase {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
@@ -250,87 +209,77 @@
     margin-bottom: 100px;
 
     @include phone {
-            display: block;
-        
-        }
+        display: block;
+    }
 
-        .project-section-title{
-            grid-column: 4 / span 6;
+    .project-section-title {
+        grid-column: 4 / span 6;
 
         @include tablet1 {
             grid-column: 3 / span 8;
         }
-
-      
     }
 
-        .project-section-content{
-            margin-left: auto;
-            margin-right: auto;
-            grid-column: 4 / span 6;
-            display: grid;
+    .project-section-content {
+        margin-left: auto;
+        margin-right: auto;
+        grid-column: 4 / span 6;
+        display: grid;
 
-            @include tablet1 {
-                grid-column: 3 / span 8;
-            }
-
-    
-         }
-
-        .competitors-homepage{
-            margin-top: 30px;
-            margin-bottom: 50px;
+        @include tablet1 {
             grid-column: 3 / span 8;
-            display: flex;
-            justify-content: space-evenly;
-
-            img{
-                width: 20%;
-            }
         }
+    }
 
-        .online-ordering-system-text{
-            grid-column: 4 / span 6;
+    .competitors-homepage {
+        margin-top: 30px;
+        margin-bottom: 50px;
+        grid-column: 3 / span 8;
+        display: flex;
+        justify-content: space-evenly;
+
+        img {
+            width: 20%;
         }
+    }
 
-        .online-ordering-system-logo{
-            grid-column: 4 / span 6;
-            width: 100%;
-            margin-bottom: 30px;
+    .online-ordering-system-text {
+        grid-column: 4 / span 6;
+    }
+
+    .online-ordering-system-logo {
+        grid-column: 4 / span 6;
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    ul {
+        margin: 10px 20px;
+        margin-bottom: 20px;
+
+        li {
+            list-style-image: url(../images/bagels/bulletpoints.jpg);
         }
+    }
 
-       ul{
-            margin:10px 20px;
-            margin-bottom: 20px;
+    .user-input {
+        grid-column: 3 / span 8;
+        width: 100%;
+        margin-top: 50px;
+    }
 
-            li{
-                list-style-image: url(../images/bagels/bulletpoints.jpg);
-                }
-        }
-
-        .user-input{
-            grid-column: 3 / span 8;
-            width: 100%;
-            margin-top: 50px;
-        }
-
-        .persona{
-            margin-top: 50px;
-            grid-column: 5 / span 4;
-            width: 100%;
-        }
-
-        
-
-
+    .persona {
+        margin-top: 50px;
+        grid-column: 5 / span 4;
+        width: 100%;
+    }
 }
 
 //// RESEARCH PHASE END /////
 
-
 //// HOMEPAGE DESIGN /////
 
-#homepage-design{
+#homepage-design {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
@@ -338,67 +287,60 @@
     max-width: 90%;
 
     @include phone {
-            display: block;
-    
-        }
+        display: block;
+    }
 
-        .project-section-title{
+    .project-section-title {
         grid-column: 4 / span 6;
 
         @include tablet1 {
             grid-column: 3 / span 8;
         }
-
     }
 
-        .project-section-content{
+    .project-section-content {
+        grid-column: 4 / span 6;
+        display: grid;
 
-            grid-column: 4 / span 6;
-            display: grid;
-
-            @include tablet1 {
-                grid-column: 3 / span 8;
-            }
-
-    
-         }
-
-         .homepage-wireframe {
-            margin-top: 60px;
-            grid-column: 4 / span 6;
-            width: 100%;
-            margin-bottom: 100px;
-         }
-
-        .style-guide {
-            grid-column: 2 / span 10;
-            width: 100%;
-            margin-top: 60px;
-            margin-bottom: 100px;
+        @include tablet1 {
+            grid-column: 3 / span 8;
         }
+    }
 
-         .home-final-design{
-            margin-top: 50px;
-            grid-column: 2 / span 10;
-            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
-         }
+    .homepage-wireframe {
+        margin-top: 60px;
+        grid-column: 4 / span 6;
+        width: 100%;
+        margin-bottom: 100px;
+    }
 
-         .home-final-design-mobile{
-           margin: 0 15%;
-            margin-top: 100px;
-            grid-column: 5 / span 4;
-            border-radius: 20px;
-            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
+    .style-guide {
+        grid-column: 2 / span 10;
+        width: 100%;
+        margin-top: 60px;
+        margin-bottom: 100px;
+    }
 
-         }
-     }
+    .home-final-design {
+        margin-top: 50px;
+        grid-column: 2 / span 10;
+        box-shadow: 0 4px 25px 0 rgba(25, 25, 25, 0.25);
+    }
+
+    .home-final-design-mobile {
+        margin: 0 15%;
+        margin-top: 100px;
+        grid-column: 5 / span 4;
+        border-radius: 20px;
+        box-shadow: 0 4px 25px 0 rgba(25, 25, 25, 0.25);
+    }
+}
 
 //// HOMEPAGE DESIGN END /////
 
-
 //// ORDERING SYSTEM /////
 
-#ordering-system-design{
+#ordering-system-design {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
@@ -406,13 +348,12 @@
     width: 90%;
     margin-top: 100px;
 
-       @include phone {
-            display: block;
-            width: 100%
+    @include phone {
+        display: block;
+        width: 100%;
+    }
 
-        }
-
-        .project-section-title{
+    .project-section-title {
         grid-column: 4 / span 6;
 
         @include tablet1 {
@@ -423,66 +364,51 @@
             width: 90%;
             margin: auto;
         }
-
-
-
     }
 
-
-        .project-section-content{
-
-            grid-column: 4 / span 6;
-            display: grid;
-            @include tablet1 {
-                grid-column: 3 / span 8;
-            }
-
-            @include phone {
-                width: 90%;
-                margin: auto;
-            }
-         }
-
-        .wireflow{
-            grid-column: 2 / span 10;
-            background-color: #F3F3F3;
-            padding: 20px;
-            margin-top: 50px;
-            border-radius: 20px;
-            margin-bottom: 50px;
-            img{
-                width: 70%;
-                display: block;
-                margin: auto;
-                padding: 40px 0px;
-
-              
-            }
-
-           
+    .project-section-content {
+        grid-column: 4 / span 6;
+        display: grid;
+        @include tablet1 {
+            grid-column: 3 / span 8;
         }
 
-        .ordering-system-prototype{
-            margin-top: 50px;
-            grid-column: 2 / span 10;
-            box-shadow: 0 4px 25px 0 rgba(25,25,25,0.25);
-            
-         }
+        @include phone {
+            width: 90%;
+            margin: auto;
+        }
+    }
 
-         .mobile-screens{;
-            margin-top: 50px;
-            grid-column: 2 / span 10;
-            padding: 10%;
-            background-color: #F3F3F3;
-            img{
-                 width: 100%;
-            }
+    .wireflow {
+        grid-column: 2 / span 10;
+        background-color: #f3f3f3;
+        padding: 20px;
+        margin-top: 50px;
+        border-radius: 20px;
+        margin-bottom: 50px;
+        img {
+            width: 70%;
+            display: block;
+            margin: auto;
+            padding: 40px 0px;
+        }
+    }
 
+    .ordering-system-prototype {
+        margin-top: 50px;
+        grid-column: 2 / span 10;
+        box-shadow: 0 4px 25px 0 rgba(25, 25, 25, 0.25);
+    }
 
-         }
-
+    .mobile-screens {
+        margin-top: 50px;
+        grid-column: 2 / span 10;
+        padding: 10%;
+        background-color: #f3f3f3;
+        img {
+            width: 100%;
+        }
+    }
 }
-
-
 
 //// ORDERING SYSTEM END/////
