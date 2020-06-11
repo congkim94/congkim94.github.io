@@ -6,9 +6,19 @@
 	margin-bottom: 100px;
 
 	@include tablet {
+		width: inherit;
 		margin-top: 100px;
+		margin-left: 40px;
+		margin-right: 40px;
 	}
 
+	@include tablet1 {
+		width: inherit;
+		margin-top: 100px;
+		margin-left: 40px;
+		margin-right: 40px;
+	}
+	
 	@include phone {
 		width: 95%;
 	}
