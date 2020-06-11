@@ -36,6 +36,7 @@
 	@include tablet1 {
 		margin-bottom: 0;
 		margin-left: 0;
+		text-align: left;
 	}
 
 	@include phone {
@@ -63,7 +64,8 @@
 		}
 
 		@include tablet1 {
-			font-size: 8em;
+			font-size: 9em;
+			line-height: 1em;
 		}
 		@include phone {
 			font-size: 7.5em;
@@ -90,6 +92,12 @@
 		visibility: hidden;
 
 		@include phone {
+			position: relative;
+			width: 90%;
+		}
+
+		@include tablet1 {
+			top: 0;
 			position: relative;
 			width: 90%;
 		}
@@ -161,7 +169,16 @@
 		@include phone {
 			width: 23%;
 			top: 45%;
-			left: 80%;
+			left: 310px;
+			-webkit-transform: translateX(-50%);
+			transform: translateX(-50%);
+			z-index: 1;
+		}
+
+		@include tablet1 {
+			width: 20%;
+			top: 45%;
+			left: 65%;
 			-webkit-transform: translateX(-50%);
 			transform: translateX(-50%);
 			z-index: 1;

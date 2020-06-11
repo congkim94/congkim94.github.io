@@ -82,8 +82,7 @@
 		grid-row-gap: 25px;
 
 		@include tablet {
-			margin-top: 50px;
-			grid-column-gap: inherit;
+			margin-top: 30px;
 		}
 
 		@include phone {
@@ -153,7 +152,7 @@
 			}
 
 			@include tablet {
-				width: 85%;
+				width: 100%;
 			}
 		}
 

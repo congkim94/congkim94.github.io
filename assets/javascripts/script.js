@@ -13,10 +13,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
           var tl = new TimelineMax();
 
         tl.from('.name', .7, {y:-100,autoAlpha:0, ease: Power1.easeInOut});
-        tl.from('.tag', .7, {y:100, autoAlpha:0, ease: Power1.easeInOut}, '-=.3');
+        tl.from('.tag', .7, { autoAlpha:0, ease: Power1.easeInOut}, '-=.3');
         tl.from('.mainpic', .5, {x:100,autoAlpha:0, ease: Power1.easeInOut}, '-=.8');
-        // tl.from('.shape1', .7, {x:-100, y:-150,autoAlpha:0, ease: Power1.easeInOut}, '-=.4')
-        // tl.from('.shape2', .7, {x:-100, autoAlpha:0, ease: Power1.easeInOut},'-=.5');
+       
+
 
          
        });

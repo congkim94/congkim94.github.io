@@ -5,11 +5,20 @@ header {
   margin: auto;
   z-index: 100;
   position: absolute;
-  width: -moz-available;
-  width: -webkit-fill-available;
-  width: fill-available;
+  box-sizing: border-box;
+  width: 100%;
 
   @include tablet1 {
+    padding: 20px;
+    top: 0;
+    position: fixed;
+
+    a {
+      z-index: 300;
+    }
+  }
+
+  @include tablet {
     padding: 20px 50px;
   }
 
@@ -33,7 +42,11 @@ header {
     padding-left: 20px;
 
     @include tablet1 {
-      width: 55%;
+      width: 70px;
+    }
+
+    @include tablet {
+      width: 35%;
     }
 
     @include phone {
@@ -43,6 +56,8 @@ header {
   }
 
   .navigation {
+    justify-self: right;
+
     @include phone {
       height: 100%;
       position: fixed;
@@ -52,12 +67,21 @@ header {
       z-index: 100;
       margin: auto;
     }
-    justify-self: right;
+
     .main-nav-mobile {
       list-style-type: none;
       /*margin-right:20px;*/
 
       @include phone {
+        text-align: left;
+        display: block;
+        list-style: none;
+        margin-top: 55%;
+        margin-left: 30px;
+        padding: 0;
+      }
+
+      @include tablet1 {
         text-align: left;
         display: block;
         list-style: none;
@@ -72,8 +96,18 @@ header {
           @include phone {
             display: none;
           }
+          @include tablet1 {
+            display: none;
+          }
         }
         @include phone {
+          display: block;
+          margin: 10px 0;
+          padding: 0;
+          font-size: 2em;
+        }
+
+        @include tablet1 {
           display: block;
           margin: 10px 0;
           padding: 0;
@@ -96,6 +130,8 @@ header {
           }*/
         @include tablet1 {
           padding: 0;
+          font-family: "starling";
+          font-size: 60px;
         }
 
         @include phone {
@@ -126,6 +162,20 @@ header {
           }
         }
       }
+
+      @include tablet1 {
+        display: block;
+        list-style-type: none;
+        margin-top: 150px;
+        font-size: 28px;
+
+        li {
+          margin-bottom: 10px;
+          a {
+            color: black;
+          }
+        }
+      }
     }
   }
 
@@ -140,11 +190,21 @@ header {
       background-color: white;
       opacity: 1;
       right: 1;
-      width: 80%;
+      width: 100%;
       transition: right 0.5s ease;
-      @include phone {
-        width: 100%;
-      }
+    }
+
+    @include tablet1 {
+      height: 100%;
+      position: fixed;
+      top: 0;
+      right: -70rem;
+      z-index: 100;
+      background-color: white;
+      opacity: 1;
+      right: 1;
+      width: 100%;
+      transition: right 0.5s ease;
     }
   }
 
@@ -156,16 +216,43 @@ header {
       overflow: auto;
       background-size: cover;
     }
+
+    @include tablet1 {
+      background: url(../images/opporty/mobile-background.png) no-repeat;
+      background-color: #c0a4c6;
+      right: 0px;
+      overflow: auto;
+      background-size: cover;
+    }
   }
 
   .menu-toggle {
     display: none;
     @include phone {
-      position: fixed;
-      top: 24px;
-      right: 12px;
-      height: 2 0px;
-      width: 40px;
+      align-self: center;
+      height: 10px;
+      cursor: pointer;
+      z-index: 200;
+      display: inherit;
+
+      div {
+        width: 35px;
+        height: 2px;
+        margin-bottom: 8px;
+        background-color: black;
+        transition: 0.2s ease-in-out;
+        justify-self: end;
+      }
+      #bottom {
+        width: 20px;
+        justify-self: end;
+        margin-bottom: 0;
+      }
+    }
+
+    @include tablet1 {
+      align-self: center;
+      height: 10px;
       cursor: pointer;
       z-index: 200;
       display: inherit;
@@ -188,6 +275,15 @@ header {
 
   .menu-toggle.active {
     @include phone {
+      transform-origin: center;
+      -webkit-transform-style: flat;
+
+      #bottom {
+        transform: translatex(-15px);
+      }
+    }
+
+    @include tablet1 {
       transform-origin: center;
       -webkit-transform-style: flat;
 
