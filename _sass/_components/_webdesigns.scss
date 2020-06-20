@@ -20,7 +20,7 @@
 	}
 	
 	@include phone {
-		width: 95%;
+		width: 100%;
 	}
 	.title1 {
 		position: relative;
@@ -32,13 +32,11 @@
 		}
 
 		@include phone {
-			margin-top: 10px;
+			margin: 20px;
 		}
 
 		@media (min-width: 319px) and (max-width: 600px) {
-			width: 90vw;
-			margin-left: 10px;
-		}
+			margin: 20px;		}
 
 		h2 {
 			font-family: "Starling", serif;
@@ -97,7 +95,7 @@
 
 		@include phone {
 			display: block;
-			margin-top: 20px;
+			margin: 20px;
 		}
 
 		.project-description {
