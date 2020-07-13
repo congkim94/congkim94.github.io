@@ -5,23 +5,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
   
     // wait until window is loaded - all images, styles-sheets, fonts, links, and other media assets
     // you could also use addEventListener() instead
-    window.onload = function() {
+ 
       
        // OPTIONAL - waits til next tick render to run code (prevents running in the middle of render tick)
        window.requestAnimationFrame(function() {
       
           var tl = new TimelineMax();
 
-        tl.from('.name', .7, {y:-100,autoAlpha:0, ease: Power1.easeInOut});
-        tl.from('.tag', .7, { autoAlpha:0, ease: Power1.easeInOut}, '-=.3');
-        tl.from('.mainpic', .5, {x:100,autoAlpha:0, ease: Power1.easeInOut}, '-=.8');
+        tl.from('header', .6, {y:-30,autoAlpha:0, ease: Power1.easeInOut});
+        tl.from('.name', .6, {y:-60,autoAlpha:0, ease: Power1.easeInOut});
+        tl.from('.tag', .6, { autoAlpha:0, ease: Power1.easeInOut}, '-=.3');
+        tl.from('.mainpic', .6, {x:100,autoAlpha:0, ease: Power1.easeInOut}, '-=.8');
        
 
 
          
        });
       
-    };
+   
   
 });
 
