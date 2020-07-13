@@ -12,8 +12,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       
           var tl = new TimelineMax();
 
-        tl.from('header', .6, {y:-30,autoAlpha:0, ease: Power1.easeInOut});
-        tl.from('.name', .6, {y:-60,autoAlpha:0, ease: Power1.easeInOut});
+        tl.from('header', .6, {top:-30,autoAlpha:0, ease: Power1.easeInOut});
+        tl.from('.name', .6, {top:-60,autoAlpha:0, ease: Power1.easeInOut});
         tl.from('.tag', .6, { autoAlpha:0, ease: Power1.easeInOut}, '-=.3');
         tl.from('.mainpic', .6, {x:100,autoAlpha:0, ease: Power1.easeInOut}, '-=.8');
        
