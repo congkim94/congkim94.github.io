@@ -90,6 +90,10 @@
 		grid-column-gap: 50px;
 		grid-row-gap: 25px;
 
+		a{
+			text-decoration: none;
+		}
+			
 		@include tablet {
 			margin-top: 30px;
 		}
@@ -105,6 +109,7 @@
 			flex-direction: column;
 			margin-top: 20px;
 			margin-bottom: 20px;
+
 
 			@include phone {
 				margin-bottom: 40px;
