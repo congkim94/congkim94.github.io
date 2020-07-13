@@ -1,68 +1,86 @@
-#contact{
+#contact {
 	// background: url(../images/footer.svg) no-repeat;
 
-	margin-top: 100px;
-	// height: 500px;
+	margin: 150px;
+	margin-bottom: 30px;
 	display: flex;
 
-	
+	@include tablet {
+		margin: 40px;
+	}
+
+	@include tablet1 {
+		margin: 40px;
+	}
+
+	@include phone {
+		margin: 20px;
+	}
 }
 
-
-.footercontent{
+.footercontent {
 	display: flex;
-    align-self: center;
-    justify-content: space-around;
-    width: 100%;
-    margin-top: 80px;
-    @include phone {
+	align-self: center;
+	align-items: flex-end;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 80px;
+
+	@include phone {
 		display: block;
-		margin-left: 50px;
-		text-align: center;
-    }
+		text-align: left;
+	}
 
-    @media (min-width: 319px) and (max-width: 440px) {
-    	margin-right: 10px;
-    	margin-left: 10px;
-    	padding-top: 0;
-    	}
+	h2 {
+		font-family: "starling", serif;
+		font-size: 64px;
+		font-weight: 300;
+		margin-bottom: 0;
+		line-height: 1.4;
 
+		@include tablet1 {
+			font-size: 48px;
+		}
 
+		@include phone {
+			font-size: 32px;
+			margin-bottom: 50px;
+		}
+	}
 
+	ul {
+		list-style: none;
+		text-decoration: none;
+		@include phone {
+			margin: 0;
+			padding: 0;
+			text-align: left;
 
-
-
-	ul{
-			list-style: none;
-			text-decoration: none;
 			@include phone {
-			margin-top: 0;
-			padding:0;
+				text-align: right;
 			}
+		}
 
-
-			li{ 
-				display: inline;
-				margin: 20px;
-				a{
-
+		li {
+			display: inline;
+			margin-left: 20px;
+			a {
 				color: inherit;
-				font-family: 'Libre Franklin', sans-serif;;
-				font-size: 1em;
+				font-family: "Libre Franklin", sans-serif;
+				font-size: 24px;
 				font-weight: 400;
 				text-decoration: none;
 
-			   &:hover{
-              	color: #8b8b8b;
-
-            		}
+				&:hover {
+					color: #8b8b8b;
+				}
 				@include tablet1 {
-					font-size: 1em;
-					}
-			@media (min-width: 319px) and (max-width: 440px) {
-    			font-size: 1em;
-    			}	
-		} 
+					font-size: 18px;
+				}
+				@media (min-width: 319px) and (max-width: 440px) {
+					font-size: 18px;
+				}
+			}
+		}
 	}
 }
-		}
