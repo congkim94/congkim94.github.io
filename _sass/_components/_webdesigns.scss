@@ -40,7 +40,7 @@
 
 		h2 {
 			font-family: "Starling", serif;
-			font-size: 2.8em;
+			font-size: 52px;
 			font-weight: 500;
 			top: 100px;
 			left: 5vw;
@@ -51,11 +51,12 @@
 			}
 
 			@include phone {
-				font-size: 2.3em;
+				font-size: 2.5em;
 			}
 
 			span {
-				font-family: "Starling", serif;
+				font-family: "Libre Franklin";
+				font-weight: 400;
 				font-size: 22px;
 				display: block;
 				@include tablet {

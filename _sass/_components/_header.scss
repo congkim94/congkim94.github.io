@@ -103,7 +103,7 @@
 		}
 
 		.title {
-			font-family: "argesta", serif;
+			font-family: "starling", serif;
 			font-style: normal;
 			font-size: 52px;
 			margin: 0.1em;
@@ -118,7 +118,7 @@
 				font-size: 3em;
 			}
 			@include phone {
-				font-size: 2.3em;
+				font-size: 2.5em;
 			}
 
 			@media (min-width: 910px) and (max-width: 999px) {
