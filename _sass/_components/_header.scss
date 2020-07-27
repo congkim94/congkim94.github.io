@@ -29,10 +29,20 @@
 	}
 }
 
+.hover-container{
+	perspective: 30px;
+}
+
 .profile {
 	margin-bottom: 70px;
 	position: relative;
 	text-align: center;
+
+	@media only screen and (min-width: 1240px) {
+	 	transition: transform 0.5s;
+  		-webkit-transition: transform 0.5s;
+	}
+
 	@include tablet1 {
 		margin-bottom: 0;
 		margin-left: 0;
