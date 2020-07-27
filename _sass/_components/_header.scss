@@ -62,6 +62,7 @@
 		font-weight: 700;
 		font-style: normal;
 		font-size: 12em;
+		padding: 80px 0;
 		margin: 0.1em;
 		font-style: italic;
 		visibility: hidden;
@@ -80,6 +81,7 @@
 		@include phone {
 			font-size: 7.5em;
 			padding-top: 50px;
+			padding-bottom: 0px;
 		}
 
 		@media (min-width: 910px) and (max-width: 999px) {
@@ -95,7 +97,7 @@
 	.tag {
 		position: absolute;
 		width: 100%;
-		top: 60%;
+		top: 50%;
 		left: 50%;
 		transform: translateX(-50%);
 		z-index: 2;
