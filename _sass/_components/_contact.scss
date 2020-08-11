@@ -1,20 +1,20 @@
 #contact {
-	// background: url(../images/footer.svg) no-repeat;
 
-	margin: 150px;
+	width: 80%;
+	margin: auto;
 	margin-bottom: 30px;
 	display: flex;
 
 	@include tablet {
-		margin: 40px;
+		width: 85%;
 	}
 
 	@include tablet1 {
-		margin: 40px;
+		width: 85%;
 	}
 
 	@include phone {
-		margin: 20px;
+		width: 90%;
 		margin-bottom: 20px;
 	}
 }
@@ -27,9 +27,9 @@
 	width: 100%;
 	margin-top: 80px;
 
-	.phone-br{
+	.phone-br {
 		display: none;
-			}
+	}
 
 	@include phone {
 		display: block;
@@ -43,12 +43,10 @@
 		margin-bottom: 0;
 		line-height: 1.4;
 
-		a{	
+		a {
 			font-family: "starling", serif;
 			text-decoration: none;
 			border-bottom: 4px solid #000;
-
-
 		}
 
 		@include tablet1 {
@@ -59,21 +57,22 @@
 			font-size: 40px;
 			margin-bottom: 80px;
 
-			.desktop-br{
+			.desktop-br {
 				display: none;
 			}
 
-			.phone-br{
+			.phone-br {
 				display: inherit;
 			}
 		}
 	}
 
 	ul {
-	    text-decoration: none;
-	    display: flex;
-	    flex-direction: column;
-	    text-align: end;
+		text-decoration: none;
+		display: flex;
+		flex-direction: column;
+		text-align: end;
+		margin-bottom: 0;
 		@include phone {
 			margin: 0;
 			padding: 0;
