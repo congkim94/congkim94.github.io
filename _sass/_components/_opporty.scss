@@ -1,4 +1,50 @@
 ///BASE STYLE///
+.project-section-title {
+    grid-column: 4 / span 6;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+
+    @include phone {
+            margin-bottom: 30px;
+        }
+}
+
+.project-section-content {
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4 / span 6;
+    display: grid;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+
+#opporty-header{
+   h1 {
+    padding-top: 80px;
+    font-family: starling, serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 42px;
+    @include tablet1 {
+        font-size: 38px;
+    }
+
+    @include phone {
+        font-size: 28px;
+    }
+}
+}
 
 
 #opporty-content {
@@ -75,7 +121,7 @@
         margin: 0;
         @include tablet1 {
             width: 80%;
-            font-size: 22px;
+            font-size: 18px;
         }
         @include phone {
             font-size: 16px;
@@ -154,20 +200,9 @@
         margin-top: 150px;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
 
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .project-section-content {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
 
         .project-background {
             display: flex;
@@ -201,22 +236,8 @@
         margin-top: 100px;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
 
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
     .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-
         ul {
             margin: 10px 20px;
             li {
@@ -252,18 +273,7 @@
         max-width: 100%;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
 
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-
-        @include phone {
-            width: 90%;
-            margin: auto;
-        }
-    }
 
     .interview-image {
         grid-column: 3 / span 8;
@@ -275,13 +285,6 @@
     }
 
     .project-section-content {
-        margin: auto;
-        grid-column: 4 / span 6;
-        margin-top: 30px;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
 
         @include phone {
             width: 90%;
@@ -399,24 +402,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
     .affinity-diagram {
         margin-top: 50px;
         grid-column: 2 / span 10;
@@ -451,22 +436,7 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 }
 
 .ideation-content {
@@ -599,24 +569,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
     .userflow-diagram {
         margin-top: 50px;
         grid-column: 1 / span 12;
@@ -651,22 +603,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-        display: grid;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .opporty-wireframe-section {
         display: grid;
@@ -740,23 +676,7 @@
     @include phone {
         display: block;
     }
-    .project-section-title {
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-        display: grid;
-        margin-bottom: 50px;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .quote {
         grid-column: 3 / span 8;
@@ -803,20 +723,10 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
+
 
     .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
+
         @include phone {
             margin-bottom: 30px;
         }
@@ -859,25 +769,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-        @include phone {
-            margin-bottom: 30px;
-        }
-    }
 }
 
 ////////////////// REFLECTION END /////////////////////

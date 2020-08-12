@@ -1,4 +1,47 @@
+///BASE STYLE///
+.project-section-title {
+    grid-column: 4 / span 6;
 
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+
+.project-section-content {
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4 / span 6;
+    display: grid;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+
+#bagels-header{
+
+h1 {
+    padding-top: 80px;
+    font-family: starling, serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 42px;
+    @include tablet1 {
+        font-size: 38px;
+    }
+
+    @include phone {
+        font-size: 28px;
+    }
+}
+}
 
 
 #bagels-content {
@@ -71,7 +114,7 @@
         margin: 0;
         @include tablet1 {
             width: 80%;
-            font-size: 22px;
+            font-size: 18px;
         }
         @include phone {
             font-size: 16px;
@@ -151,20 +194,8 @@
         margin-top: 150px;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .project-section-content {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
 
         .overview-text {
             margin-bottom: 30px;
@@ -214,24 +245,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-        display: grid;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .competitors-homepage {
         margin-top: 30px;
@@ -292,22 +305,6 @@
         display: block;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-
-    .project-section-content {
-        grid-column: 4 / span 6;
-        display: grid;
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
 
     .homepage-wireframe {
         margin-top: 60px;
@@ -355,31 +352,7 @@
         width: 100%;
     }
 
-    .project-section-title {
-        grid-column: 4 / span 6;
 
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-
-        @include phone {
-            width: 90%;
-            margin: auto;
-        }
-    }
-
-    .project-section-content {
-        grid-column: 4 / span 6;
-        display: grid;
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-
-        @include phone {
-            width: 90%;
-            margin: auto;
-        }
-    }
 
     .wireflow {
         grid-column: 2 / span 10;
