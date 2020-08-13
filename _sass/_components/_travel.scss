@@ -1,65 +1,62 @@
 ///BASE STYLE///
 
-    .project-section-title {
-        grid-column: 4 / span 6;
+.project-section-title {
+    grid-column: 4 / span 6;
 
-        @include tablet {
-            grid-column: 3 / span 8;
-        }
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
+    @include tablet {
+        grid-column: 3 / span 8;
     }
 
-    .project-section-content {
-        margin-left: auto;
-        margin-right: auto;
-        grid-column: 4 / span 6;
-
-        @include tablet {
-            grid-column: 3 / span 8;
-        }
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
-#travel-header{
-
-h1 {
-    padding-top: 80px;
-    font-family: starling, serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 42px;
     @include tablet1 {
-        font-size: 38px;
-    }
-
-    @include phone {
-        font-size: 28px;
+        grid-column: 3 / span 8;
     }
 }
-}
 
+.project-section-content {
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4 / span 6;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+#travel-header {
+    h1 {
+        padding-top: 80px;
+        font-family: starling, serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 42px;
+        @include tablet1 {
+            font-size: 38px;
+        }
+
+        @include phone {
+            font-size: 28px;
+        }
+    }
+}
 
 #travel-content {
-
     h1 {
-    padding: 80px 0;
-    font-family: starling, serif;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 42px;
-    @include tablet1 {
-        font-size: 38px;
-    }
+        padding: 80px 0;
+        font-family: starling, serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 42px;
+        @include tablet1 {
+            font-size: 38px;
+        }
 
-    @include phone {
-        font-size: 28px;
+        @include phone {
+            font-size: 28px;
+        }
     }
-}
     .project-section-title {
         h2 {
             font-family: starling, serif;
@@ -69,7 +66,7 @@ h1 {
                 font-size: 30px;
             }
             span {
-                background-color: #00C49A;
+                background-color: #00c49a;
                 height: 5px;
                 display: block;
                 width: 15%;
@@ -91,7 +88,6 @@ h1 {
     h4 {
         color: #b5b5b5;
         font-size: 16px;
-        margin-bottom: px;
         @include phone {
             font-size: 14px;
         }
@@ -148,7 +144,7 @@ h1 {
 ///HEADER////
 
 #travel-header {
-    background-color: #D2EFE1;
+    background-color: #d2efe1;
     top: 0px;
     display: flex;
     flex-direction: column;
@@ -211,11 +207,9 @@ h1 {
     .overview-text {
         margin-bottom: 20px;
     }
-   
 }
 
 /// PROJECT OVERVIEW END ////////
-
 
 //// RESEARCH PHASE /////
 #research-phase {
@@ -225,38 +219,33 @@ h1 {
     margin: auto;
     max-width: 90%;
     margin-bottom: 100px;
-    margin-top: 50px;
+    margin-top: 120px;
 
     @include phone {
         display: block;
     }
 
-
     .project-section-content {
-
         ul {
-        margin: 10px 20px;
-        margin-bottom: 20px;
+            margin: 10px 20px;
+            margin-bottom: 20px;
 
-        li {
-            list-style-image: url(../images/travel/bulletpoints.png);
+            li {
+                list-style-image: url(../images/travel/bulletpoints.png);
+            }
         }
     }
 
-    }
-
-      .competitors {
-            grid-column: 4 / span 5;
-            width: 100%;
-            margin-top: 50px;
+    .competitors {
+        grid-column: 4 / span 5;
+        width: 100%;
+        margin-top: 50px;
     }
 }
 
 //// RESEARCH PHASE END /////
 
 //// IDEATION /////
-
-
 
 #ideation {
     display: grid;
@@ -269,7 +258,7 @@ h1 {
         display: block;
     }
 
-    .feature-box{
+    .feature-box {
         grid-column: 2 / span 10;
         background: #f3f3f3;
         border-radius: 10px;
@@ -283,7 +272,7 @@ h1 {
             padding-top: 30px;
         }
 
-         @include tablet1 {
+        @include tablet1 {
             grid-column: 1 / span 12;
             display: block;
             padding-top: 30px;
@@ -295,18 +284,18 @@ h1 {
             padding: 20px;
         }
 
-        .feature{
+        .feature {
             width: 100%;
             padding: 50px;
 
-            img{
+            img {
                 @include phone {
                     width: 20%;
-        }
+                }
             }
             @include tablet {
-            padding: 30px;
-        }
+                padding: 30px;
+            }
 
             @include tablet1 {
                 padding: 30px;
@@ -319,35 +308,30 @@ h1 {
                 width: inherit;
                 text-align: center;
             }
-
-
         }
     }
-
 }
-
 
 ////////////////// IDEATION END /////////////////////
 
 ////////////////// OOUX /////////////////////
 
-#ooux{
+#ooux {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
     max-width: 90%;
-    margin-top: 70px;
+    margin-top: 120px;
 
     @include phone {
         display: block;
     }
 
-
     .ooux-model {
         margin-top: 50px;
         margin-bottom: 50px;
-        grid-column: 2 / span 10;
+        grid-column: 3 / span 8;
         position: relative;
         overflow: hidden;
         padding-top: 56.25%;
@@ -362,7 +346,7 @@ h1 {
         }
     }
 
-    p{
+    p {
         grid-column: 4 / span 6;
 
         @include tablet {
@@ -375,29 +359,26 @@ h1 {
     }
 }
 
-
 ////////////////// OOUX END /////////////////////
 
+////////////////// USERFLOW /////////////////////
 
-////////////////// WIRE FLOW /////////////////////
-
-#userflow{
+#userflow {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
     max-width: 90%;
-    margin-top: 70px;
+    margin-top: 120px;
 
     @include phone {
         display: block;
     }
 
-
     .userflow-model {
         margin-top: 50px;
         margin-bottom: 50px;
-        grid-column: 2 / span 10;
+        grid-column: 3 / span 8;
         position: relative;
         overflow: hidden;
         padding-top: 56.25%;
@@ -410,5 +391,149 @@ h1 {
             height: 100%;
             border: 0;
         }
+    }
+}
+
+////////////////// USERFLOW END /////////////////////
+
+////////////////// WIREFRAME /////////////////////
+
+#wireframe {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 120px;
+
+    @include phone {
+        display: block;
+    }
+
+    .wireframe-container {
+        grid-column: 3 / span 8;
+        .wireframes {
+            margin-top: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+
+            @include tablet1 {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+
+            @include phone {
+                flex-direction: column-reverse;
+                align-items: start;
+            }
+
+            img {
+                width: 50%;
+                @include tablet1 {
+                    width: 80%;
+                }
+                @include phone {
+                    width: 100%;
+                }
+            }
+
+            .text {
+                width: 45%;
+                padding-bottom: 20px;
+                @include tablet1 {
+                    width: 100%;
+                }
+                @include phone {
+                    width: 100%;
+                }
+            }
+        }
+
+        .explore-map {
+            flex-direction: row-reverse;
+
+            @include tablet1 {
+                flex-direction: column-reverse;
+            }
+
+            @include phone {
+                flex-direction: column-reverse;
+                align-items: start;
+            }
+        }
+    }
+}
+
+////////////////// WIREFRAME END/////////////////////
+
+////////////////// REVISION /////////////////////
+
+#revision {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 120px;
+
+    @include phone {
+        display: block;
+    }
+
+    .revision-wireframe {
+        grid-column: 4 / span 5;
+        margin-top: 80px;
+        img {
+            width: 100%;
+        }
+    }
+}
+////////////////// REVISION END /////////////////////
+
+////////////////// FINAL DESIGN /////////////////////
+
+#final-design {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 120px;
+
+    @include phone {
+        display: block;
+    }
+
+    .app-screens {
+        margin-top: 50px;
+        grid-column: 2 / span 10;
+        padding: 10%;
+        background-color: #f3f3f3;
+        img {
+            width: 100%;
+        }
+    }
+
+    a{
+        margin-top: 40px;
+        grid-column: 5 / span 4;
+        font-family:"starling";
+        font-size: 38px;
+        text-decoration: none;
+        justify-self:center;
+        transition: all 300ms ease 0s;
+        border-bottom: 4px solid transparent;
+
+        &:hover{
+            border-bottom: 4px solid #000;
+        }
+
+        @include phone {
+            margin-top: 40px;
+            font-size: 26px;
+            display: block;
+        }
+
     }
 }
