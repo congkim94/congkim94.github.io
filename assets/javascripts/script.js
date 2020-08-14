@@ -1,3 +1,5 @@
+
+
 // wait until DOM is ready
 document.addEventListener("DOMContentLoaded", function (event) {
   // wait until window is loaded - all images, styles-sheets, fonts, links, and other media assets
@@ -53,123 +55,7 @@ anime({
   loop: true,
 });
 
-// Set a variable for our button element.
-const scrollToTopButton = document.getElementById("js-top");
 
-// Let's set up a function that shows our scroll-to-top button if we scroll beyond the height of the initial window.
-const scrollFunc = () => {
-  // Get the current scroll value
-  let y = window.scrollY;
-
-  // If the scroll value is greater than the window height, let's add a class to the scroll-to-top button to show it!
-  if (y > 800) {
-    scrollToTopButton.className = "top-link show";
-  } else {
-    scrollToTopButton.className = "top-link hide";
-  }
-};
-
-window.addEventListener("scroll", scrollFunc);
-
-const scrollToTop = () => {
-  // Let's set a variable for the number of pixels we are from the top of the document.
-  const c = document.documentElement.scrollTop || document.body.scrollTop;
-
-  // If that number is greater than 0, we'll scroll back to 0, or the top of the document.
-  // We'll also animate that scroll with requestAnimationFrame:
-  // https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame
-  if (c > 0) {
-    window.requestAnimationFrame(scrollToTop);
-    // ScrollTo takes an x and a y coordinate.
-    // Increase the '10' value to get a smoother/slower scroll!
-    window.scrollTo(0, c - c / 10);
-  }
-};
-
-// When the button is clicked, run our ScrolltoTop function above!
-scrollToTopButton.onclick = function (e) {
-  e.preventDefault();
-  scrollToTop();
-};
-
-
-(function () {
-  // Init
-  var container = document.querySelector(".hover-container"),
-    inner = document.querySelector(".profile");
-
-  // Mouse
-  var mouse = {
-    _x: 0,
-    _y: 0,
-    x: 0,
-    y: 0,
-    updatePosition: function (event) {
-      var e = event || window.event;
-      this.x = e.clientX - this._x;
-      this.y = (e.clientY - this._y) * -1;
-    },
-    setOrigin: function (e) {
-      this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
-      this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
-    },
-    show: function () {
-      return "(" + this.x + ", " + this.y + ")";
-    },
-  };
-
-  // Track the mouse position relative to the center of the container.
-  mouse.setOrigin(container);
-
-  //----------------------------------------------------
-
-  var counter = 0;
-  var refreshRate = 10;
-  var isTimeToUpdate = function () {
-    return counter++ % refreshRate === 0;
-  };
-
-  //----------------------------------------------------
-
-  var onMouseEnterHandler = function (event) {
-    update(event);
-  };
-
-  var onMouseLeaveHandler = function () {
-    inner.style = "";
-  };
-
-  var onMouseMoveHandler = function (event) {
-    if (isTimeToUpdate()) {
-      update(event);
-    }
-  };
-
-  //----------------------------------------------------
-
-  var update = function (event) {
-    mouse.updatePosition(event);
-    updateTransformStyle(
-      (mouse.y / inner.offsetHeight / 2).toFixed(2),
-      (mouse.x / inner.offsetWidth / 2).toFixed(2)
-    );
-  };
-
-  var updateTransformStyle = function (x, y) {
-    var style = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
-    inner.style.transform = style;
-    inner.style.webkitTransform = style;
-    inner.style.mozTranform = style;
-    inner.style.msTransform = style;
-    inner.style.oTransform = style;
-  };
-
-  //--------------------------------------------------------
-
-  container.onmousemove = onMouseMoveHandler;
-  container.onmouseleave = onMouseLeaveHandler;
-  container.onmouseenter = onMouseEnterHandler;
-})();
 
 (function () {
   var hamburger = {
@@ -395,4 +281,85 @@ var initPhotoSwipeFromDOM = function (gallerySelector) {
 
 // execute above function
 initPhotoSwipeFromDOM(".mygallery");
+
+
+
+
+(function () {
+  // Init
+  var container = document.querySelector(".hover-container"),
+    inner = document.querySelector(".profile");
+
+  // Mouse
+  var mouse = {
+    _x: 0,
+    _y: 0,
+    x: 0,
+    y: 0,
+    updatePosition: function (event) {
+      var e = event || window.event;
+      this.x = e.clientX - this._x;
+      this.y = (e.clientY - this._y) * -1;
+    },
+    setOrigin: function (e) {
+      this._x = e.offsetLeft + Math.floor(e.offsetWidth / 2);
+      this._y = e.offsetTop + Math.floor(e.offsetHeight / 2);
+    },
+    show: function () {
+      return "(" + this.x + ", " + this.y + ")";
+    },
+  };
+
+  // Track the mouse position relative to the center of the container.
+  mouse.setOrigin(container);
+
+  //----------------------------------------------------
+
+  var counter = 0;
+  var refreshRate = 10;
+  var isTimeToUpdate = function () {
+    return counter++ % refreshRate === 0;
+  };
+
+  //----------------------------------------------------
+
+  var onMouseEnterHandler = function (event) {
+    update(event);
+  };
+
+  var onMouseLeaveHandler = function () {
+    inner.style = "";
+  };
+
+  var onMouseMoveHandler = function (event) {
+    if (isTimeToUpdate()) {
+      update(event);
+    }
+  };
+
+  //----------------------------------------------------
+
+  var update = function (event) {
+    mouse.updatePosition(event);
+    updateTransformStyle(
+      (mouse.y / inner.offsetHeight / 2).toFixed(2),
+      (mouse.x / inner.offsetWidth / 2).toFixed(2)
+    );
+  };
+
+  var updateTransformStyle = function (x, y) {
+    var style = "rotateX(" + x + "deg) rotateY(" + y + "deg)";
+    inner.style.transform = style;
+    inner.style.webkitTransform = style;
+    inner.style.mozTranform = style;
+    inner.style.msTransform = style;
+    inner.style.oTransform = style;
+  };
+
+  //--------------------------------------------------------
+
+  container.onmousemove = onMouseMoveHandler;
+  container.onmouseleave = onMouseLeaveHandler;
+  container.onmouseenter = onMouseEnterHandler;
+})();
 
