@@ -179,9 +179,13 @@
 			grid-row: 1/2;
 		}
 
-		.dries {
+		.travel {
 			grid-column: 1/2;
 			grid-row: 2/3;
+
+			img{
+				filter: blur(10px);
+			}
 		}
 
 		.peer {
@@ -189,5 +193,11 @@
 			grid-row: 2/3;
 			justify-self: center;
 		}
+
+		.dries {
+			grid-column: 1/2;
+
+		}
+
 	}
 }
