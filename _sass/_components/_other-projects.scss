@@ -73,5 +73,11 @@
                 width: 100%;
             }
         }
+
+        .travel{
+            img{
+                filter: blur(5px);
+            }
+        }
     }
 }
