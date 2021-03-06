@@ -39,37 +39,36 @@
 
 		h2 {
 			font-family: "Starling", serif;
-			font-size: 52px;
+			font-size: 3.25rem;
 			font-weight: 500;
 			top: 100px;
 			left: 5vw;
 			text-align: start;
 
 			@include tablet1 {
-				font-size: 2.5em;
+				font-size: 2.5rem;
 			}
 
 			@include phone {
-				font-size: 2.5em;
+				font-size: 2.5rem;
 			}
 
 			span {
 				font-family: "Libre Franklin";
 				font-weight: 400;
-				font-size: 22px;
+				font-size: 2rem;
 				display: block;
 				@include tablet {
-					font-size: 0.5em;
-					line-height: 30px;
+					line-height: 1.3;
 				}
 				@include tablet1 {
-					font-size: 0.65em;
-					line-height: 30px;
+					font-size: 1.125rem;
+					line-height: 1.3;
 				}
 
 				@include phone {
-					font-size: 18px;
-					line-height: 25px;
+					font-size: 1.3rem;
+					line-height: 1.3;
 				}
 
 				a {
@@ -120,35 +119,35 @@
 
 			h3 {
 				font-family: starling;
-				font-size: 24px;
+				font-size: 1.5rem;
 				font-weight: 600;
 				margin-top: 0px;
 				margin-bottom: 0px;
 
 				@include phone {
-					font-size: 22px;
+					font-size: 1.375rem;
 				}
 
 				@include xldesktop {
-					font-size: 32px;
+					font-size: 2rem;
 				}
 			}
 
 			p {
-				font-size: 18px;
+				font-size: 1.125rem;
 				font-style: italic;
 				margin-top: 0;
 				color: #949494;
 				width: 60%;
 				text-align: center;
-				line-height: 32px;
+				line-height: 1.3;
 
 				@include phone {
-					font-size: 16px;
+					font-size: 1rem;
 				}
 
 				@include xldesktop {
-					font-size: 22px;
+					font-size: 1.375rem;
 				}
 			}
 		}

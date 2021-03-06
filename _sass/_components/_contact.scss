@@ -38,7 +38,7 @@
 
 	h2 {
 		font-family: "starling", serif;
-		font-size: 48px;
+		font-size: 3rem;
 		font-weight: 300;
 		margin-bottom: 0;
 		line-height: 1.4;
@@ -49,12 +49,8 @@
 			border-bottom: 4px solid #000;
 		}
 
-		@include tablet1 {
-			font-size: 48px;
-		}
-
 		@include phone {
-			font-size: 40px;
+			font-size: 2.5rem;
 			margin-bottom: 80px;
 
 			.desktop-br {
@@ -90,7 +86,7 @@
 			a {
 				color: inherit;
 				font-family: "Libre Franklin", sans-serif;
-				font-size: 26px;
+				font-size: 1.625rem;
 				font-weight: 400;
 				text-decoration: none;
 
@@ -98,10 +94,10 @@
 					color: #8b8b8b;
 				}
 				@include tablet1 {
-					font-size: 24px;
+					font-size: 1.5rem;
 				}
 				@media (min-width: 319px) and (max-width: 440px) {
-					font-size: 24px;
+					font-size: 1.5rem;
 				}
 			}
 		}

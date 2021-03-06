@@ -23,9 +23,9 @@
 
     h2 {
         font-family: "starling";
-        font-size: 42px;
+        font-size: 2.625rem;
         @include phone {
-            font-size: 2em;
+            font-size: 2rem;
         }
     }
 
@@ -37,16 +37,11 @@
         @include phone {
             display: block;
         }
-        @include tablet1 {
-            display: block;
-        }
-        @include tablet {
-            display: block;
-        }
+
 
         h3 {
             font-family: "starling";
-            font-size: 1.3em;
+            font-size: 1.3rem;
             margin-bottom: 0px;
         }
 

@@ -20,26 +20,26 @@
     }
 
 
-	.about-text-header{
+	.about-text-header{		
 	    justify-self: left;
 
 	h1{
 		font-family: starling, serif;
 	    font-weight: 700;
 	    font-style: normal;
-	    font-size: 120px;
+	    font-size: 7.5rem;
 	    margin: 0.1em;
         margin-right: 10px;
         padding-top: 50px;
 
         @include phone {
-        	font-size: 5em;
-        	margin: none;
+        	font-size: 5rem;
+        	margin: 0;
         }
 
      	@include tablet1 {
      		padding-top: 0px;
-			font-size: 6em;
+			font-size: 6rem;
     }
 
 	}
@@ -48,17 +48,18 @@
     .about-text{
 
 		.about-text-paragraph {
-			font-size: 18px;
+			font-size: 2rem;
+			line-height: 1.5;
 			margin-bottom: 40px;
 
 			@include phone{
-				font-size: 16px;
+				font-size: 1.75rem;
 			    line-height: 1.5;
 			    margin-bottom: 40px;
 			}
 
 			@include tablet1 {
-				font-size: 16px;
+				font-size: 1rem;
     }
 
 		}	
@@ -66,7 +67,7 @@
 		.resume{
 			margin-top: 40px;
 			text-decoration: none;
-			font-size: 22px;
+			font-size: 1.5rem;
 			font-weight: 600;	
 
 			@include phone{

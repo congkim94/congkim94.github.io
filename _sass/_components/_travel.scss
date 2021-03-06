@@ -31,13 +31,13 @@
         font-family: starling, serif;
         font-weight: 700;
         font-style: normal;
-        font-size: 42px;
+        font-size: 2.625rem;
         @include tablet1 {
-            font-size: 38px;
+            font-size: 2.375rem;
         }
 
         @include phone {
-            font-size: 28px;
+            font-size: 1.75rem;
         }
     }
 }
@@ -49,21 +49,22 @@
         font-weight: 700;
         font-style: normal;
         font-size: 42px;
+        font-size: 2.625rem;
         @include tablet1 {
-            font-size: 38px;
+            font-size: 2.375rem;
         }
 
         @include phone {
-            font-size: 28px;
+            font-size: 1.75rem;
         }
     }
     .project-section-title {
         h2 {
             font-family: starling, serif;
-            font-size: 42px;
+            font-size: 2.625rem;
             margin-top: 16px;
             @include phone {
-                font-size: 30px;
+                font-size: 1.75rem;
             }
             span {
                 background-color: #efaa82;
@@ -76,59 +77,50 @@
     }
 
     h3 {
-        font-size: 32px;
+        font-size: 2rem;
         margin-top: 0;
         margin-bottom: 15px;
         font-weight: 600;
         @include phone {
-            font-size: 24px;
+        font-size: 1.5rem;
         }
     }
 
     h4 {
         color: #b5b5b5;
-        font-size: 16px;
-        @include phone {
-            font-size: 14px;
-        }
+        font-size: 1rem;
     }
 
     h5 {
-        font-size: 16px;
+        font-size: 1rem;
         font-weight: 700;
         margin-bottom: 15px;
         opacity: 0.8;
 
-        @include phone {
-            font-size: 14px;
-        }
     }
 
     h6 {
         margin-top: 20px;
-        font-size: 18px;
+        font-size: 1.125rem;
         margin-bottom: 7px;
     }
 
     p {
-        font-size: 18px;
+        font-size: 1.125rem;
         line-height: 30px;
         margin: 0;
-        @include tablet1 {
-            font-size: 18px;
-        }
         @include phone {
-            font-size: 16px;
+            font-size: 1rem;
         }
     }
 
     ul {
         list-style: none;
         padding: 0;
-        font-size: 18px;
+        font-size: 1.125rem;
         line-height: 30px;
         @include phone {
-            font-size: 16px;
+            font-size: 1rem;
             margin-top: 10px;
         }
 
@@ -157,13 +149,12 @@
 
     p {
         font-family: "starling";
-        font-size: 24px;
+        font-size: 1.5rem;
         font-weight: 500;
         text-align: center;
-        line-height: 140%;
 
         @include phone {
-            font-size: 18px;
+            font-size: 1.125rem;
             width: 90%;
         }
     }
@@ -519,7 +510,7 @@
         margin-top: 40px;
         grid-column: 5 / span 4;
         font-family:"starling";
-        font-size: 38px;
+        font-size: 2.5rem;
         text-decoration: none;
         justify-self:center;
         transition: all 300ms ease 0s;
@@ -531,7 +522,7 @@
 
         @include phone {
             margin-top: 40px;
-            font-size: 26px;
+            font-size: 1.5rem;
             display: block;
         }
 
