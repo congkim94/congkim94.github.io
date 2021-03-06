@@ -169,35 +169,13 @@
 			}
 		}
 
-		.bagel {
-			grid-column: 1/2;
-			grid-row: 1/2;
-		}
-
-		.opporty {
-			grid-column: 2/3;
-			grid-row: 1/2;
-		}
 
 		.travel {
-			grid-column: 1/2;
-			grid-row: 2/3;
-
 			img{
 				filter: blur(10px);
 			}
 		}
 
-		.peer {
-			grid-column: 2/3;
-			grid-row: 2/3;
-			justify-self: center;
-		}
-
-		.dries {
-			grid-column: 1/2;
-
-		}
 
 	}
 }
