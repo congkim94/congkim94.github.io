@@ -51,7 +51,7 @@ header {
     }
 
     @include phone {
-      width: 80%;
+      width: 100%;
       padding-left: 0px;
     }
   }
@@ -240,7 +240,7 @@ header {
 
       div {
         width: 35px;
-        height: 2px;
+        height: 3px;
         margin-bottom: 8px;
         background-color: black;
         transition: 0.2s ease-in-out;
