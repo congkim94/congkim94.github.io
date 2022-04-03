@@ -19,15 +19,15 @@
 
     <div class="project-section-content">
         <p class="overview-text">
-            Since beginning of 2020 the main objective for Tapestry’s digital team has been bringing all 
+            Since the beginning of 2020 the main objective for Tapestry’s digital team has been to bring all 
             of its brands onto a unified backend codebase, where brands can leverage shared feature sets, 
             streamlined support, and simplified growth, change, and improvement. Part of this effort is to create 
-            a design system that accommodate all Tapestry’s brands. <br/> <br/>
+            a design system that can accommodate all of Tapestry’s brands. <br/> <br/>
             A well implemented design system is meant to increase efficiency and consistency when building 
             products at scale by utilizing reusable components and patterns that are guided by clear standards. 
             Now, how can we achieve that with not one but 3+ unique brands? How do we rework the current system 
-            for it to be flexible enough to accommodate multiple brands and at the same time maintain the efficiency 
-            of having a unified source of truth?
+            for it to be flexible enough to accommodate multiple brands and at the same time maintain efficiency 
+            by having a unified source of truth?
 
         </p>
 
@@ -79,25 +79,22 @@
             During that process, I noticed some inefficiencies and drawbacks with the current approach.
             <br /><br />
 
-            In theory Coach would reuse the same base components and templates as Stuart Weitzman. 
-            However, due to major brand identity differences and the design system is not set up 
-            for proper theming, we have created new component sets and templates to accommodate all 
-            the styling differences. 
+            In theory, Coach would reuse the same base components and templates as Stuart Weitzman. 
+            However, due to major brand identity differences, we created new component sets and templates to accommodate all of Coach's
+            styling differences. 
             <br/> <br/>
         </p>
 
 
         <p>
-            Before looking into new solution I wanted to get more insights and feedback 
-            from other users of the design system. After talking to a range of developers, 
-            designers we were able to identify the main <strong>pain points</strong>:
+            Before looking into a new solution, I wanted to get more insights and feedback from other users of the design system. After talking to a range of developers and designers, these are the main <strong>pain points</strong> we've identified.
             <br /><br />
         </p>
 
         <ul>
-            <li>Having to build and rebuild common components for each brand is time consuming and redundant.</li>
-            <li>Spending more time on maintenance and upkeep of separate component libraies and less time working on impactful enhancements </li>
-            <li>No clear central source of truth.</li>
+            <li>Having to build and rebuild common components for each brand is time consuming and redundant</li>
+            <li>Spending more time on maintenance and upkeep of separate component libraries and less time working on impactful enhancements </li>
+            <li>No clear central source of truth</li>
         </ul>
     </div>
 
@@ -120,18 +117,18 @@
     <div class="project-section-content">
         <p>
             The solution we worked on was to create a centralized component library that could 
-            be used across all brands, by utilizing a multi-tier design token set up.
+            be used across all brands, by utilizing a multi-tier design token setup.
             <br /><br />
 
-            The first token tier is called Core Tokens. They refer to core brand’s UI 
-            attributes and usually points to a static value and the name refers to the value 
-            itself, such as <span style="font-weight: 600;">“color-green”</span>. For example, in our case each brand can their 
-            own unique sets of Core Color Tokens, which basically are all available color 
+            The first token tier is called Core Tokens. They refer to the core brand’s UI 
+            attributes and usually point to a static value and the name refers to the value 
+            itself, such as <span style="font-weight: 600;">“color-green”</span>. For example, each brand can have their 
+            own unique sets of Core Color Tokens, which are all available color 
             options for that brand. 
             <br/> <br/>
 
             The next tier is Semantic Tokens. These Tokens define a specific design decision 
-            and are mapped back to the Core Tokens. These tokens are named based on its specific
+            and are mapped back to the Core Tokens. These tokens are named based on their specific
              usage and are used to build out components. </p>
 
              <img src="/assets/images/design-system/button-specs.jpg" />
@@ -139,7 +136,7 @@
              <p>
              As an example, when we define the background
               color of a primary button component we would use a Semantic Token named
-              <span style="font-weight: 600;">“action-bg-primary-default”</span>. Then, we can map that token to a 
+              <span style="font-weight: 600;">“action-bg-primary-default”</span>. Then, we can map that token to 
                a Core Token that is unique to each brand. That way we can
                 accommodate different unique design difference of each brand without changing a component property.
             </p>
@@ -168,10 +165,10 @@
         <P>
         
             Setting up our multi-tiered design token system gave us a strong foundation as
-             we continue to enhance our multi-brand design system. With this set up, our shared component library can act as the source of truth and can be used by all brands. Furthermore, we can start to focus more on enhancing our centralised libraries instead of spending time upkeeping separate libraries. This has significantly changed the way we work and increased the productivity across the board.
+             we continue to enhance our multi-brand design system. With this setup, our shared component library can act as the source of truth and can be used by all brands. Furthermore, we can start to focus more on enhancing our centralised libraries instead of spending time upkeeping separate libraries. This has significantly changed the way we work and increased productivity across the board.
              
              <br><br>
-             Having said that, we are 
+             With that said, we are 
              still in the initial stages. Below are some of the main objectives on our roadmap that we plan to address.
         </P>
 
@@ -194,7 +191,7 @@
             <div class="paragraph">
             <h3>Introduce New Theming Capabilities</h3>
 			<p>
-				During the first phase, we introduced the capability to theme Color, Typography, and Logos. We plan to introduce theming capability for other properties suchs as Border Radius, Border Width, Spacing, and Shadow.
+				During the first phase, we introduced the capability to theme Color, Typography, and Logos. We plan to introduce theming capability for other properties such as Border Radius, Border Width, Spacing, and Shadow.
 			</p>
             </div>
 				
