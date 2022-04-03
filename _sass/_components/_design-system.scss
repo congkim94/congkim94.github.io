@@ -1,0 +1,320 @@
+///BASE STYLE///
+.project-section-title {
+    grid-column: 4 / span 6;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+
+.project-section-content {
+    margin-left: auto;
+    margin-right: auto;
+    grid-column: 4 / span 6;
+    display: grid;
+
+    @include tablet {
+        grid-column: 3 / span 8;
+    }
+
+    @include tablet1 {
+        grid-column: 3 / span 8;
+    }
+}
+
+#ds-header{
+
+    h1 {
+        padding-top: 80px;
+        font-family: 'Libre Franklin', sans-serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 4rem;
+        text-align: center;
+        @include tablet1 {
+            font-size: 2.375rem;
+        }
+    
+        @include phone {
+            font-size: 1.75rem;
+        }
+    }
+    }
+    
+    
+    #ds-content {
+    
+        h1 {
+        padding: 80px 0;
+        font-family: starling, serif;
+        font-weight: 700;
+        font-style: normal;
+        font-size: 2.625rem;
+        @include tablet1 {
+            font-size: 2.375rem;;
+        }
+    
+        @include phone {
+            font-size: 1.75rem;
+        }
+    }
+        .project-section-title {
+            h2 {
+                font-family: starling, serif;
+                font-size: 2.625rem;
+    
+                @include phone {
+                    font-size: 1.75rem;
+                }
+                span {
+                    background-color: #FFCD00;
+                    height: 5px;
+                    display: block;
+                    width: 15%;
+                    margin-top: 5px;
+                }
+            }
+        }
+    
+        h3 {
+            font-size: 2rem;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-weight: 600;
+            @include phone {
+                font-size: 1.5rem;
+            }
+        }
+    
+        h4 {
+            color: #b5b5b5;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+    
+        h5 {
+            font-size: 1.375rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            margin-top: 20px;
+    
+        }
+    
+        p {
+            font-size: 1.125rem;
+            line-height: 30px;
+            margin: 0;
+            @include tablet1 {
+                width: 80%;
+            }
+            @include phone {
+                font-size: 1rem;
+            }
+        }
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            font-size: 1.125rem;
+            line-height: 30px;
+            @include phone {
+                font-size: 1rem;
+                margin-top: 10px;
+            }
+    
+            li {
+                margin-bottom: 10px;
+                @include phone {
+                    margin-bottom: 0;
+                }
+            }
+        }
+    }
+
+    ///HEADER////
+
+#ds-header {
+    background-color: #FFCD00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-right: 20%;
+    padding-left: 20%;
+    height: 90vh;
+    position: relative;
+
+    @include phone {
+        height: 60vh;
+        padding: 0;
+    }
+    
+    h1{
+        margin: 0;
+        padding: 0;
+        color: black;
+    }
+
+    img{
+        position: absolute;
+        bottom: 12px;
+        width: 180px;
+        @include phone {
+            width: 140px;
+            
+        }
+       
+    }
+
+
+
+}
+
+///PROJECT OVERVIEW///
+
+#ds-overview {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-top: 80px;
+    margin-bottom: 50px;
+
+    @include phone {
+        display: block;
+    }
+
+
+    .project-section-content {
+
+        .overview-text {
+            margin-bottom: 30px;
+        }
+
+
+        .project-background {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+
+            @include phone {
+                
+            }
+        }
+    }
+}
+
+///PROJECT OVERVIEW END///
+
+//// RESEARCH PHASE /////
+
+#ds-research-phase {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-bottom: 100px;
+
+    @include phone {
+        display: block;
+    }
+
+
+    .competitors-homepage {
+        margin-top: 30px;
+        margin-bottom: 50px;
+        grid-column: 3 / span 8;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 25%;
+        }
+    }
+
+
+    ul {
+        margin: 10px 20px;
+        margin-bottom: 20px;
+
+        li {
+            list-style-image: url(../images/design-system/bulletpoints.jpg);
+        }
+    }
+
+}
+
+//// RESEARCH PHASE END /////
+
+
+//// DESIGN TOKEN /////
+
+#design-token {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-bottom: 100px;
+
+    @include phone {
+        display: block;
+    }
+
+    .project-section-content{
+        img{
+            margin-top: 40px;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+    }
+
+
+    .theming {
+        grid-column: 4 / span 6;
+        width: 100%;
+        margin-top: 50px;
+        @include tablet {
+            grid-column: 3 / span 8;
+        }
+    
+        @include tablet1 {
+            grid-column: 3 / span 8;
+        }
+    }
+
+}
+
+//// DESIGN TOKEN END /////
+
+//// NEXT STEPS /////
+
+#next-steps {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-gap: 10px;
+    margin: auto;
+    max-width: 90%;
+    margin-bottom: 100px;
+
+    @include phone {
+        display: block;
+    }
+
+    .paragraphs{
+        margin-top: 40px;
+        display: flex;
+        flex-direction: column;
+        row-gap: 40px;
+    }
+
+}
+
+
+//// NEXT STEPS END /////

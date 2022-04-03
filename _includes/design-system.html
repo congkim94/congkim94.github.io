@@ -1,0 +1,258 @@
+<!--------------------- HEADER ---------------------->
+
+<div id="ds-header">
+	<h1>Creating a Multi-Brand Design System</h1>
+    <img src="/assets/images/tapestry.png" />
+</div>
+
+<!--------------------- HEADER END ---------------------->
+<section id="ds-content">
+<!--------------------- OVERVIEW ---------------------->
+
+<div id="ds-overview">
+    <div class="project-section-title">
+        <h2>
+            Overview
+            <span class="project-section-title-bar"></span>
+        </h2>
+    </div>
+
+    <div class="project-section-content">
+        <p class="overview-text">
+            Since beginning of 2020 the main objective for Tapestry’s digital team has been bringing all 
+            of its brands onto a unified backend codebase, where brands can leverage shared feature sets, 
+            streamlined support, and simplified growth, change, and improvement. Part of this effort is to create 
+            a design system that accommodate all Tapestry’s brands. <br/> <br/>
+            A well implemented design system is meant to increase efficiency and consistency when building 
+            products at scale by utilizing reusable components and patterns that are guided by clear standards. 
+            Now, how can we achieve that with not one but 3+ unique brands? How do we rework the current system 
+            for it to be flexible enough to accommodate multiple brands and at the same time maintain the efficiency 
+            of having a unified source of truth?
+
+        </p>
+
+        <div class="project-background">
+            <div class="role">
+                <h4>ROLE</h4>
+                <ul>
+                    <li>Product Designer</li>
+                </ul>
+            </div>
+
+            <div class="tasks">
+                <h4>PROJECT STATUS</h4>
+                <ul>
+                    <li>In Progress</li>
+                </ul>
+            </div>
+
+            <div class="team">
+                <h4>TEAM</h4>
+                <ul>
+                    <li>UX Architect</li>
+                    <li>Developer</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--------------------- OVERVIEW END ---------------------->
+
+
+<!------------------- Motivation & User Insights -------------------->
+<div id="ds-research-phase">
+
+
+    <div class="project-section-title">
+        <h2>
+            Motivation & User Insights
+            <span class="project-section-title-bar"></span>
+        </h2>
+    </div>
+
+    <div class="project-section-content">
+        <p>
+            During my first few months at Tapestry, I primarily worked on building out the component 
+            library and page templates for Coach using the existing library that was built for Stuart Weitzman 
+            (the first brand that got migrated to the codebase). 
+            During that process, I noticed some inefficiencies and drawbacks with the current approach.
+            <br /><br />
+
+            In theory Coach would reuse the same base components and templates as Stuart Weitzman. 
+            However, due to major brand identity differences and the design system is not set up 
+            for proper theming, we have created new component sets and templates to accommodate all 
+            the styling differences. 
+            <br/> <br/>
+        </p>
+
+
+        <p>
+            Before looking into new solution I wanted to get more insights and feedback 
+            from other users of the design system. After talking to a range of developers, 
+            designers we were able to identify the main <strong>pain points</strong>:
+            <br /><br />
+        </p>
+
+        <ul>
+            <li>Having to build and rebuild common components for each brand is time consuming and redundant.</li>
+            <li>Spending more time on maintenance and upkeep of separate component libraies and less time working on impactful enhancements </li>
+            <li>No clear central source of truth.</li>
+        </ul>
+    </div>
+
+    </div>
+
+    <!------------------- Motivation & User Insights END -------------------->
+
+
+<!------------------- Design Token -------------------->
+<div id="design-token">
+
+
+    <div class="project-section-title">
+        <h2>
+            Design Tokens as the Foundation
+            <span class="project-section-title-bar"></span>
+        </h2>
+    </div>
+
+    <div class="project-section-content">
+        <p>
+            The solution we worked on was to create a centralized component library that could 
+            be used across all brands, by utilizing a multi-tier design token set up.
+            <br /><br />
+
+            The first token tier is called Core Tokens. They refer to core brand’s UI 
+            attributes and usually points to a static value and the name refers to the value 
+            itself, such as <span style="font-weight: 600;">“color-green”</span>. For example, in our case each brand can their 
+            own unique sets of Core Color Tokens, which basically are all available color 
+            options for that brand. 
+            <br/> <br/>
+
+            The next tier is Semantic Tokens. These Tokens define a specific design decision 
+            and are mapped back to the Core Tokens. These tokens are named based on its specific
+             usage and are used to build out components. </p>
+
+             <img src="/assets/images/design-system/button-specs.jpg" />
+             
+             <p>
+             As an example, when we define the background
+              color of a primary button component we would use a Semantic Token named
+              <span style="font-weight: 600;">“action-bg-primary-default”</span>. Then, we can map that token to a 
+               a Core Token that is unique to each brand. That way we can
+                accommodate different unique design difference of each brand without changing a component property.
+            </p>
+
+    </div>
+    <img class="theming" src="/assets/images/design-system/theming.gif" />
+
+    </div>
+
+    <!------------------- DESIGN TOKEN END -------------------->
+
+
+
+<!------------------- NEXT STEPS -------------------->
+
+    <div id="next-steps">
+		<div class="project-section-title">
+			<h2>
+				Impact & Next Steps
+				<span class="project-section-title-bar"></span>
+			</h2>
+		</div>
+
+		<div class="project-section-content">
+            		
+        <P>
+        
+            Setting up our multi-tiered design token system gave us a strong foundation as
+             we continue to enhance our multi-brand design system. With this set up, our shared component library can act as the source of truth and can be used by all brands. Furthermore, we can start to focus more on enhancing our centralised libraries instead of spending time upkeeping separate libraries. This has significantly changed the way we work and increased the productivity across the board.
+             
+             <br><br>
+             Having said that, we are 
+             still in the initial stages. Below are some of the main objectives on our roadmap that we plan to address.
+        </P>
+
+        <div class="paragraphs">
+
+            <div class="paragraph">
+                
+                <h3>Design Token Integration with Figma</h3>
+                <p> We're currently exploring the idea of direct integration 
+                    from Figma to our Design Token repository - making Figma our main source of truth for tokens.</p>
+                    </div>
+
+            <div class="paragraph">
+			<h3>Onboard The Rest of the Brands to the System </h3>
+			<p>
+				We started the token implementation with Coach and currently working on bringing on the rest of the brands into the new design token ecosystem.
+			</p>
+            </div>
+
+            <div class="paragraph">
+            <h3>Introduce New Theming Capabilities</h3>
+			<p>
+				During the first phase, we introduced the capability to theme Color, Typography, and Logos. We plan to introduce theming capability for other properties suchs as Border Radius, Border Width, Spacing, and Shadow.
+			</p>
+            </div>
+				
+			</p>
+            </div>
+		</div>
+
+        </div>
+    </div>
+
+
+        <!------------------- NEXT STEPS -------------------->
+
+
+</section>
+
+<!------------------- OTHER PROJECTS-------------------->
+
+<div class="other-projects">
+	<h2>Other Projects</h2>
+	<div class="op-container">
+		<div class="opporty project">
+			<a href="/opporty/">
+				<img src="/assets/images/opporty/header.jpg" alt="" />
+				<div class="project-description">
+					<h3>Opporty</h3>
+					<p>UX/UI Design</p>
+				</div>
+				</a>
+		</div>
+			
+		<div class="travel project">
+			<a href="/protected.html">
+				<img src="/assets/images/travel/travel-thumbnail.jpg" alt="" />
+
+				<div class="project-description">
+					<h3>Additional Work</h3>
+					<p>UX/UI Design</p>
+				</div>
+			</a>
+		</div>
+
+		<div class="peer project">
+			<a
+				href="https://www.behance.net/gallery/84356841/peer"
+				target="_blank">
+				<img src="/assets/images/peer2.jpg" alt="" />
+				<div class="project-description">
+					<h3>Peer.</h3>
+					<p>Visual Design</p>
+			</div>
+
+			</a>
+		</div>
+
+
+		</div>
+	</div>
+</div>
+
+<!------------------- OTHER PROJECTS END-------------------->
