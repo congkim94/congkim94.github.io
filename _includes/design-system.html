@@ -117,19 +117,19 @@
     <div class="project-section-content">
         <p>
             The solution we worked on was to create a centralized component library that could 
-            be used across all brands, by utilizing a multi-tier design token setup.
+            be used across all brands, by implementing a multi-tier design token setup.
             <br /><br />
 
             The first token tier is called Core Tokens. They refer to the core brand’s UI 
-            attributes and usually point to a static value and the name refers to the value 
-            itself, such as <span style="font-weight: 600;">“color-green”</span>. For example, each brand can have their 
-            own unique sets of Core Color Tokens, which are all available color 
+            attributes and usually point to a static value. The name refers to the value 
+            itself, such as <span style="font-weight: 600;">“color-green”</span>. Each brand has their 
+            own unique set of Core Color Tokens, which include all available color 
             options for that brand. 
             <br/> <br/>
 
-            The next tier is Semantic Tokens. These Tokens define a specific design decision 
-            and are mapped back to the Core Tokens. These tokens are named based on their specific
-             usage and are used to build out components. </p>
+            The next tier is Semantic Tokens. These tokens define a specific design decision 
+            and are mapped back to the Core Tokens. They are named based on their specific
+             usage and are referenced by components for styling. </p>
 
              <img src="/assets/images/design-system/button-specs.jpg" />
              
@@ -138,7 +138,7 @@
               color of a primary button component we would use a Semantic Token named
               <span style="font-weight: 600;">“action-bg-primary-default”</span>. Then, we can map that token to 
                a Core Token that is unique to each brand. That way we can
-                accommodate different unique design difference of each brand without changing a component property.
+                accommodate unique design differences of each brand without changing a component property.
             </p>
 
     </div>
@@ -164,7 +164,7 @@
             		
         <P>
         
-            Setting up our multi-tiered design token system gave us a strong foundation as
+            Setting up this multi-tiered design token system gives us a strong foundation as
              we continue to enhance our multi-brand design system. With this setup, our shared component library can act as the source of truth and can be used by all brands. Furthermore, we can start to focus more on enhancing our centralised libraries instead of spending time upkeeping separate libraries. This has significantly changed the way we work and increased productivity across the board.
              
              <br><br>
@@ -176,20 +176,20 @@
 
             <div class="paragraph">
                 
-                <h3>Design Token Integration with Figma</h3>
-                <p> We're currently exploring the idea of direct integration 
+                <h3>Design token integration with Figma</h3>
+                <p> We're currently exploring the idea of a direct integration 
                     from Figma to our Design Token repository - making Figma our main source of truth for tokens.</p>
                     </div>
 
             <div class="paragraph">
-			<h3>Onboard The Rest of the Brands to the System </h3>
+			<h3>Onboard the rest of the brands to the system </h3>
 			<p>
-				We started the token implementation with Coach and currently working on bringing on the rest of the brands into the new design token ecosystem.
+				We started the token implementation with Coach and are currently working on bringing on the rest of the brands into the new design token ecosystem.
 			</p>
             </div>
 
             <div class="paragraph">
-            <h3>Introduce New Theming Capabilities</h3>
+            <h3>Introduce new theming capabilities</h3>
 			<p>
 				During the first phase, we introduced the capability to theme Color, Typography, and Logos. We plan to introduce theming capability for other properties such as Border Radius, Border Width, Spacing, and Shadow.
 			</p>
