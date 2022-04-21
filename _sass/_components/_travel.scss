@@ -43,6 +43,12 @@
 }
 
 #travel-content {
+
+    @include phone {
+        padding: 0 16px;
+        margin: auto;
+    }
+    
     h1 {
         padding: 80px 0;
         font-family: starling, serif;
@@ -164,9 +170,7 @@
         margin-top: 40px;
         border-radius: 10px;
         margin-bottom: -130px;
-        @include phone {
-            max-width: 90%;
-        }
+
     }
 }
 
@@ -177,7 +181,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 200px;
 
     @include phone {
@@ -208,7 +211,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-bottom: 100px;
     margin-top: 120px;
 
@@ -243,7 +245,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
 
     @include phone {
         display: block;
@@ -312,7 +313,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 120px;
 
     @include phone {
@@ -359,7 +359,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 120px;
 
     @include phone {
@@ -394,7 +393,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 120px;
 
     @include phone {
@@ -465,7 +463,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 120px;
 
     @include phone {
@@ -489,7 +486,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 120px;
 
     @include phone {

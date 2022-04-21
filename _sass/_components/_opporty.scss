@@ -48,6 +48,10 @@
 
 
 #opporty-content {
+    @include phone {
+        padding: 0 16px;
+        margin: auto;
+    }
 
     h1 {
     padding-top: 80px;
@@ -188,7 +192,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 200px;
 
     @include phone {
@@ -224,7 +227,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -261,7 +263,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -391,7 +392,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -425,7 +425,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -558,7 +557,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -592,7 +590,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -666,7 +663,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -712,7 +708,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
@@ -758,7 +753,6 @@
     grid-template-columns: repeat(12, 1fr);
     grid-gap: 10px;
     margin: auto;
-    max-width: 90%;
     margin-top: 70px;
 
     @include phone {
