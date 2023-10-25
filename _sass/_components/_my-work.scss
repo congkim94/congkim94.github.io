@@ -156,6 +156,7 @@
 			width: 100%;
 			display: block;
 			margin: auto;
+			border-radius: 8px;
 			transform: scaleX(1) scaleY(1);
 			transition: 0.5s all;
 			&:hover {
@@ -169,11 +170,6 @@
 		}
 
 
-		.travel, .design-system {
-			img{
-				filter: blur(10px);
-			}
-		}
 
 
 	}
