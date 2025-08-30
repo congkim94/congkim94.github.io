@@ -23,8 +23,8 @@
 	.title1 {
 		position: relative;
 		display: block;
-		display: flex;
-		justify-content: flex-start;
+		// display: flex;
+		// justify-content: flex-start;
 		@include tablet {
 			margin-top: 25px;
 		}
