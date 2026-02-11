@@ -61,7 +61,7 @@
 		font-weight: 700;
 		line-height: 1;
 		font-style: normal;
-		font-size: 12em;
+		font-size: 15vw;
 		padding: 80px 0;
 		margin: 0.1em;
 		font-style: italic;
@@ -70,13 +70,9 @@
 		color: transparent;
 		-webkit-text-stroke: 1px #ffcb78;
 
-		@include tablet {
-			font-size: 9rem;
-		}
 
 		@include tablet1 {
 			padding:0;
-			font-size: 6rem;
 			line-height: 1;
 		}
 		@include phone {
@@ -104,9 +100,6 @@
 		z-index: 2;
 		visibility: hidden;
 
-		@include tablet1 {
-			position: relative;
-		}
 		@include phone {
 			position: relative;
 			width: 90%;
@@ -116,18 +109,11 @@
 		.title {
 			font-family: "starling", serif;
 			font-style: normal;
-			font-size: 3.25rem;
+			font-size: 6vw;
 			margin: 0.1em;
 			margin-left: 0px;
 			font-weight: 200;
 
-			@include tablet {
-				font-size: 3rem;
-			}
-
-			@include tablet1 {
-				font-size: 3rem;
-			}
 			@include phone {
 				font-size: 2.5rem;
 			}
@@ -138,15 +124,11 @@
 		}
 
 		.bio {
-			font-size: 1.375rem;
+			font-size: 2vw;
 			font-weight: 400;
 			width: 100%;
 			line-height: 1.5;
 			margin-top: 10px;
-
-			@include tablet {
-				font-size: 1.2rem;
-			}
 
 			@include tablet1 {
 				font-size: 1.2rem;
