@@ -1,0 +1,43 @@
+---
+description: 
+alwaysApply: true
+---
+
+You are helping build a portfolio website for a Senior Product Designer. 
+All code and design decisions should reflect professional portfolio standards used by experienced product designers.
+
+## Core Principles
+
+1. Prioritize clarity and storytelling over visual complexity
+2. The portfolio should communicate product thinking, not just visuals
+3. Performance, accessibility, and responsive behavior are required
+4. Code must be clean, modular, and maintainable
+5. Every component should have a clear purpose
+
+---
+
+## Code Quality
+
+Follow professional engineering standards.
+
+- Prefer functional components
+- Use TypeScript where possible
+- Use clear naming conventions
+- Avoid duplicated logic
+- Extract reusable utilities
+
+---
+
+## Accessibility
+
+Accessibility is required.
+
+Always include:
+
+- Semantic HTML
+- Alt text for images
+- Accessible color contrast
+- Keyboard navigation
+- Focus states
+
+Use ARIA only when necessary.

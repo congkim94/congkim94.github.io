@@ -4,8 +4,9 @@
 	margin-top: 100px;
 	padding-top: 50px;
 	margin-bottom: 100px;
+
 	@include tablet {
-	    width: 85%;
+		width: 85%;
 		margin-top: 100px;
 	}
 
@@ -15,16 +16,16 @@
 		margin-left: 40px;
 		margin-right: 40px;
 	}
-	
+
 	@include phone {
 		width: 100%;
 		margin: auto;
 	}
+
 	.title1 {
 		position: relative;
 		display: block;
-		// display: flex;
-		// justify-content: flex-start;
+
 		@include tablet {
 			margin-top: 25px;
 		}
@@ -34,7 +35,8 @@
 		}
 
 		@media (min-width: 319px) and (max-width: 600px) {
-			margin: 20px;		}
+			margin: 20px;
+		}
 
 		h2 {
 			font-family: "Starling", serif;
@@ -58,9 +60,11 @@
 				font-weight: 400;
 				font-size: 1.3rem;
 				display: block;
+
 				@include tablet {
 					line-height: 1.3;
 				}
+
 				@include tablet1 {
 					font-size: 1.125rem;
 					line-height: 1.3;
@@ -82,95 +86,160 @@
 	}
 
 	.projects-container {
-		margin-top: 10px;
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		grid-column-gap: 50px;
-		grid-row-gap: 25px;
-
-		a{
-			text-decoration: none;
-		}
-			
-		@include tablet {
-			margin-top: 30px;
-		}
+		margin-top: 30px;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
 
 		@include phone {
-			display: block;
+			margin: 20px;
+			margin-top: 20px;
+		}
+
+		@media (min-width: 319px) and (max-width: 600px) {
 			margin: 20px;
 		}
+	}
 
-		.project-description {
-			align-items: center;
-			display: flex;
+	.project-card {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		background: #f7f6f4;
+		border-radius: 12px;
+		overflow: visible;
+		transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+		&[href] {
+			cursor: pointer;
+		}
+
+		&[href]:hover {
+			transform: translateY(-8px);
+			box-shadow:
+				0 12px 24px rgba(0, 0, 0, 0.08),
+				0 4px 8px rgba(0, 0, 0, 0.04);
+		}
+	}
+
+	.card-content {
+		display: flex;
+		flex-direction: row;
+		align-items: stretch;
+		gap: 24px;
+		padding: 24px;
+		min-height: 500px;
+		box-sizing: border-box;
+
+		@include phone {
 			flex-direction: column;
-			margin-top: 20px;
-			margin-bottom: 20px;
+			min-height: auto;
+			padding: 16px;
+		}
+	}
 
+	.card-text {
+		flex: 1 1 45%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		padding: 0;
+		box-sizing: border-box;
 
-			@include phone {
-				margin-bottom: 40px;
-			}
+		@include phone {
+			order: 2;
+		}
+	}
 
-			@include xldesktop {
-				margin-top: 20px;
-			}
+	.card-tag {
+		font-family: "Libre Franklin", sans-serif;
+		font-size: 14px;
+		font-weight: 500;
+		color: #2b2b2b;
+		margin-bottom: 12px;
+	}
 
-			h3 {
-				font-family: starling;
-				font-size: 1.5rem;
-				font-weight: 600;
-				margin-top: 0px;
-				margin-bottom: 8px;
+	.card-text h3 {
+		font-family: "Libre Franklin", sans-serif;
+		font-size: 1.75rem;
+		font-weight: 600;
+		line-height: 1.3;
+		margin: 0 0 12px 0;
+		color: #2b2b2b;
 
-				@include phone {
-					font-size: 1.375rem;
-					text-align: center;
-				}
-
-				@include xldesktop {
-					font-size: 2rem;
-				}
-			}
-
-			p {
-				font-size: 1.125rem;
-				font-style: italic;
-				margin-top: 0;
-				color: #949494;
-				text-align: center;
-				line-height: 1.3;
-
-				@include phone {
-					font-size: 1rem;
-				}
-
-				@include xldesktop {
-					font-size: 1.375rem;
-				}
-			}
+		@include phone {
+			font-size: 1.5rem;
 		}
 
-		img {
-			width: 100%;
-			display: block;
-			margin: auto;
-			border-radius: 8px;
-			transform: scaleX(1) scaleY(1);
-			transition: 0.5s all;
-			&:hover {
-				transform: scaleX(1.01) scaleY(1.01);
-				box-shadow: 0 4px 20px 0 rgba(100, 100, 100, 0.25);
-			}
+		@include xldesktop {
+			font-size: 2rem;
+		}
+	}
 
-			@include tablet {
-				width: 100%;
-			}
+	.card-text p {
+		font-family: "Libre Franklin", sans-serif;
+		font-size: 1rem;
+		line-height: 1.5;
+		color: #6b6b6b;
+		margin: 0 0 24px 0;
+		font-style: normal;
+
+		@include xldesktop {
+			font-size: 1.125rem;
+		}
+	}
+
+	.card-cta {
+		display: inline-block;
+		width: fit-content;
+		padding: 12px 24px;
+		background: #2b2b2b;
+		color: white;
+		font-family: "Libre Franklin", sans-serif;
+		font-size: 0.9375rem;
+		font-weight: 500;
+		border-radius: 8px;
+		transition: background 0.2s ease, color 0.2s ease;
+
+		&--disabled {
+			background: #d0d0d0;
+			color: #888;
+			cursor: default;
+			pointer-events: none;
+		}
+	}
+
+	.card-visual {
+		flex: 0 0 55%;
+		min-height: 200px;
+		background: #3a3a3a;
+		border-radius: 8px;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		@include phone {
+			flex: none;
+			min-height: 0;
+			aspect-ratio: 16 / 9;
+			order: 1;
+		}
+	}
+
+	.card-visual img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transition: transform 0.5s ease;
+
+		.project-card:hover & {
+			transform: scale(1.02);
 		}
 
-
-
-
+		.project-card.cart-checkout:hover & {
+			transform: none;
+		}
 	}
 }
