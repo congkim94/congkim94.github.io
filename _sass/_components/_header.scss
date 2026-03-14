@@ -15,8 +15,9 @@
 }
 
 .webshape {
-	position: absolute;
+	position: fixed;
 	left: -120px;
+	z-index: 0;
 
 	@include phone {
 		top: 10%;

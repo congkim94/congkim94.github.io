@@ -12,6 +12,11 @@ html{
  
 }
 
+main {
+  position: relative;
+  z-index: 1;
+}
+
 // *, *::before, *::after {
 //     box-sizing: border-box;
 // }
