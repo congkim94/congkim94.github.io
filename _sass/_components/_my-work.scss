@@ -108,17 +108,15 @@
 		background: #f7f6f4;
 		border-radius: 12px;
 		overflow: visible;
-		transition: transform 0.25s ease, box-shadow 0.25s ease;
+		transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
 
 		&[href] {
 			cursor: pointer;
 		}
 
 		&[href]:hover {
-			transform: translateY(-8px);
-			box-shadow:
-				0 12px 24px rgba(0, 0, 0, 0.08),
-				0 4px 8px rgba(0, 0, 0, 0.04);
+			transform: translateY(-4px);
+			filter: saturate(1.40);
 		}
 
 		&.cart-checkout {
