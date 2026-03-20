@@ -115,7 +115,7 @@
 		}
 
 		&[href]:hover {
-			transform: translateY(-4px);
+			transform: translateY(-2px);
 			filter: saturate(1.40);
 		}
 
@@ -227,6 +227,15 @@
 		}
 	}
 
+	.card-caption {
+		display: block;
+		margin-top: 12px;
+		font-family: "Libre Franklin", sans-serif;
+		font-size: 0.8125rem;
+		color: #6b6b6b;
+		line-height: 1.4;
+	}
+
 	.card-visual {
 		flex: 0 0 55%;
 		min-height: 200px;
@@ -254,10 +263,6 @@
 
 		.project-card:hover & {
 			transform: scale(1.02);
-		}
-
-		.project-card.cart-checkout:hover & {
-			transform: none;
 		}
 	}
 }
