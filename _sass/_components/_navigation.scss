@@ -118,20 +118,12 @@ header {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 20px;
 
     @include min-width-from($screen-s) {
-      gap: 10px;
+      gap: 16px;
     }
 
-    @include min-width-from($screen-md1) {
-      flex-wrap: nowrap;
-      gap: 12px;
-    }
-
-    @include xsdesktop {
-      gap: 20px;
-    }
 
     li {
       display: inline-block;
