@@ -72,11 +72,7 @@
 		@include phone {
 			margin: 0;
 			padding: 0;
-			text-align: left;
-
-			@include phone {
-				text-align: right;
-			}
+			text-align: right;
 		}
 
 		li {
@@ -96,7 +92,7 @@
 				@include tablet1 {
 					font-size: 1.5rem;
 				}
-				@media (min-width: 319px) and (max-width: 440px) {
+				@include mq-between($screen-s, $screen-contact-link-tight-max) {
 					font-size: 1.5rem;
 				}
 			}

@@ -1,15 +1,21 @@
 
 body,
-html{
-  
+html {
   padding: 0;
   margin: 0;
   width: 100%;
   background-color: white;
-  overflow-x: hidden; 
+  overflow-x: hidden;
+}
 
+html {
+  scroll-behavior: smooth;
+}
 
- 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 main {
@@ -38,40 +44,33 @@ h1,h2,h3,h4,h5,h6,p,li,a,span,div {
   z-index: 1;
 }
 
-.pswp__bg { transform: translateZ(0); }
-
-
-
-//Initial
-
-$screen-xs: 1px;
-// Smart smartphones (portrait view)
+// Breakpoints and responsive mixins
+// phone: 320–549px | tablet1: 550–1000px | tablet: 1001–1239px | xsdesktop: 1240px+
 
 $screen-s: 320px;
-
-// Small tablets (portrait view)
 $screen-md: 550px;
-
 $screen-md1: 1001px;
-
-// Large tablets and small desktops
 $screen-lg: 1240px;
-
-
-// Desktops
-$screen-xl: 1600px;
-
-
-// Desktops
 $screen-xxl: 2200px;
 
+// Narrow bands (components share these instead of magic numbers in @media)
+$screen-my-work-gutter-max: 600px;
+$screen-header-short-max: 518px;
+$screen-tablet1-mid-min: 910px;
+$screen-tablet1-mid-max: 999px;
+$screen-contact-link-tight-max: 440px;
 
-@mixin xsphone {
-  @media (min-width: #{$screen-xs}) and (max-width: #{$screen-s - 1px}) {
+@mixin mq-between($min, $max) {
+  @media (min-width: #{$min}) and (max-width: #{$max}) {
     @content;
   }
 }
 
+@mixin min-width-from($bp) {
+  @media (min-width: #{$bp}) {
+    @content;
+  }
+}
 
 @mixin phone {
   @media (min-width: #{$screen-s}) and (max-width: #{$screen-md - 1px}) {
@@ -85,7 +84,6 @@ $screen-xxl: 2200px;
   }
 }
 
-
 @mixin tablet {
   @media (min-width: #{$screen-md1}) and (max-width: #{$screen-lg - 1px}) {
     @content;
@@ -95,19 +93,13 @@ $screen-xxl: 2200px;
 @mixin xsdesktop {
   @media (min-width: #{$screen-lg}) {
     @content;
-   }
-}
-
-@mixin desktop {
-  @media (min-width: #{$screen-xl}) {
-    @content;
-   }
+  }
 }
 
 @mixin xldesktop {
   @media (min-width: #{$screen-xxl}) {
     @content;
-   }
+  }
 }
 
 

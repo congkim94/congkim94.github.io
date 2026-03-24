@@ -1,307 +1,197 @@
 header {
-  display: grid;
-  grid-template-columns: 20% auto;
-  padding: 20px 140px;
-  margin: auto;
-  z-index: 100;
-  position: absolute;
-  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  visibility: hidden;
+  z-index: 100;
+  box-sizing: border-box;
+  padding: 20px 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: transparent;
 
-  @include tablet1 {
-    padding: 20px;
-    top: 0;
-    position: fixed;
+  .nav-floating-shell {
+    position: relative;
+    z-index: 102;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 20px;
+    border-radius: 24px;
+    box-sizing: border-box;
+    background: transparent;
+    border: 1px solid transparent;
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    transition:
+      background 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      -webkit-backdrop-filter 0.35s ease,
+      backdrop-filter 0.35s ease;
 
-    a {
-      z-index: 300;
-    }
-  }
-
-  @include tablet {
-    padding: 20px 50px;
-  }
-
-  @include phone {
-    padding: 20px;
-    top: 0;
-    position: fixed;
-
-    a {
-      z-index: 300;
-    }
-  }
-
-  @include xldesktop {
-    padding-left: 200px;
-    padding-right: 200px;
-  }
-
-  img {
-    width: 30%;
-    padding-left: 20px;
-
-    @include tablet1 {
-      width: 70px;
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
     }
 
     @include tablet {
-      width: 35%;
+      width: 85%;
+    }
+
+    @include tablet1 {
+      width: calc(100% - 80px);
+      margin-left: 40px;
+      margin-right: 40px;
     }
 
     @include phone {
-      width: 100%;
-      padding-left: 0px;
+      width: calc(100% - 24px);
+      max-width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 8px 12px;
+      gap: 8px;
+    }
+  }
+
+  &.is-scrolled .nav-floating-shell {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+  }
+
+  .logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+
+    img {
+      display: block;
+      height: 40px;
+      width: auto;
+      max-width: 120px;
+      padding-left: 0;
+      object-fit: contain;
+
+      @include tablet1 {
+        height: 36px;
+        max-width: 100px;
+      }
+
+      @include phone {
+        height: 34px;
+        max-width: 90px;
+      }
     }
   }
 
   .navigation {
-    justify-self: right;
-
-    @include phone {
-      height: 100%;
-      position: fixed;
-      top: 0;
-      right: 1;
-      float: none;
-      z-index: 100;
-      margin: auto;
-    }
-
-    .main-nav-mobile {
-      list-style-type: none;
-      /*margin-right:20px;*/
-
-      @include phone {
-        text-align: left;
-        display: block;
-        list-style: none;
-        margin-top: 55%;
-        margin-left: 30px;
-        padding: 0;
-      }
-
-      @include tablet1 {
-        text-align: left;
-        display: block;
-        list-style: none;
-        margin-top: 10%;
-        margin-left: 30px;
-        padding: 0;
-      }
-      li {
-        display: inline;
-        padding-left: 40px;
-        &:nth-child(3) {
-          @include phone {
-            display: none;
-          }
-          @include tablet1 {
-            display: none;
-          }
-        }
-        @include phone {
-          display: block;
-          margin: 10px 0;
-          padding: 0;
-          font-size: 2rem;
-        }
-
-        @include tablet1 {
-          display: block;
-          margin: 10px 0;
-          padding: 0;
-          font-size: 2rem;
-        }
-      }
-
-      a {
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 500;
-        color: black;
-        transition: 0.2s all;
-
-        &:hover {
-          color: #8b8b8b;
-        }
-
-        /*@include tablet{
-            font-size: .8em;
-          }*/
-        @include tablet1 {
-          font-size: 3.5rem;          
-          padding: 0;
-          font-family: "starling";
-          font-size: 3.75rem;
-        }
-
-        @include phone {
-          font-size: 3.5rem;  
-          padding: 0;
-          font-family: "starling";
-        }
-
-        @include xldesktop {
-          font-size: 1.375rem;
-        }
-      }
-    }
-
-    .secondary-nav-mobile {
-      display: none;
-
-      @include phone {
-        display: block;
-        list-style-type: none;
-        margin-top: 150px;
-        font-size: 1.75rem;
-
-        li {
-          margin-bottom: 10px;
-          a {
-            color: black;
-          }
-        }
-      }
-
-      @include tablet1 {
-        display: block;
-        list-style-type: none;
-        margin-top: 150px;
-        font-size: 1.75rem;
-
-        li {
-          margin-bottom: 10px;
-          a {
-            color: black;
-          }
-        }
-      }
-    }
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 
   .box {
-    float: right;
-    @include phone {
-      height: 100%;
-      position: fixed;
-      top: 0;
-      right: -50rem;
-      z-index: 100;
-      background-color: white;
-      opacity: 1;
-      right: 1;
-      width: 100%;
-      transition: right 0.5s ease;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    float: none;
+    width: 100%;
+  }
+
+  .main-nav-mobile {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+
+    @include min-width-from($screen-s) {
+      gap: 10px;
     }
 
-    @include tablet1 {
-      height: 100%;
-      position: fixed;
-      top: 0;
-      right: -70rem;
-      z-index: 100;
-      background-color: white;
-      opacity: 1;
-      right: 1;
-      width: 100%;
-      transition: right 0.5s ease;
+    @include min-width-from($screen-md1) {
+      flex-wrap: nowrap;
+      gap: 12px;
+    }
+
+    @include xsdesktop {
+      gap: 20px;
+    }
+
+    li {
+      display: inline-block;
+      padding-left: 0;
+    }
+
+    a {
+      text-decoration: none;
+      font-family: "Libre Franklin", sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: black;
+      transition: 0.2s all;
+      border-radius: 4px;
+
+      &:focus-visible {
+        outline: 2px solid #053eff;
+        outline-offset: 3px;
+      }
+
+      &:hover {
+        color: #8b8b8b;
+
+        .nav-external-icon svg {
+          color: #8b8b8b;
+        }
+      }
+
+      &.nav-link--external {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
+
+        @include min-width-from($screen-md1) {
+          gap: 2px;
+        }
+
+        .nav-external-icon {
+          display: inline-flex;
+          flex-shrink: 0;
+          color: inherit;
+
+          svg {
+            display: block;
+            width: 14px;
+            height: 14px;
+            color: inherit;
+            transition: color 0.2s ease;
+
+            @include min-width-from($screen-md1) {
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
     }
   }
 
-  .box.active {
-    @include phone {
-      background: url(../images/opporty/mobile-background.png) no-repeat;
-      background-color: #c0a4c6;
-      right: 0px;
-      overflow: auto;
-      background-size: cover;
-    }
-
-    @include tablet1 {
-      background: url(../images/opporty/mobile-background.png) no-repeat;
-      background-color: #c0a4c6;
-      right: 0px;
-      overflow: auto;
-      background-size: cover;
-    }
-  }
-
-  .menu-toggle {
+  .secondary-nav-mobile {
     display: none;
-    @include phone {
-      align-self: center;
-      height: 10px;
-      cursor: pointer;
-      z-index: 200;
-      display: inherit;
-
-      div {
-        width: 35px;
-        height: 3px;
-        margin-bottom: 8px;
-        background-color: black;
-        transition: 0.2s ease-in-out;
-        justify-self: end;
-      }
-      #bottom {
-        width: 20px;
-        justify-self: end;
-        margin-bottom: 0;
-      }
-    }
-
-    @include tablet1 {
-      align-self: center;
-      height: 10px;
-      cursor: pointer;
-      z-index: 200;
-      display: inherit;
-
-      div {
-        width: 35px;
-        height: 2px;
-        margin-bottom: 8px;
-        background-color: black;
-        transition: 0.2s ease-in-out;
-        justify-self: end;
-      }
-      #bottom {
-        width: 20px;
-        justify-self: end;
-        margin-bottom: 0;
-      }
-    }
   }
-
-  .menu-toggle.active {
-    @include phone {
-      transform-origin: center;
-      -webkit-transform-style: flat;
-
-      #bottom {
-        transform: translatex(-15px);
-      }
-    }
-
-    @include tablet1 {
-      transform-origin: center;
-      -webkit-transform-style: flat;
-
-      #bottom {
-        transform: translatex(-15px);
-      }
-    }
-  }
-
-  /*@keyframes yourAnimation{
-    0%{
-        transform: translateX(400px);
-        }
-    100%{
-        transform: translateX(0px);
-        }
-}*/
 }

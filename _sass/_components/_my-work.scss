@@ -1,4 +1,5 @@
 #my-work {
+	scroll-margin-top: 48px;
 	width: 80%;
 	margin: auto;
 	margin-top: 100px;
@@ -30,11 +31,7 @@
 			margin-top: 25px;
 		}
 
-		@include phone {
-			margin: 20px;
-		}
-
-		@media (min-width: 319px) and (max-width: 600px) {
+		@include mq-between($screen-s, $screen-my-work-gutter-max) {
 			margin: 20px;
 		}
 
@@ -91,13 +88,9 @@
 		flex-direction: column;
 		gap: 24px;
 
-		@include phone {
+		@include mq-between($screen-s, $screen-my-work-gutter-max) {
 			margin: 20px;
 			margin-top: 20px;
-		}
-
-		@media (min-width: 319px) and (max-width: 600px) {
-			margin: 20px;
 		}
 	}
 

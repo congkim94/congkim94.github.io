@@ -9,7 +9,7 @@
 		padding-top: 140px;
 	}
 
-	@media (min-width: 319px) and (max-width: 518px) {
+	@include mq-between($screen-s, $screen-header-short-max) {
 		margin-bottom: 60px;
 	}
 }
@@ -38,9 +38,9 @@
 	position: relative;
 	text-align: center;
 
-	@media only screen and (min-width: 1240px) {
-	 	transition: transform 0.5s;
-  		-webkit-transition: transform 0.5s;
+	@include xsdesktop {
+		transition: transform 0.5s;
+		-webkit-transition: transform 0.5s;
 	}
 
 	@include tablet1 {
@@ -82,11 +82,11 @@
 			padding-bottom: 0px;
 		}
 
-		@media (min-width: 910px) and (max-width: 999px) {
+		@include mq-between($screen-tablet1-mid-min, $screen-tablet1-mid-max) {
 			font-size: 8rem;
 		}
 
-		@media (min-width: 319px) and (max-width: 518px) {
+		@include mq-between($screen-s, $screen-header-short-max) {
 			font-size: 7.5rem;
 			line-height: 1;
 		}
@@ -119,7 +119,7 @@
 				font-size: 2.5rem;
 			}
 
-			@media (min-width: 910px) and (max-width: 999px) {
+			@include mq-between($screen-tablet1-mid-min, $screen-tablet1-mid-max) {
 				font-size: 3rem;
 			}
 		}
@@ -140,37 +140,45 @@
 				width: 100%;
 			}
 
-			@media (min-width: 910px) and (max-width: 999px) {
+			@include mq-between($screen-tablet1-mid-min, $screen-tablet1-mid-max) {
 				font-size: 1.2rem;
 			}
 
-			@media (min-width: 319px) and (max-width: 518px) {
+			@include mq-between($screen-s, $screen-header-short-max) {
 				font-size: 1.125rem;
 			}
 		}
 	}
 
-	.mainpic {
-		width: 13%;
-		z-index: 1;
+	.mainpic-frame {
 		position: absolute;
+		z-index: 1;
 		top: 20%;
 		left: 94%;
+		width: 13%;
+		aspect-ratio: 1;
+		border-radius: 50%;
+		overflow: hidden;
 		-webkit-transform: translateX(-50%);
 		transform: translateX(-50%);
-		z-index: 1;
-		visibility: hidden;
+
 		@include phone {
 			width: 23%;
 			top: 45%;
 			left: 310px;
-			-webkit-transform: translateX(-50%);
-			transform: translateX(-50%);
-			z-index: 1;
 		}
 
 		@include tablet1 {
-			top: 0px;
+			top: 0;
 		}
+	}
+
+	.mainpic {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		object-position: center;
+		visibility: hidden;
 	}
 }
