@@ -34,18 +34,10 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
 
-      # jekyll-autoprefixer → autoprefixer-rails → ExecJS. macOS has JavaScriptCore;
-      # Linux runners need Node or the build fails when prefixing CSS in production.
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-
       - name: Build with Jekyll
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
           JEKYLL_ENV: production
-          EXECJS_RUNTIME: Node
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
