@@ -7,6 +7,8 @@ gem "base64"
 gem "bigdecimal"
 
 gem "jekyll", "~> 4.3.4"
+# CVE-2026-35611 / GHSA-h27x-rffw-24p4 (ReDoS in URI templates); fixed in 2.9.0+
+gem "addressable", ">= 2.9.0"
 
 # Prefer 2.x (sassc) over 3.x (sass-embedded + native protobuf); fewer platform/Ruby issues locally + on CI.
 gem "jekyll-sass-converter", "~> 2.2"
