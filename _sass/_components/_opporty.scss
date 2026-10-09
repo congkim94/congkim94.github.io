@@ -32,8 +32,8 @@
 #opporty-header{
    h1 {
     padding-top: 80px;
-    font-family: starling, serif;
-    font-weight: 700;
+    font-family: $font-sans;
+    font-weight: 560;
     font-style: normal;
     font-size: 2.625rem;
     @include tablet1 {
@@ -55,8 +55,8 @@
 
     h1 {
     padding-top: 80px;
-    font-family: starling, serif;
-    font-weight: 700;
+    font-family: $font-sans;
+    font-weight: 560;
     font-style: normal;
     font-size: 2.625rem;
     @include tablet1 {
@@ -69,7 +69,7 @@
 }
     .project-section-title {
         h2 {
-            font-family: starling, serif;
+            font-family: $font-sans;
             font-size: 2.625rem;
 
             @include phone {
@@ -162,7 +162,7 @@
     }
 
     p {
-        font-family: "starling";
+        font-family: $font-sans;
         font-size: 1.5rem;
         font-weight: 500;
         text-align: center;
@@ -464,7 +464,7 @@
         }
         .idea-number {
             font-size: 5.625rem;
-            font-family: "starling";
+            font-family: $font-sans;
             font-weight: 700;
             color: #97d5eb;
             opacity: 0.5;
