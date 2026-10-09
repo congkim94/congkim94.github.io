@@ -1,0 +1,600 @@
+// Site chrome for every page except the archived original homepage (/v1/):
+// pill nav, white sheet with rounded bottom corners, and a dark footer the
+// sheet uncovers on scroll. Copy uses Google Sans Flex.
+
+html:has(body.site-v2),
+body.site-v2 {
+	background-color: #2b2b2b;
+	overflow-x: clip;
+}
+
+body.site-v2 main {
+	position: relative;
+	z-index: 1;
+	background-color: #fff;
+	padding-bottom: 80px;
+	border-bottom-left-radius: 48px;
+	border-bottom-right-radius: 48px;
+	box-sizing: border-box;
+
+	@include tablet1 {
+		border-bottom-left-radius: 32px;
+		border-bottom-right-radius: 32px;
+	}
+
+	@include phone {
+		border-bottom-left-radius: 24px;
+		border-bottom-right-radius: 24px;
+	}
+}
+
+body.home-v2 main {
+	padding: 22px 24px 80px;
+	transform: translate3d(0, 0, 0);
+
+	@include tablet1 {
+		padding: 16px 16px 80px;
+	}
+
+	@include phone {
+		padding: 12px 12px 80px;
+	}
+}
+
+@mixin home-v2-banner {
+	position: relative;
+	min-height: 476px;
+	padding: 20px 24px 32px;
+	border-radius: 24px;
+	overflow: hidden;
+	box-sizing: border-box;
+
+	@include tablet1 {
+		min-height: 320px;
+		padding: 16px 16px 24px;
+	}
+
+	@include phone {
+		min-height: 280px;
+		padding: 12px 12px 20px;
+		border-radius: 20px;
+	}
+}
+
+.hero-v2 {
+	width: 100%;
+	margin: 0;
+}
+
+.hero-v2__banner {
+	@include home-v2-banner;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	@include phone {
+		min-height: 500px;
+	}
+}
+
+// Afternoon Sunlight canvas. The still image stays until the shader is ready.
+// Shift the pattern up 40px and add that height so the crop stays filled.
+.hero-v2__shader {
+	position: absolute;
+	top: -40px;
+	right: 0;
+	left: 0;
+	z-index: 0;
+	display: block;
+	width: 100%;
+	height: calc(100% + 40px);
+	pointer-events: none;
+}
+
+.hero-v2.is-shader .hero-v2__bg {
+	opacity: 0;
+}
+
+.hero-v2__bg {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center 30%;
+	pointer-events: none;
+}
+
+header.site-nav {
+	position: relative;
+	top: auto;
+	left: auto;
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 8px 12px;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	background: transparent;
+}
+
+// Subpages have no hero, so the bar sits over the page's own top section
+// and scrolls away with it, in the same spot as on the homepage.
+header.site-nav--overlay {
+	position: absolute;
+	top: 42px;
+	right: 48px;
+	left: 48px;
+
+	@include tablet1 {
+		top: 32px;
+		right: 32px;
+		left: 32px;
+	}
+
+	@include phone {
+		top: 24px;
+		right: 24px;
+		left: 24px;
+	}
+
+	.site-nav__pill {
+		background: rgba(43, 43, 43, 0.72);
+		-webkit-backdrop-filter: blur(12px);
+		backdrop-filter: blur(12px);
+
+		&:hover {
+			background: rgba(43, 43, 43, 0.9);
+		}
+
+		&:focus-visible {
+			outline-color: #2b2b2b;
+		}
+	}
+}
+
+.site-nav__links ul {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 6px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.site-nav__pill {
+	display: inline-flex;
+	align-items: center;
+	gap: 2px;
+	padding: 10px 20px;
+	border-radius: 24px;
+	background: rgba(0, 0, 0, 0.34);
+	color: #fff;
+	font-family: $font-sans;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.25;
+	text-decoration: none;
+	white-space: nowrap;
+	transition: background 0.2s ease;
+
+	&:hover {
+		background: rgba(0, 0, 0, 0.5);
+		color: #fff;
+	}
+
+	&:focus-visible {
+		outline: 2px solid #fff;
+		outline-offset: 3px;
+	}
+
+	@include phone {
+		padding: 8px 14px;
+		font-size: 14px;
+	}
+}
+
+.site-nav__pill--back {
+	padding-left: 14px;
+
+	@include phone {
+		padding-left: 10px;
+	}
+}
+
+.site-nav__ext {
+	display: inline-flex;
+	color: inherit;
+
+	svg {
+		display: block;
+		width: 20px;
+		height: 20px;
+
+		@include phone {
+			width: 14px;
+			height: 14px;
+		}
+	}
+}
+
+.hero-v2__headline {
+	position: relative;
+	z-index: 1;
+	align-self: stretch;
+	width: 100%;
+	margin: 0;
+	padding-top: 120px;
+	font-family: $font-sans;
+	font-size: 40px;
+	font-weight: 430;
+	font-stretch: 92%;
+	font-style: normal;
+	line-height: 1.3;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 92, "wght" 430;
+	color: #2B2B2B;
+
+	@include tablet1 {
+		padding-top: 80px;
+		font-size: 32px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 32, "slnt" 0, "wdth" 92, "wght" 430;
+	}
+
+	@include phone {
+		padding-top: 48px;
+		font-size: 24px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 92, "wght" 430;
+	}
+}
+
+// Desktop (1001px and up) keeps the sentence on exactly two lines.
+.hero-v2__line {
+	font-family: $font-sans;
+	font-weight: 430;
+	font-stretch: 92%;
+	color: #3d3d3d;
+
+	@include min-width-from($screen-md1) {
+		display: block;
+		white-space: nowrap;
+	}
+}
+
+.blossom-v2 {
+	@include home-v2-banner;
+	margin-top: 24px;
+	padding: 0;
+	background-color: #f4f2ef;
+}
+
+.blossom-v2__shader {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: 22% 46%;
+	pointer-events: none;
+}
+
+body.home-v2 #my-work.work-v2 {
+	width: 100%;
+	max-width: none;
+	margin: 24px 0 0;
+	padding: 0;
+	scroll-margin-top: 16px;
+}
+
+.work-v2__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 24px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	@include tablet1 {
+		grid-template-columns: 1fr;
+	}
+
+	@include phone {
+		grid-template-columns: 1fr;
+	}
+}
+
+.work-v2__card {
+	position: relative;
+	display: block;
+	height: 476px;
+	border: 0;
+	border-radius: 24px;
+	overflow: hidden;
+	background: #e8e4dc;
+	text-decoration: none;
+	transition: transform 0.25s ease;
+
+	&:hover {
+		transform: translateY(-2px);
+	}
+
+	&:focus-visible {
+		outline: 2px solid #053eff;
+		outline-offset: 3px;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transition: transform 0.5s ease;
+	}
+
+	&:hover img {
+		transform: scale(1.02);
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+
+		img {
+			transition: none;
+		}
+
+		&:hover,
+		&:hover img {
+			transform: none;
+		}
+	}
+
+	@include tablet1 {
+		height: 320px;
+	}
+
+	@include phone {
+		height: 280px;
+		border-radius: 20px;
+	}
+}
+
+.work-v2__name {
+	position: absolute;
+	bottom: 24px;
+	left: 24px;
+	z-index: 1;
+	margin: 0;
+	padding: 10px 20px;
+	border-radius: 24px;
+	background: #e2e2e2;
+	color: #3d3d3d;
+	font-family: $font-sans;
+	font-size: 16px;
+	font-weight: 500;
+	font-style: normal;
+	line-height: normal;
+	letter-spacing: 0;
+	white-space: nowrap;
+	pointer-events: none;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
+
+	@include tablet1 {
+		bottom: 16px;
+		left: 16px;
+	}
+
+	@include phone {
+		bottom: 12px;
+		left: 12px;
+		padding: 8px 14px;
+		font-size: 14px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
+	}
+}
+
+body.site-v2 #contact.footer-v2-anchor {
+	display: block;
+	width: 0;
+	height: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+body.site-v2 .footer-v2 {
+	position: sticky;
+	bottom: 0;
+	z-index: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 62px;
+	width: 100%;
+	max-width: none;
+	margin: 0;
+	padding: 120px 24px 24px;
+	border: 0;
+	border-radius: 0;
+	background-color: #2b2b2b;
+	box-sizing: border-box;
+	color: #fff;
+	font-family: $font-sans;
+	font-size: 24px;
+	font-weight: 400;
+	line-height: normal;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 100, "wght" 400;
+
+	&:focus-within {
+		z-index: 2;
+	}
+
+	@include tablet1 {
+		gap: 80px;
+		padding: 120px 16px 16px;
+	}
+
+	@include phone {
+		gap: 32px;
+		padding: 120px 16px 16px;
+	}
+}
+
+.footer-v2__intro {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 48px;
+	width: 100%;
+
+	@include tablet1 {
+		align-items: flex-start;
+		gap: 32px;
+	}
+
+	@include phone {
+		flex-direction: column-reverse;
+		align-items: flex-start;
+		gap: 24px;
+	}
+}
+
+.footer-v2__portrait {
+	flex-shrink: 0;
+	width: 145px;
+	height: 193px;
+	border-radius: 16px;
+	overflow: hidden;
+
+	// Scale 125% around the origin that lands the face (about 47% / 43% of
+	// the photo) at the center of the frame: origin = 5 × face − 4 × 50%.
+	img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		transform: scale(1.40);
+		transform-origin: 34% 45%;
+	}
+}
+
+.footer-v2__copy {
+	width: 100%;
+	max-width: 739px;
+	color: #fff;
+	font-family: $font-sans;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: normal;
+	text-align: left;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 100, "wght" 300;
+
+	p {
+		margin: 0;
+		font-family: inherit;
+		font-size: inherit;
+		font-weight: 300;
+		line-height: inherit;
+		color: inherit;
+		text-align: inherit;
+		font-variation-settings: inherit;
+	}
+
+	p + p {
+		margin-top: 24px;
+	}
+
+	@include tablet1 {
+		max-width: none;
+		font-size: 20px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 20, "slnt" 0, "wdth" 100, "wght" 300;
+	}
+
+	@include phone {
+		max-width: none;
+		font-size: 18px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 18, "slnt" 0, "wdth" 100, "wght" 300;
+	}
+}
+
+body.site-v2 .footer-v2 .footer-v2__bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	color: #fff;
+	font-family: $font-sans;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: normal;
+	white-space: nowrap;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 400;
+
+	p,
+	a {
+		margin: 0;
+		font-family: inherit;
+		font-size: 16px;
+		font-weight: inherit;
+		line-height: inherit;
+		color: inherit;
+		font-variation-settings: inherit;
+	}
+
+	a {
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #fff;
+			outline-offset: 3px;
+		}
+	}
+
+	@include phone {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		align-items: center;
+		column-gap: 16px;
+		row-gap: 8px;
+		white-space: normal;
+
+		.footer-v2__name {
+			grid-column: 1;
+			grid-row: 1;
+		}
+
+		.footer-v2__year {
+			grid-column: 1;
+			grid-row: 2;
+			text-align: left;
+		}
+
+		.footer-v2__links {
+			grid-column: 2;
+			grid-row: 1 / span 2;
+			flex-direction: column;
+			align-items: flex-end;
+			gap: 8px;
+		}
+	}
+}
+
+.footer-v2__links {
+	display: flex;
+	justify-content: flex-end;
+	gap: 24px;
+}
+
+.footer-v2__year {
+	text-align: center;
+}

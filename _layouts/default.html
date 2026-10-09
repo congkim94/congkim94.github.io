@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cong Kim</title>
-    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     <link href="/assets/stylesheets/main.css" rel="stylesheet">
+    {% if page.legacy %}
+    <meta name="robots" content="noindex">
+    <link rel="preconnect" href="https://use.typekit.net" crossorigin>
     <link rel="stylesheet" href="https://use.typekit.net/xip4vko.css">
+    {% else %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:GRAD,ROND,opsz,slnt,wdth,wght@0..100,0..100,6..144,-10..0,25..151,1..1000&display=swap">
+    {% endif %}
     <link rel="shortcut icon" type="image/png" href="/favicon.jpg">
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76317743-1"></script>
     <script>
@@ -18,6 +25,7 @@
     </script>
   </head>
 
+  {% if page.legacy %}
   <body>
     {% include navigation.html %}
     <main>
@@ -25,10 +33,21 @@
     {% include contact.html %}
     </main>
 
-    {% if page.path == 'index.html' or page.url == '/' %}
     <script src="/assets/javascripts/TweenMax.min.js"></script>
     <script src="/assets/javascripts/anime.min.js"></script>
-    {% endif %}
     <script src="/assets/javascripts/script.js"></script>
   </body>
+  {% else %}
+  <body class="site-v2{% if page.body_class %} {{ page.body_class }}{% endif %}">
+    {% unless page.hide_nav %}
+    {% include site-nav.html overlay=true %}
+    {% endunless %}
+    <main>
+    {{ content }}
+    </main>
+    {% include home-v2/footer.html %}
+
+    <script src="/assets/javascripts/script.js"></script>
+  </body>
+  {% endif %}
 </html>
