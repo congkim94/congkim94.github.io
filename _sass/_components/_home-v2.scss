@@ -79,6 +79,15 @@ body.home-v2 main {
 
 // Afternoon Sunlight canvas. The still image stays until the shader is ready.
 // Shift the pattern up 40px and add that height so the crop stays filled.
+.hero-v2__media {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	overflow: hidden;
+	pointer-events: none;
+	border-radius: inherit;
+}
+
 .hero-v2__shader {
 	position: absolute;
 	top: -40px;
@@ -103,7 +112,7 @@ body.home-v2 main {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	object-position: center 30%;
+	object-position: center;
 	pointer-events: none;
 }
 
@@ -264,6 +273,54 @@ header.site-nav--overlay {
 	@include min-width-from($screen-md1) {
 		display: block;
 		white-space: nowrap;
+	}
+}
+
+.hero-v2__word {
+	display: inline-block;
+	color: inherit;
+	font: inherit;
+	font-variation-settings: inherit;
+}
+
+// Homepage load: the sentence fades in word by word, then the shader,
+// navigation, and the rest of the page follow. Reduced motion skips it.
+@media (prefers-reduced-motion: no-preference) {
+	body.home-v2.is-intro {
+		.hero-v2__word {
+			animation: hero-word-in 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+			animation-delay: calc(0.12s + (var(--i) * 0.11s));
+		}
+
+		.hero-v2__media,
+		.hero-v2 .site-nav,
+		.work-v2,
+		.footer-v2 {
+			animation: hero-rest-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+			animation-delay: 1.85s;
+		}
+	}
+}
+
+@keyframes hero-word-in {
+	from {
+		opacity: 0.001;
+		filter: blur(2px);
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+	}
+}
+
+@keyframes hero-rest-in {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
 	}
 }
 
