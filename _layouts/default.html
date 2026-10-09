@@ -38,7 +38,7 @@
     <script src="/assets/javascripts/script.js"></script>
   </body>
   {% else %}
-  <body class="site-v2{% if page.body_class %} {{ page.body_class }}{% endif %}">
+  <body class="site-v2{% if page.body_class %} {{ page.body_class }}{% endif %}{% if page.intro %} is-intro{% endif %}">
     {% unless page.hide_nav %}
     {% include site-nav.html overlay=true %}
     {% endunless %}
