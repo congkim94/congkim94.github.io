@@ -18,11 +18,13 @@ body.site-v2 main {
 	box-sizing: border-box;
 
 	@include tablet1 {
+		padding-bottom: 48px;
 		border-bottom-left-radius: 32px;
 		border-bottom-right-radius: 32px;
 	}
 
 	@include phone {
+		padding-bottom: 48px;
 		border-bottom-left-radius: 24px;
 		border-bottom-right-radius: 24px;
 	}
@@ -33,11 +35,11 @@ body.home-v2 main {
 	transform: translate3d(0, 0, 0);
 
 	@include tablet1 {
-		padding: 16px 16px 80px;
+		padding: 16px 16px 48px;
 	}
 
 	@include phone {
-		padding: 12px 12px 80px;
+		padding: 12px 12px 48px;
 	}
 }
 
