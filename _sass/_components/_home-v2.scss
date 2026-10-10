@@ -18,11 +18,13 @@ body.site-v2 main {
 	box-sizing: border-box;
 
 	@include tablet1 {
+		padding-bottom: 48px;
 		border-bottom-left-radius: 32px;
 		border-bottom-right-radius: 32px;
 	}
 
 	@include phone {
+		padding-bottom: 48px;
 		border-bottom-left-radius: 24px;
 		border-bottom-right-radius: 24px;
 	}
@@ -33,30 +35,30 @@ body.home-v2 main {
 	transform: translate3d(0, 0, 0);
 
 	@include tablet1 {
-		padding: 16px 16px 80px;
+		padding: 16px 16px 48px;
 	}
 
 	@include phone {
-		padding: 12px 12px 80px;
+		padding: 12px 12px 48px;
 	}
 }
 
 @mixin home-v2-banner {
 	position: relative;
 	min-height: 476px;
-	padding: 20px 24px 32px;
+	padding: 20px 24px 24px;
 	border-radius: 24px;
 	overflow: hidden;
 	box-sizing: border-box;
 
 	@include tablet1 {
 		min-height: 320px;
-		padding: 16px 16px 24px;
+		padding: 16px 16px 16px;
 	}
 
 	@include phone {
 		min-height: 280px;
-		padding: 12px 12px 20px;
+		padding: 12px 12px 12px;
 		border-radius: 20px;
 	}
 }
@@ -246,32 +248,37 @@ header.site-nav--overlay {
 	padding-top: 120px;
 	font-family: $font-sans;
 	font-size: 40px;
-	font-weight: 430;
+	font-weight: 450;
 	font-stretch: 92%;
 	font-style: normal;
 	line-height: 1.3;
-	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 92, "wght" 430;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 92, "wght" 450;
 	color: #2B2B2B;
 
 	@include tablet1 {
 		padding-top: 80px;
 		font-size: 32px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 32, "slnt" 0, "wdth" 92, "wght" 430;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 32, "slnt" 0, "wdth" 92, "wght" 450;
 	}
 
 	@include phone {
 		padding-top: 48px;
 		font-size: 24px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 92, "wght" 430;
+		font-weight: 500;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 92, "wght" 500;
+
+		.hero-v2__line {
+			font-weight: 500;
+		}
 	}
 }
 
 // Desktop (1001px and up) keeps the sentence on exactly two lines.
 .hero-v2__line {
 	font-family: $font-sans;
-	font-weight: 430;
+	font-weight: 450;
 	font-stretch: 92%;
-	color: #3d3d3d;
+	color: #383838;
 
 	@include min-width-from($screen-md1) {
 		display: block;
