@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-# Ruby version: see .ruby-version (4.0.2 for local + GitHub Actions).
+# Ruby version: see .ruby-version (4.0.7 for local + GitHub Actions).
 # Ruby 3.4+ / 4.0: stdlib moved to gems; Jekyll 4.3 + Liquid + safe_yaml need these.
 gem "csv"
 gem "base64"

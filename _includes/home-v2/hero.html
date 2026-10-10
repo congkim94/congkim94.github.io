@@ -4,7 +4,7 @@
 			<canvas id="hero-v2-shader" class="hero-v2__shader" aria-hidden="true"></canvas>
 			<img
 				class="hero-v2__bg"
-				src="/assets/images/home-v2/hero-bg.png"
+				src="/assets/images/home-v2/hero-bg.png?v=3"
 				alt=""
 				width="2784"
 				height="952"
@@ -21,14 +21,44 @@
 		</h1>
 	</div>
 </section>
-<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=14"></script>
+<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=23"></script>
 <script>
 (function () {
 	var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-	if (reduce) {
-		document.body.classList.remove("is-intro");
+
+	// The reveal is for landing on the site. Coming back from a subpage
+	// (the Back button, the browser's back, or the logo) skips it.
+	var navEntry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+	var cameBack = !!navEntry && navEntry.type === "back_forward";
+	var fromSubpage = false;
+	try {
+		var referrer = document.referrer ? new URL(document.referrer) : null;
+		fromSubpage = !!referrer && referrer.origin === location.origin && referrer.pathname !== location.pathname;
+	} catch (error) {
+		// Unparseable referrer: treat it as a fresh landing.
+	}
+
+	if (reduce || cameBack || fromSubpage) {
+		document.body.classList.remove("is-intro", "is-intro-locked");
+		// Returning visitors get a short fade instead of the word reveal.
+		if (!reduce) document.body.classList.add("is-return");
 		return;
 	}
+
+	// .is-intro-locked (overflow: hidden) stops wheel, keyboard, and touch
+	// scrolling. iOS Safari can still pan the page by touch, so block that too.
+	function blockTouchScroll(event) {
+		event.preventDefault();
+	}
+	window.addEventListener("touchmove", blockTouchScroll, { passive: false });
+
+	// Scrolling returns when the rest of the page starts to fade in
+	// (hero-rest-in delay in _home-v2.scss). The reveal keeps running.
+	window.setTimeout(function () {
+		document.body.classList.remove("is-intro-locked");
+		window.removeEventListener("touchmove", blockTouchScroll);
+	}, 2800);
+
 	window.setTimeout(function () {
 		document.body.classList.remove("is-intro");
 	}, 4900);
