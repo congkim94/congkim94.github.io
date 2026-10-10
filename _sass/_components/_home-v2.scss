@@ -288,16 +288,18 @@ header.site-nav--overlay {
 @media (prefers-reduced-motion: no-preference) {
 	body.home-v2.is-intro {
 		.hero-v2__word {
-			animation: hero-word-in 2.2s cubic-bezier(0.16, 1, 0.3, 1) both;
-			animation-delay: calc(0.12s + (var(--i) * 0.11s));
+			animation: hero-word-in 2.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+			animation-delay: calc(0.12s + (var(--i) * 0.13s));
 		}
 
 		.hero-v2__media,
 		.hero-v2 .site-nav,
 		.work-v2,
 		.footer-v2 {
-			animation: hero-rest-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-			animation-delay: 1.85s;
+			// The last word is fully readable at 3s. Hold 500ms after that.
+			// Starting any earlier overlaps the end of the word fade, so the pause disappears.
+			animation: hero-rest-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+			animation-delay: 2.8s;
 		}
 	}
 }
