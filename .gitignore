@@ -8,3 +8,6 @@ vendor/bundle/
 /id_rsa
 /id_rsa.pub
 /id_rsa.pub.pub
+
+# Local https certificate for phone previews (jekyll serve --ssl-cert/--ssl-key)
+/.ssl/

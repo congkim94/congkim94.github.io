@@ -104,6 +104,8 @@ body.home-v2 main {
 	opacity: 0;
 }
 
+// The still fades out over the live shader. The transition is on the image,
+// not the canvas: opacity on a WebGPU canvas composites wrong in Chrome.
 .hero-v2__bg {
 	position: absolute;
 	inset: 0;
@@ -114,6 +116,7 @@ body.home-v2 main {
 	object-fit: cover;
 	object-position: center;
 	pointer-events: none;
+	transition: opacity 0.4s ease;
 }
 
 header.site-nav {
@@ -283,6 +286,16 @@ header.site-nav--overlay {
 	font-variation-settings: inherit;
 }
 
+// Hold the viewport still while only the sentence is on screen. The lock
+// lifts the moment the rest of the page starts to appear.
+html:has(body.home-v2.is-intro-locked),
+body.home-v2.is-intro-locked {
+	height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+	touch-action: none;
+}
+
 // Homepage load: the sentence fades in word by word, then the shader,
 // navigation, and the rest of the page follow. Reduced motion skips it.
 @media (prefers-reduced-motion: no-preference) {
@@ -300,6 +313,15 @@ header.site-nav--overlay {
 			// Starting any earlier overlaps the end of the word fade, so the pause disappears.
 			animation: hero-rest-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 			animation-delay: 2.8s;
+		}
+	}
+
+	// Coming back from a subpage: the sheet stays, the content fades in.
+	body.home-v2.is-return {
+		.hero-v2,
+		.work-v2,
+		.footer-v2 {
+			animation: hero-rest-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
 		}
 	}
 }

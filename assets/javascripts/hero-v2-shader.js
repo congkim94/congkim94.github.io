@@ -3,12 +3,8 @@ const hero = canvas && canvas.closest(".hero-v2");
 
 const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Firefox on phones exposes WebGPU, but its canvas ignores alpha and the
-// rays composite wrong. Chrome is fine. Keep the still on those phones.
-const ua = navigator.userAgent || "";
-const firefoxMobile = /Firefox|FxiOS/i.test(ua) && /Mobile|Android|iPhone|iPad|iPod/i.test(ua);
-
-if (canvas && hero && navigator.gpu && motionOk && !firefoxMobile) {
+// Browsers without WebGPU keep the still image.
+if (canvas && hero && navigator.gpu && motionOk) {
   // Keep the canvas sized by CSS. Otherwise the shader snapshots the first
   // measured box and can lock a phone canvas to the default 300×150.
   canvas.style.width = "100%";
@@ -72,7 +68,19 @@ if (canvas && hero && navigator.gpu && motionOk && !firefoxMobile) {
       }
     );
 
-    hero.classList.add("is-shader");
+    // The shader resolves before it has presented a frame. Keep the still
+    // until a few frames have been drawn, so the handover never shows the
+    // cleared (black) canvas.
+    let frames = 0;
+    const revealWhenDrawn = () => {
+      frames += 1;
+      if (frames < 3) {
+        requestAnimationFrame(revealWhenDrawn);
+        return;
+      }
+      hero.classList.add("is-shader");
+    };
+    requestAnimationFrame(revealWhenDrawn);
 
     window.addEventListener("pagehide", function () {
       shader.destroy();
