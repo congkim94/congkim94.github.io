@@ -3,8 +3,17 @@ const hero = canvas && canvas.closest(".hero-v2");
 
 const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-if (canvas && hero && navigator.gpu && motionOk) {
-  const { createShader } = await import("./shaders-js.js");
+// Firefox on phones exposes WebGPU, but its canvas ignores alpha and the
+// rays composite wrong. Chrome is fine. Keep the still on those phones.
+const ua = navigator.userAgent || "";
+const firefoxMobile = /Firefox|FxiOS/i.test(ua) && /Mobile|Android|iPhone|iPad|iPod/i.test(ua);
+
+if (canvas && hero && navigator.gpu && motionOk && !firefoxMobile) {
+  // Keep the canvas sized by CSS. Otherwise the shader snapshots the first
+  // measured box and can lock a phone canvas to the default 300×150.
+  canvas.style.width = "100%";
+  canvas.style.height = "calc(100% + 40px)";
+  const { createShader } = await import("./shaders-js.js?v=2");
 
   try {
     const shader = await createShader(
