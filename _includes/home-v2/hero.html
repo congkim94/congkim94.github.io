@@ -4,13 +4,14 @@
 			<canvas id="hero-v2-shader" class="hero-v2__shader" aria-hidden="true"></canvas>
 			<img
 				class="hero-v2__bg"
-				src="/assets/images/home-v2/hero-bg.png?v=3"
+				src="/assets/images/home-v2/hero-bg.png?v=6"
 				alt=""
 				width="2784"
-				height="952"
+				height="708"
 				decoding="async"
 				fetchpriority="high"
 			>
+			<div class="hero-v2__veil" aria-hidden="true"></div>
 		</div>
 
 		{% include site-nav.html %}
@@ -21,7 +22,7 @@
 		</h1>
 	</div>
 </section>
-<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=23"></script>
+<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=28"></script>
 <script>
 (function () {
 	var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -41,7 +42,15 @@
 	if (reduce || cameBack || fromSubpage) {
 		document.body.classList.remove("is-intro", "is-intro-locked");
 		// Returning visitors get a short fade instead of the word reveal.
-		if (!reduce) document.body.classList.add("is-return");
+		// The veil covers the hero until the shader has a full frame, so the
+		// still image never fades out over a half-drawn canvas.
+		if (!reduce) {
+			document.body.classList.add("is-return");
+			if (navigator.gpu) {
+				var heroEl = document.querySelector(".hero-v2");
+				if (heroEl) heroEl.classList.add("is-shader-cover");
+			}
+		}
 		return;
 	}
 

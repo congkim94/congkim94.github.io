@@ -73,14 +73,14 @@ body.home-v2 main {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	background-color: #e6e6e6;
 
 	@include phone {
 		min-height: 500px;
 	}
 }
 
-// Afternoon Sunlight canvas. The still image stays until the shader is ready.
-// Shift the pattern up 40px and add that height so the crop stays filled.
+// The still image stays until the shader has drawn its first frames.
 .hero-v2__media {
 	position: absolute;
 	inset: 0;
@@ -92,22 +92,21 @@ body.home-v2 main {
 
 .hero-v2__shader {
 	position: absolute;
-	top: -40px;
-	right: 0;
-	left: 0;
+	inset: 0;
 	z-index: 0;
 	display: block;
 	width: 100%;
-	height: calc(100% + 40px);
+	height: 100%;
 	pointer-events: none;
 }
 
-.hero-v2.is-shader .hero-v2__bg {
-	opacity: 0;
+// Hide the still outright once the shader is ready. Fading it (opacity on a
+// layer above the canvas) makes Chrome paint only the top of the rays first.
+.hero-v2.is-shader .hero-v2__bg,
+.hero-v2.is-shader-cover .hero-v2__bg {
+	visibility: hidden;
 }
 
-// The still fades out over the live shader. The transition is on the image,
-// not the canvas: opacity on a WebGPU canvas composites wrong in Chrome.
 .hero-v2__bg {
 	position: absolute;
 	inset: 0;
@@ -118,7 +117,22 @@ body.home-v2 main {
 	object-fit: cover;
 	object-position: center;
 	pointer-events: none;
-	transition: opacity 0.4s ease;
+}
+
+// Solid cover used when coming back from a subpage, so the mismatched still
+// never crossfades into the live rays. It sits above the canvas, not around it.
+.hero-v2__veil {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background-color: #e6e6e6;
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.45s ease;
+}
+
+.hero-v2.is-shader-cover:not(.is-shader) .hero-v2__veil {
+	opacity: 1;
 }
 
 header.site-nav {
@@ -323,9 +337,11 @@ body.home-v2.is-intro-locked {
 		}
 	}
 
-	// Coming back from a subpage: the sheet stays, the content fades in.
+	// Coming back from a subpage: the sheet and shader stay put. Fading an
+	// ancestor of the WebGPU canvas makes Chrome draw only part of it.
 	body.home-v2.is-return {
-		.hero-v2,
+		.hero-v2__headline,
+		.hero-v2 .site-nav,
 		.work-v2,
 		.footer-v2 {
 			animation: hero-rest-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
