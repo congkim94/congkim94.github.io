@@ -73,14 +73,38 @@ body.home-v2 main {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background-color: #e6e6e6;
 
 	@include phone {
 		min-height: 500px;
 	}
 }
 
-// The still image stays until the shader has drawn its first frames.
+// Grey only covers the hero when coming back from a project, before the
+// shader has a frame. A fresh landing keeps the banner empty while the
+// sentence reveals. The white veil fades off once that return frame is ready
+// so the page eases in without fading the canvas itself.
+body.home-v2.is-return:not(:has(.hero-v2.is-shader)) .hero-v2__banner {
+	background-color: #e6e6e6;
+}
+
+body.home-v2.is-return::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	z-index: 4;
+	background: #fff;
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.home-v2.is-return:has(.hero-v2.is-shader)::before,
+body.home-v2.is-return.is-return-in::before {
+	opacity: 0;
+}
+
+// The canvas stays hidden until it has drawn. The shade above it fades off
+// with the rest of the page.
 .hero-v2__media {
 	position: absolute;
 	inset: 0;
@@ -98,41 +122,23 @@ body.home-v2 main {
 	width: 100%;
 	height: 100%;
 	pointer-events: none;
-}
-
-// Hide the still outright once the shader is ready. Fading it (opacity on a
-// layer above the canvas) makes Chrome paint only the top of the rays first.
-.hero-v2.is-shader .hero-v2__bg,
-.hero-v2.is-shader-cover .hero-v2__bg {
 	visibility: hidden;
 }
 
-.hero-v2__bg {
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-	display: block;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	object-position: center;
-	pointer-events: none;
+.hero-v2.is-shader .hero-v2__shader {
+	visibility: visible;
 }
 
-// Solid cover used when coming back from a subpage, so the mismatched still
-// never crossfades into the live rays. It sits above the canvas, not around it.
-.hero-v2__veil {
+// Sits over the canvas and under the sentence. Fades off with the rest of
+// the page so the rays ease in instead of cutting on.
+.hero-v2__shade {
 	position: absolute;
 	inset: 0;
 	z-index: 1;
-	background-color: #e6e6e6;
-	opacity: 0;
+	border-radius: inherit;
+	background: #fff;
 	pointer-events: none;
-	transition: opacity 0.45s ease;
-}
-
-.hero-v2.is-shader-cover:not(.is-shader) .hero-v2__veil {
-	opacity: 1;
+	opacity: 0;
 }
 
 header.site-nav {
@@ -255,7 +261,7 @@ header.site-nav--overlay {
 
 .hero-v2__headline {
 	position: relative;
-	z-index: 1;
+	z-index: 2;
 	align-self: stretch;
 	width: 100%;
 	margin: 0;
@@ -317,8 +323,8 @@ body.home-v2.is-intro-locked {
 	touch-action: none;
 }
 
-// Homepage load: the sentence fades in word by word, then the shader,
-// navigation, and the rest of the page follow. Reduced motion skips it.
+// Homepage load: the sentence fades in word by word, then the navigation
+// and the rest of the page follow. Reduced motion skips it.
 @media (prefers-reduced-motion: no-preference) {
 	body.home-v2.is-intro {
 		.hero-v2__word {
@@ -326,25 +332,18 @@ body.home-v2.is-intro-locked {
 			animation-delay: calc(0.12s + (var(--i) * 0.13s));
 		}
 
-		.hero-v2__media,
 		.hero-v2 .site-nav,
 		.work-v2,
 		.footer-v2 {
-			// The last word is fully readable at 3s. Hold 500ms after that.
-			// Starting any earlier overlaps the end of the word fade, so the pause disappears.
-			animation: hero-rest-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+			// Longer and slower at the start than the return veil. That veil
+			// lifts off a finished page; these elements are appearing.
+			animation: hero-rest-in 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
 			animation-delay: 2.8s;
 		}
-	}
 
-	// Coming back from a subpage: the sheet and shader stay put. Fading an
-	// ancestor of the WebGPU canvas makes Chrome draw only part of it.
-	body.home-v2.is-return {
-		.hero-v2__headline,
-		.hero-v2 .site-nav,
-		.work-v2,
-		.footer-v2 {
-			animation: hero-rest-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+		.hero-v2__shade {
+			animation: hero-veil-out 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
+			animation-delay: 2.8s;
 		}
 	}
 }
@@ -368,6 +367,16 @@ body.home-v2.is-intro-locked {
 
 	to {
 		opacity: 1;
+	}
+}
+
+@keyframes hero-veil-out {
+	from {
+		opacity: 1;
+	}
+
+	to {
+		opacity: 0;
 	}
 }
 
