@@ -3,36 +3,15 @@ const hero = canvas && canvas.closest(".hero-v2");
 
 const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-let shaderInstance = null;
-let starting = false;
-let hideBound = false;
-
-function coverHero() {
-  hero.classList.add("is-shader-cover");
-}
-
-function onPageHide() {
-  // Drop the live canvas before the page is frozen, so coming back does not
-  // restore a half-presented frame. The cover stays up until the next mount.
-  hero.classList.remove("is-shader");
-  coverHero();
-  if (shaderInstance) {
-    shaderInstance.destroy();
-    shaderInstance = null;
-  }
-}
-
-async function mount() {
-  if (!canvas || !hero || !navigator.gpu || !motionOk || starting || shaderInstance) return;
-  starting = true;
-  coverHero();
+// Browsers without WebGPU keep the solid banner.
+if (canvas && hero && navigator.gpu && motionOk) {
   // Keep the canvas sized by CSS. Otherwise the shader snapshots the first
   // measured box and can lock a phone canvas to the default 300×150.
   canvas.style.width = "100%";
   canvas.style.height = "100%";
+  const { createShader } = await import("./shaders-js.js?v=2");
 
   try {
-    const { createShader } = await import("./shaders-js.js?v=2");
     const shader = await createShader(
       canvas,
       {
@@ -96,40 +75,23 @@ async function mount() {
       }
     );
 
-    shaderInstance = shader;
-    if (!hideBound) {
-      hideBound = true;
-      window.addEventListener("pagehide", onPageHide);
-    }
-
-    // The shader resolves before it has presented a full frame. Chrome can
-    // composite only the top of a WebGPU canvas on those first frames, so
-    // keep the cover up until the bitmap matches the banner.
+    // Stay hidden through the sentence reveal. A return from a project has
+    // already dropped the lock, so only the first frames are held back.
     let frames = 0;
-    let stable = 0;
     const revealWhenDrawn = () => {
       frames += 1;
-      const rect = canvas.getBoundingClientRect();
-      const tallEnough = canvas.height > rect.height * 0.9;
-      const wideEnough = canvas.width > rect.width * 0.9;
-      stable = rect.height > 40 && tallEnough && wideEnough ? stable + 1 : 0;
-      if ((frames < 8 || stable < 4) && frames < 120) {
+      if (frames < 3 || document.body.classList.contains("is-intro-locked")) {
         requestAnimationFrame(revealWhenDrawn);
         return;
       }
       hero.classList.add("is-shader");
     };
     requestAnimationFrame(revealWhenDrawn);
+
+    window.addEventListener("pagehide", function () {
+      shader.destroy();
+    });
   } catch (error) {
-    hero.classList.remove("is-shader-cover");
     console.warn("Hero shader unavailable.", error);
-  } finally {
-    starting = false;
   }
 }
-
-window.addEventListener("pageshow", function (event) {
-  if (event.persisted) mount();
-});
-
-mount();
