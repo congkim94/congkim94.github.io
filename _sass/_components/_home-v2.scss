@@ -83,7 +83,7 @@ body.home-v2 main {
 // shader has a frame. A fresh landing keeps the banner empty while the
 // sentence reveals. The white veil fades off once that return frame is ready
 // so the page eases in without fading the canvas itself.
-body.home-v2.is-return:not(:has(.hero-v2.is-shader)) .hero-v2__banner {
+body.home-v2.is-return:not(:has(.hero-v2.is-shader, .hero-v2.is-fallback)) .hero-v2__banner {
 	background-color: #e6e6e6;
 }
 
@@ -98,7 +98,7 @@ body.home-v2.is-return::before {
 	transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-body.home-v2.is-return:has(.hero-v2.is-shader)::before,
+body.home-v2.is-return:has(.hero-v2.is-shader, .hero-v2.is-fallback)::before,
 body.home-v2.is-return.is-return-in::before {
 	opacity: 0;
 }
@@ -127,6 +127,10 @@ body.home-v2.is-return.is-return-in::before {
 
 .hero-v2.is-shader .hero-v2__shader {
 	visibility: visible;
+}
+
+.hero-v2.is-fallback .hero-v2__media {
+	background: #e6e6e6 url("/assets/images/home-v2/hero-fallback.jpg") 75% center / cover no-repeat;
 }
 
 // Sits over the canvas and under the sentence. Fades off with the rest of

@@ -13,7 +13,7 @@
 		</h1>
 	</div>
 </section>
-<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=29"></script>
+<script type="module" src="/assets/javascripts/hero-v2-shader.js?v=30"></script>
 <script>
 (function () {
 	var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -37,7 +37,7 @@
 		if (!reduce && (cameBack || fromSubpage)) {
 			document.body.classList.add("is-return");
 			window.setTimeout(function () {
-				if (!document.querySelector(".hero-v2.is-shader")) {
+				if (!document.querySelector(".hero-v2.is-shader, .hero-v2.is-fallback")) {
 					document.body.classList.add("is-return-in");
 				}
 			}, 900);

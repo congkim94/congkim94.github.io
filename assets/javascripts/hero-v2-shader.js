@@ -3,8 +3,12 @@ const hero = canvas && canvas.closest(".hero-v2");
 
 const motionOk = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-// Browsers without WebGPU keep the solid banner.
-if (canvas && hero && navigator.gpu && motionOk) {
+// Browsers without WebGPU (Firefox) and reduced motion get a still frame.
+const showFallback = () => hero.classList.add("is-fallback");
+
+if (canvas && hero && !(navigator.gpu && motionOk)) {
+  showFallback();
+} else if (canvas && hero) {
   // Keep the canvas sized by CSS. Otherwise the shader snapshots the first
   // measured box and can lock a phone canvas to the default 300×150.
   canvas.style.width = "100%";
@@ -93,5 +97,6 @@ if (canvas && hero && navigator.gpu && motionOk) {
     });
   } catch (error) {
     console.warn("Hero shader unavailable.", error);
+    showFallback();
   }
 }
