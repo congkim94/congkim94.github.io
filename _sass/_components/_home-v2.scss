@@ -45,7 +45,7 @@ body.home-v2 main {
 
 @mixin home-v2-banner {
 	position: relative;
-	min-height: 476px;
+	min-height: 520px;
 	padding: 20px 24px 24px;
 	border-radius: 24px;
 	overflow: hidden;
@@ -239,6 +239,12 @@ header.site-nav--overlay {
 	}
 }
 
+// Overrides the base span color so the label takes the pill's color.
+.site-nav__label,
+.site-nav__label > span {
+	color: inherit;
+}
+
 .site-nav__pill--back {
 	padding-left: 14px;
 
@@ -269,7 +275,7 @@ header.site-nav--overlay {
 	align-self: stretch;
 	width: 100%;
 	margin: 0;
-	padding-top: 120px;
+	padding-top: 20px;
 	font-family: $font-sans;
 	font-size: 40px;
 	font-weight: 450;
@@ -281,7 +287,7 @@ header.site-nav--overlay {
 
 	@include tablet1 {
 		padding-top: 80px;
-		font-size: 32px;
+		font-size: 28px;
 		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 32, "slnt" 0, "wdth" 92, "wght" 450;
 	}
 
@@ -714,4 +720,555 @@ body.site-v2 .footer-v2 .footer-v2__bar {
 
 .footer-v2__year {
 	text-align: center;
+}
+
+// Homepage exploration (/explore): afternoon sunlight across the top, a
+// gradient into the canopy wall, and the canopy shadow at the bottom left.
+html:has(body.home-explore),
+body.home-v2.home-explore {
+	--home-sun: #c4c4c4;
+	--home-canopy: #f2f1f1;
+	position: relative;
+	background-color: var(--home-canopy);
+	background-image: linear-gradient(
+		180deg,
+		var(--home-sun) 0,
+		var(--home-sun) 640px,
+		var(--home-canopy) 1280px
+	);
+
+	@include tablet1 {
+		background-image: linear-gradient(
+			180deg,
+			var(--home-sun) 0,
+			var(--home-sun) 480px,
+			var(--home-canopy) 960px
+		);
+	}
+
+	@include phone {
+		background-image: linear-gradient(
+			180deg,
+			var(--home-sun) 0,
+			var(--home-sun) 420px,
+			var(--home-canopy) 900px
+		);
+	}
+}
+
+body.home-v2.home-explore main {
+	background-color: transparent;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+// Full bleed: the negative top margin cancels main's top padding.
+body.home-v2.home-explore .hero-v2 {
+	width: 100vw;
+	margin: -22px 0 0 calc(50% - 50vw);
+
+	@include tablet1 {
+		margin-top: -16px;
+	}
+
+	@include phone {
+		margin-top: -12px;
+	}
+}
+
+body.home-v2.home-explore .hero-v2__banner {
+	overflow: visible;
+	border-radius: 0;
+	background: transparent;
+}
+
+body.home-v2.home-explore .hero-v2__media,
+body.home-v2.home-explore .hero-v2__shade {
+	top: 0;
+	right: 0;
+	bottom: auto;
+	left: 0;
+	width: 100%;
+	height: 860px;
+	border-radius: 0;
+
+	@include tablet1 {
+		height: 680px;
+	}
+
+	@include phone {
+		height: 620px;
+	}
+}
+
+body.home-v2.home-explore .hero-v2__shader {
+	-webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+	mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
+}
+
+body.home-v2.home-explore #my-work.work-v2 {
+	position: relative;
+	z-index: 1;
+}
+
+body.home-v2.home-explore .work-v2__name {
+	background-color: #ded5cd;
+}
+
+body.home-v2.home-explore .work-v2__card {
+	background-color: rgba(235, 230, 219, 0.46);
+	-webkit-backdrop-filter: blur(10px);
+	backdrop-filter: blur(10px);
+
+	@media (prefers-reduced-transparency: reduce) {
+		background-color: rgba(235, 230, 219, 0.88);
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
+}
+
+.home-canopy {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 0;
+	display: block;
+	width: 46vw;
+	height: 46vh;
+	pointer-events: none;
+	visibility: hidden;
+}
+
+.home-canopy.is-ready {
+	visibility: visible;
+}
+
+body.home-v2.home-explore .footer-v2 {
+	position: relative;
+	z-index: 1;
+	background-color: transparent;
+	color: #3d3d3d;
+}
+
+body.home-v2.home-explore .footer-v2__copy,
+body.home-v2.home-explore .footer-v2 .footer-v2__bar {
+	color: #3d3d3d;
+}
+
+body.home-v2.home-explore .footer-v2 .footer-v2__bar a:focus-visible {
+	outline-color: #2b2b2b;
+}
+
+// Homepage oval (/oval): the afternoon light sits in a tilted ellipse
+// between the name and the tagline, on a warm sand page.
+$oval-ink: #272727;
+$oval-page: #ffffff;
+
+html:has(body.home-oval),
+body.home-v2.home-oval {
+	background-color: $oval-page;
+	background-image: none;
+}
+
+body.home-v2.home-oval main {
+	background-color: transparent;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+// Full bleed: the negative top margin cancels main's top padding.
+body.home-v2.home-oval .hero-v2 {
+	width: 100vw;
+	margin: -22px 0 0 calc(50% - 50vw);
+
+	@include tablet1 {
+		margin-top: -16px;
+	}
+
+	@include phone {
+		margin-top: -12px;
+	}
+}
+
+// The oval's square box (--oval-box) is centered --oval-x right of the page
+// center and --oval-y down from the top. Desktop follows the 1470px design.
+// --hero-shift lowers the oval and type together so the oval sits at the
+// window's vertical center; the banner grows by the same amount.
+body.home-v2.home-oval .hero-v2__banner {
+	--oval-box: 725px;
+	--oval-x: 35px;
+	position: relative;
+	overflow: visible;
+	width: 100%;
+	height: calc(var(--hero-h) + var(--hero-shift));
+	min-height: 0;
+	margin: 0;
+	border-radius: 0;
+	// Opaque so the type's multiply blend has the page to darken.
+	background: $oval-page;
+
+	@include tablet1 {
+		--oval-box: 520px;
+		--oval-x: 0px;
+	}
+
+	@include phone {
+		// Figma mobile (440): oval box 453, center ~89px right of mid.
+		--oval-box: 453px;
+		--oval-x: 89px;
+	}
+}
+
+$oval-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cellipse cx='50' cy='50' rx='29.32' ry='41.39' transform='rotate(45 50 50)' fill='white'/%3E%3C/svg%3E");
+
+body.home-v2.home-oval .hero-oval__stage {
+	position: absolute;
+	z-index: 0;
+	top: calc(var(--oval-y) + var(--hero-shift) - var(--oval-box) / 2);
+	left: calc(50% + var(--oval-x) - var(--oval-box) / 2);
+	width: var(--oval-box);
+	height: var(--oval-box);
+	// Hover tilt from home-oval-tilt.js, in degrees; 0 at rest.
+	transform: perspective(calc(var(--oval-box) * 1.6)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+	pointer-events: none;
+}
+
+// The static mask shapes the disc until home-oval-flip.js takes over with
+// --oval-clip, the same ellipse at the current turn and squash.
+body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__disc {
+	-webkit-mask-image: none;
+	mask-image: none;
+	clip-path: var(--oval-clip);
+}
+
+body.home-v2.home-oval .hero-oval__disc {
+	position: absolute;
+	inset: 0;
+	background-color: #e7e4df;
+	-webkit-mask-image: $oval-mask;
+	mask-image: $oval-mask;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+}
+
+body.home-v2.home-oval .hero-v2 .site-nav {
+	position: relative;
+	z-index: 3;
+	flex-wrap: nowrap;
+
+	// Hover roll: the label slides up out of its window while a copy (its
+	// text-shadow, one line below) slides in. The arrow flies out to the
+	// top right as a copy (its drop-shadow) arrives from the bottom left.
+	.site-nav__label,
+	.site-nav__ext {
+		display: inline-block;
+		overflow: hidden;
+		height: 20px;
+		vertical-align: top;
+	}
+
+	.site-nav__label > span {
+		display: block;
+		text-shadow: 0 20px currentColor;
+		transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+	}
+
+	.site-nav__ext svg {
+		width: 20px;
+		height: 20px;
+		filter: drop-shadow(-20px 20px 0 currentColor);
+		transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1) 0.05s;
+	}
+
+	.site-nav__pill:hover,
+	.site-nav__pill:focus-visible {
+		.site-nav__label > span {
+			transform: translateY(-20px);
+		}
+
+		.site-nav__ext svg {
+			transform: translate(20px, -20px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.site-nav__label > span,
+		.site-nav__ext svg {
+			text-shadow: none;
+			filter: none;
+			transition: none;
+		}
+
+		.site-nav__pill:hover,
+		.site-nav__pill:focus-visible {
+			.site-nav__label > span {
+				transform: none;
+				text-decoration: underline;
+				text-underline-offset: 2px;
+			}
+
+			.site-nav__ext svg {
+				transform: none;
+			}
+		}
+	}
+}
+
+// The name and tagline overlap the oval's edges. Multiply prints them like
+// ink: a deep brown on the sand, and a lighter brown on the oval that
+// carries the light's streaks through the letters.
+body.home-v2.home-oval .hero-oval__name,
+body.home-v2.home-oval .hero-oval__tagline {
+	position: absolute;
+	z-index: 2;
+	margin: 0;
+	padding: 0;
+	color: #282828;
+	text-wrap: pretty;
+}
+
+body.home-v2.home-oval .hero-oval__name {
+	top: calc(270px + var(--hero-shift));
+	left: unquote("max(24px, calc(50% - 531px))");
+	font-family: "Safiro", $font-sans;
+	font-size: 96px;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 0;
+	white-space: nowrap;
+
+	@include tablet1 {
+		top: calc(180px + var(--hero-shift));
+		left: 32px;
+		font-size: 72px;
+	}
+
+	@include phone {
+		top: calc(209px + var(--hero-shift));
+		left: 12px;
+		font-size: 42px;
+		line-height: 52px;
+	}
+}
+
+body.home-v2.home-oval .hero-oval__tagline {
+	top: calc(409px + var(--hero-shift));
+	left: calc(50% + 137px);
+	width: unquote("min(543px, calc(50% - 161px))");
+	font-family: $font-sans;
+	font-size: 28px;
+	font-weight: 400;
+	line-height: 1.3;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "wdth" 100, "wght" 400;
+
+	@include tablet1 {
+		top: calc(400px + var(--hero-shift));
+		right: 32px;
+		left: auto;
+		width: unquote("min(420px, 60%)");
+		font-size: 26px;
+	}
+
+	@include phone {
+		// Stacked under the name, left-aligned (Figma 188:11).
+		top: calc(269px + var(--hero-shift));
+		right: auto;
+		left: 12px;
+		width: calc(100% - 24px);
+		max-width: 408px;
+		font-size: 18px;
+		line-height: 28.6px;
+	}
+}
+
+// Scroll flip: home-oval-flip.js flattens the outline as the disc tips
+// edge-on while it turns level. Only the oval's outline moves; the light
+// stays put inside it and the type rises out. The hero is taller than the
+// banner by the flip distance, so the banner holds still (sticky) while it
+// turns, then the cards scroll up.
+body.home-v2.home-oval .hero-oval {
+	&::after {
+		content: "";
+		display: block;
+		height: 45vh;
+	}
+}
+
+body.home-v2.home-oval .hero-v2__banner {
+	position: sticky;
+	top: 0;
+}
+
+// Scroll exit: type rises and dissolves first (gone at --flip ≈ 0.74 from the
+// 1.35 curve). The oval holds, then fades over the remaining stretch so it
+// only starts after the text is fully out.
+body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__name {
+	opacity: clamp(0, calc(1 - var(--flip) * 1.35), 1);
+	filter: blur(calc(var(--flip) * 14px));
+	transform: translateY(calc(var(--flip) * -5vh));
+	letter-spacing: calc(var(--flip) * 0.08em);
+	pointer-events: none;
+}
+
+body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__tagline {
+	opacity: clamp(0, calc(1 - var(--flip) * 1.35), 1);
+	filter: blur(calc(var(--flip) * 10px));
+	transform: translateY(calc(var(--flip) * -12vh));
+	pointer-events: none;
+}
+
+body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__stage {
+	opacity: clamp(0, calc(1 - (var(--flip) * 1.35 - 1) / 0.35), 1);
+	filter: blur(calc(clamp(0, (var(--flip) * 1.35 - 1) / 0.35, 1) * 16px));
+}
+
+// Landing: while the disc swings open (home-oval-flip.js), the name and then
+// the tagline pull into focus, rising and tightening as they sharpen. They
+// animate `translate` / opacity / filter; flip.js drops .oval-landing after
+// those finish so the scroll-exit rules above can take over.
+html.oval-landing body.home-v2.home-oval .hero-oval:not(.is-flip-ready) .hero-oval__stage {
+	visibility: hidden;
+}
+
+html.oval-landing body.home-v2.home-oval .hero-oval__name {
+	animation: oval-focus-in 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s both;
+}
+
+html.oval-landing body.home-v2.home-oval .hero-oval__tagline {
+	animation: oval-rise-in 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.85s both;
+}
+
+// The tagline wraps, so it keeps its spacing to hold its line breaks.
+@keyframes oval-rise-in {
+	from {
+		opacity: 0;
+		filter: blur(10px);
+		translate: 0 0.75em;
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+		translate: 0 0;
+	}
+}
+
+@keyframes oval-focus-in {
+	from {
+		opacity: 0;
+		filter: blur(14px);
+		translate: 0 0.5em;
+		letter-spacing: 0.08em;
+	}
+
+	to {
+		opacity: 1;
+		filter: blur(0);
+		translate: 0 0;
+		letter-spacing: 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.home-v2.home-oval .hero-oval::after {
+		display: none;
+	}
+
+	body.home-v2.home-oval .hero-v2__banner {
+		position: relative;
+		top: auto;
+	}
+}
+
+// The cards wait out 80% of the flip: they start 80% of the hero's 45vh room
+// (36vh) below the window, so they reach the bottom edge as the disc is 80%
+// flat, then scroll up normally. The banner is --hero-h plus --hero-shift
+// tall.
+body.home-v2.home-oval {
+	--flip: 0;
+	--hero-h: 727px;
+	--oval-y: 366px;
+	--hero-shift: #{unquote("max(0px, 50vh - var(--oval-y))")};
+
+	@supports (height: 100svh) {
+		--hero-shift: #{unquote("max(0px, 50svh - var(--oval-y))")};
+	}
+
+	@include tablet1 {
+		--hero-h: 640px;
+		--oval-y: 330px;
+	}
+
+	@include phone {
+		// Mobile crop is ~389px; oval sits high (no vertical centering).
+		--hero-h: 389px;
+		--oval-y: 155px;
+		--hero-shift: 0px;
+	}
+}
+
+body.home-v2.home-oval #my-work.work-v2 {
+	position: relative;
+	z-index: 1;
+	margin-top: calc(91vh - var(--hero-h) - var(--hero-shift));
+	margin-top: calc(91svh - var(--hero-h) - var(--hero-shift));
+
+	@media (prefers-reduced-motion: reduce) {
+		margin-top: 0;
+	}
+}
+
+// Cards fade up with the scroll: home-oval-reveal.js sets --card-in (0 at
+// the window's bottom edge, 1 once risen) on each card and adds
+// .is-reveal-ready, so cards stay visible without the script.
+body.home-v2.home-oval .work-v2__grid.is-reveal-ready > li {
+	opacity: var(--card-in, 0);
+	transform: translateY(calc((1 - var(--card-in, 0)) * 40px));
+
+	&:focus-within {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+// Per-project fills from the Portfolio card grid (not the shared beige).
+body.home-v2.home-oval .work-v2__grid > li:nth-child(1) .work-v2__card {
+	background-color: #a4b0cc;
+}
+
+body.home-v2.home-oval .work-v2__grid > li:nth-child(2) .work-v2__card {
+	background-color: #d8dcc0;
+}
+
+body.home-v2.home-oval .work-v2__grid > li:nth-child(3) .work-v2__card {
+	background-color: #fccc00;
+}
+
+body.home-v2.home-oval .work-v2__grid > li:nth-child(4) .work-v2__card {
+	background-color: #eca880;
+}
+
+body.home-v2.home-oval .work-v2__name {
+	background-color: #77695c;
+	color: #ffeed7;
+}
+
+body.home-v2.home-oval .footer-v2 {
+	position: relative;
+	z-index: 1;
+	background-color: transparent;
+}
+
+body.home-v2.home-oval .footer-v2,
+body.home-v2.home-oval .footer-v2__copy,
+body.home-v2.home-oval .footer-v2 .footer-v2__bar {
+	color: $oval-ink;
+}
+
+body.home-v2.home-oval .footer-v2 .footer-v2__bar a:focus-visible {
+	outline-color: $oval-ink;
 }

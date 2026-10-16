@@ -7,7 +7,7 @@
 				aria-labelledby="work-v2-checkout"
 			>
 				<img
-					src="/assets/images/C&C-cover.jpg"
+					src="{% if page.explore or page.oval %}/assets/images/home-v2/card-checkout.png{% else %}/assets/images/C&C-cover.jpg{% endif %}"
 					alt=""
 					width="640"
 					height="360"
@@ -23,7 +23,7 @@
 				aria-labelledby="work-v2-ae"
 			>
 				<img
-					src="/assets/images/ae-cover.jpg"
+					src="{% if page.explore or page.oval %}/assets/images/home-v2/card-ae.png{% else %}/assets/images/ae-cover.jpg{% endif %}"
 					alt=""
 					width="640"
 					height="360"
@@ -40,7 +40,7 @@
 				aria-labelledby="work-v2-ds"
 			>
 				<img
-					src="/assets/images/ds-cover.jpg"
+					src="{% if page.explore or page.oval %}/assets/images/home-v2/card-ds.png{% else %}/assets/images/ds-cover.jpg{% endif %}"
 					alt=""
 					width="640"
 					height="360"
@@ -57,7 +57,7 @@
 				aria-labelledby="work-v2-travel"
 			>
 				<img
-					src="/assets/images/travel/travel-thumbnail.jpg"
+					src="{% if page.explore or page.oval %}/assets/images/home-v2/card-travel.png{% else %}/assets/images/travel/travel-thumbnail.jpg{% endif %}"
 					alt=""
 					width="640"
 					height="360"

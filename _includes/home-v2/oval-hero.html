@@ -1,0 +1,29 @@
+<script>
+	// Holds the hero in its pre-landing state before first paint. The timer
+	// lets everything show if the flip script never runs.
+	if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		document.documentElement.classList.add("oval-landing");
+		window.ovalLandingFallback = setTimeout(function () {
+			document.documentElement.classList.remove("oval-landing");
+		}, 4000);
+	}
+</script>
+<section class="hero-v2 hero-oval" aria-labelledby="hero-v2-headline">
+	<div class="hero-v2__banner">
+		<div class="hero-oval__stage">
+			<div class="hero-oval__disc">
+				<canvas id="hero-v2-shader" class="hero-v2__shader hero-oval__shader" aria-hidden="true"></canvas>
+			</div>
+		</div>
+
+		{% include site-nav.html %}
+
+		<h1 id="hero-v2-headline" class="hero-oval__name">Cong Kim</h1>
+		<p class="hero-oval__tagline">A product designer building intuitive and thoughtful digital experiences for everyone.</p>
+	</div>
+</section>
+<script type="module" src="/assets/javascripts/home-oval-shader.js?v=1"></script>
+<script type="module" src="/assets/javascripts/home-oval-flip.js?v=21"></script>
+<script type="module" src="/assets/javascripts/home-oval-reveal.js?v=6"></script>
+<script type="module" src="/assets/javascripts/home-oval-tilt.js?v=3"></script>
+<script type="module" src="/assets/javascripts/home-oval-nav.js?v=1"></script>
