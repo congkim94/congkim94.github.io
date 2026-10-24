@@ -101,7 +101,9 @@ body.site-v2:not(.home-v2) :is(h1, h2) {
 }
 
 // Breakpoints and responsive mixins
-// phone: 320–549px | tablet1: 550–1000px | tablet: 1001–1239px | xsdesktop: 1240px+
+// phone: ≤549px | tablet1: 550–1000px | tablet: 1001–1239px | xsdesktop: 1240px+
+// The smallest breakpoint has no minimum, so a window under 320px still
+// gets the phone layout instead of falling through to desktop.
 
 $screen-s: 320px;
 $screen-md: 550px;
@@ -129,7 +131,7 @@ $screen-contact-link-tight-max: 440px;
 }
 
 @mixin phone {
-  @media (min-width: #{$screen-s}) and (max-width: #{$screen-md - 1px}) {
+  @media (max-width: #{$screen-md - 1px}) {
     @content;
   }
 }

@@ -161,38 +161,36 @@ header.site-nav {
 	background: transparent;
 }
 
-// Subpages have no hero, so the bar sits over the page's own top section
-// and scrolls away with it, in the same spot as on the homepage.
-header.site-nav--overlay {
-	position: absolute;
-	top: 42px;
-	right: 48px;
-	left: 48px;
+// The bar stays pinned above the page. On the homepage it sits outside the
+// hero so the project cards, which stack above the hero, cannot cover it.
+header.site-nav--overlay,
+body.home-v2.home-oval > header.site-nav {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 5;
+	padding: 20px 24px 12px;
+	background-color: transparent;
 
 	@include tablet1 {
-		top: 32px;
-		right: 32px;
-		left: 32px;
+		padding: 16px 16px 12px;
 	}
 
 	@include phone {
-		top: 24px;
-		right: 24px;
-		left: 24px;
+		padding: 12px 12px 8px;
 	}
+}
 
-	.site-nav__pill {
-		background: rgba(43, 43, 43, 0.72);
-		-webkit-backdrop-filter: blur(12px);
-		backdrop-filter: blur(12px);
+body.home-v2.home-oval > header.site-nav {
+	background-color: rgba(255, 255, 255, 0.72);
+	-webkit-backdrop-filter: blur(20px);
+	backdrop-filter: blur(10px);
 
-		&:hover {
-			background: rgba(43, 43, 43, 0.9);
-		}
-
-		&:focus-visible {
-			outline-color: #2b2b2b;
-		}
+	@media (prefers-reduced-transparency: reduce) {
+		background-color: #fff;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
 	}
 }
 
@@ -439,7 +437,7 @@ body.home-v2 #my-work.work-v2 {
 	display: block;
 	height: 476px;
 	border: 0;
-	border-radius: 24px;
+	border-radius: 12px;
 	overflow: hidden;
 	background: #e8e4dc;
 	text-decoration: none;
@@ -613,16 +611,16 @@ body.site-v2 .footer-v2 {
 	color: #fff;
 	font-family: $font-sans;
 	font-size: 24px;
-	font-weight: 300;
+	font-weight: 400;
 	line-height: normal;
 	text-align: left;
-	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 100, "wght" 300;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 100, "wght" 400;
 
 	p {
 		margin: 0;
 		font-family: inherit;
 		font-size: inherit;
-		font-weight: 300;
+		font-weight: 400;
 		line-height: inherit;
 		color: inherit;
 		text-align: inherit;
@@ -636,13 +634,13 @@ body.site-v2 .footer-v2 {
 	@include tablet1 {
 		max-width: none;
 		font-size: 20px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 20, "slnt" 0, "wdth" 100, "wght" 300;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 20, "slnt" 0, "wdth" 100, "wght" 400;
 	}
 
 	@include phone {
 		max-width: none;
 		font-size: 18px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 18, "slnt" 0, "wdth" 100, "wght" 300;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 18, "slnt" 0, "wdth" 100, "wght" 400;
 	}
 }
 
@@ -874,6 +872,9 @@ body.home-v2.home-oval main {
 	background-color: transparent;
 	border-bottom-left-radius: 0;
 	border-bottom-right-radius: 0;
+	// A transformed main would trap the fixed nav so it scrolled away.
+	transform: none;
+	z-index: auto;
 }
 
 // Full bleed: the negative top margin cancels main's top padding.
@@ -890,13 +891,19 @@ body.home-v2.home-oval .hero-v2 {
 	}
 }
 
-// The oval's square box (--oval-box) is centered --oval-x right of the page
-// center and --oval-y down from the top. Desktop follows the 1470px design.
-// --hero-shift lowers the oval and type together so the oval sits at the
-// window's vertical center; the banner grows by the same amount.
+// The glow stays centered on the copy's right edge. From 550px up that
+// relationship scales with the viewport and matches the 1470px desktop
+// frame exactly. Type size stops at 34px. Phone (≤549) keeps its own
+// landing frame. Mixins still own the layout snaps (stacked cards, padding).
 body.home-v2.home-oval .hero-v2__banner {
-	--oval-box: 725px;
-	--oval-x: 35px;
+	// These hit the 1470px desktop frame exactly, and keep the same
+	// relationship on wider screens. Type size stops at 34px.
+	--copy-top: calc(180px + (100vw - 550px) * 120 / 920);
+	--copy-left: calc(32px + (100vw - 550px) * 399 / 920);
+	--copy-w: calc(280px + (100vw - 550px) * 263 / 920);
+	--oval-box: calc(440px + (100vw - 550px) * 340 / 920);
+	--oval-y: calc(var(--copy-top) + 66px);
+	--oval-x: 0px;
 	position: relative;
 	overflow: visible;
 	width: 100%;
@@ -907,15 +914,18 @@ body.home-v2.home-oval .hero-v2__banner {
 	// Opaque so the type's multiply blend has the page to darken.
 	background: $oval-page;
 
-	@include tablet1 {
-		--oval-box: 520px;
-		--oval-x: 0px;
+	// Landscape tablets are short enough that the scaled copy would meet the
+	// cards. Pull the block up; the oval stays centered on the lines.
+	@media (max-height: 520px) and (min-width: 550px) {
+		--copy-top: 72px;
+		--oval-y: calc(var(--copy-top) + 48px);
 	}
 
 	@include phone {
-		// Figma mobile (440): oval box 453, center ~89px right of mid.
-		--oval-box: 453px;
-		--oval-x: 89px;
+		// Larger than the 586px landing frame, still centered at (370, 396).
+		--oval-box: calc(761.177 / 440 * 100vw);
+		--oval-x: 0px;
+		--oval-y: calc(395.76 / 956 * 100svh);
 	}
 }
 
@@ -923,14 +933,22 @@ $oval-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' vi
 
 body.home-v2.home-oval .hero-oval__stage {
 	position: absolute;
+	filter: blur(30px);
 	z-index: 0;
 	top: calc(var(--oval-y) + var(--hero-shift) - var(--oval-box) / 2);
-	left: calc(50% + var(--oval-x) - var(--oval-box) / 2);
+	// The glow's center sits on the copy's right edge, same as the 1470 frame.
+	left: calc(var(--copy-left) + var(--copy-w) - var(--oval-box) / 2);
 	width: var(--oval-box);
 	height: var(--oval-box);
 	// Hover tilt from home-oval-tilt.js, in degrees; 0 at rest.
 	transform: perspective(calc(var(--oval-box) * 1.6)) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
 	pointer-events: none;
+
+	// On a phone the glow stays centered at 370px across. The box is larger
+	// than the landing frame so the light reads bigger on a small screen.
+	@include phone {
+		left: calc(370.146 / 440 * 100% - var(--oval-box) / 2);
+	}
 }
 
 // The static mask shapes the disc until home-oval-flip.js takes over with
@@ -944,7 +962,14 @@ body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__disc {
 body.home-v2.home-oval .hero-oval__disc {
 	position: absolute;
 	inset: 0;
-	background-color: #e7e4df;
+	// Still of the watercolor field, shown until the shader paints and when
+	// it cannot. The stage's blur turns this into the cream, yellow, and
+	// peach light. A flat fill read as grey.
+	background-color: #f3e4b4;
+	background-image: url("/assets/images/home-v2/oval-glow-fallback.png?v=1");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 100% 100%;
 	-webkit-mask-image: $oval-mask;
 	mask-image: $oval-mask;
 	-webkit-mask-repeat: no-repeat;
@@ -955,10 +980,30 @@ body.home-v2.home-oval .hero-oval__disc {
 	mask-size: 100% 100%;
 }
 
-body.home-v2.home-oval .hero-v2 .site-nav {
-	position: relative;
-	z-index: 3;
+body.home-v2.home-oval > header.site-nav,
+body.site-v2:not(.home-v2) header.site-nav {
+	z-index: 5;
 	flex-wrap: nowrap;
+
+	.site-nav__links ul {
+		gap: 24px;
+	}
+
+	.site-nav__pill {
+		padding: 0;
+		background: transparent;
+		color: #282828;
+
+		&:hover,
+		&:focus-visible {
+			background: transparent;
+			color: #282828;
+		}
+
+		&:focus-visible {
+			outline-color: #282828;
+		}
+	}
 
 	// Hover roll: the label slides up out of its window while a copy (its
 	// text-shadow, one line below) slides in. The arrow flies out to the
@@ -995,7 +1040,38 @@ body.home-v2.home-oval .hero-v2 .site-nav {
 		}
 	}
 
+	// The back chevron rolls with the word: both slide straight up, and a
+	// copy of the chevron arrives from below.
+	.site-nav__pill--back .site-nav__ext svg {
+		filter: drop-shadow(0 20px 0 currentColor);
+	}
+
+	.site-nav__pill--back:hover,
+	.site-nav__pill--back:focus-visible {
+		.site-nav__ext svg {
+			transform: translateY(-20px);
+		}
+	}
+
+	// On a phone the word is 14px inside the 20px roll window, so the arrow
+	// sits high. Shift it up until its bottom corner meets the text baseline.
+	// The hover still travels 20px, so the roll stays lined up. The back
+	// chevron is already centered, so it stays put.
+	@include phone {
+		.site-nav__pill--external .site-nav__ext svg {
+			transform: translateY(-2.4px);
+		}
+
+		.site-nav__pill--external:hover,
+		.site-nav__pill--external:focus-visible {
+			.site-nav__ext svg {
+				transform: translate(20px, -22.4px);
+			}
+		}
+	}
+
 	@media (prefers-reduced-motion: reduce) {
+		.site-nav__pill--back .site-nav__ext svg,
 		.site-nav__label > span,
 		.site-nav__ext svg {
 			text-shadow: none;
@@ -1004,7 +1080,9 @@ body.home-v2.home-oval .hero-v2 .site-nav {
 		}
 
 		.site-nav__pill:hover,
-		.site-nav__pill:focus-visible {
+		.site-nav__pill:focus-visible,
+		.site-nav__pill--back:hover,
+		.site-nav__pill--back:focus-visible {
 			.site-nav__label > span {
 				transform: none;
 				text-decoration: underline;
@@ -1013,6 +1091,14 @@ body.home-v2.home-oval .hero-v2 .site-nav {
 
 			.site-nav__ext svg {
 				transform: none;
+			}
+		}
+
+		@include phone {
+			.site-nav__pill--external .site-nav__ext svg,
+			.site-nav__pill--external:hover .site-nav__ext svg,
+			.site-nav__pill--external:focus-visible .site-nav__ext svg {
+				transform: translateY(-2.4px);
 			}
 		}
 	}
@@ -1032,6 +1118,7 @@ body.home-v2.home-oval .hero-oval__tagline {
 }
 
 body.home-v2.home-oval .hero-oval__name {
+	display: none;
 	top: calc(270px + var(--hero-shift));
 	left: unquote("max(24px, calc(50% - 531px))");
 	font-family: "Safiro", $font-sans;
@@ -1056,80 +1143,29 @@ body.home-v2.home-oval .hero-oval__name {
 }
 
 body.home-v2.home-oval .hero-oval__tagline {
-	top: calc(409px + var(--hero-shift));
-	left: calc(50% + 137px);
-	width: unquote("min(543px, calc(50% - 161px))");
+	top: calc(var(--copy-top) + var(--hero-shift));
+	left: var(--copy-left);
+	width: var(--copy-w);
 	font-family: $font-sans;
-	font-size: 28px;
+	font-size: clamp(22px, calc(22px + (100vw - 550px) * 12 / 920), 34px);
 	font-weight: 400;
 	line-height: 1.3;
 	font-variation-settings: "GRAD" 0, "ROND" 0, "wdth" 100, "wght" 400;
 
-	@include tablet1 {
-		top: calc(400px + var(--hero-shift));
-		right: 32px;
-		left: auto;
-		width: unquote("min(420px, 60%)");
-		font-size: 26px;
-	}
-
 	@include phone {
-		// Stacked under the name, left-aligned (Figma 188:11).
-		top: calc(269px + var(--hero-shift));
+		// 440×956 landing frame: 23px copy, 354px wide, 13px from the left, 471px down.
+		top: calc(471 / 956 * 100svh);
 		right: auto;
-		left: 12px;
-		width: calc(100% - 24px);
-		max-width: 408px;
-		font-size: 18px;
-		line-height: 28.6px;
+		left: calc(13 / 440 * 100%);
+		width: calc(354 / 440 * 100%);
+		max-width: none;
+		font-size: 23px;
+		line-height: 1.4;
 	}
 }
 
-// Scroll flip: home-oval-flip.js flattens the outline as the disc tips
-// edge-on while it turns level. Only the oval's outline moves; the light
-// stays put inside it and the type rises out. The hero is taller than the
-// banner by the flip distance, so the banner holds still (sticky) while it
-// turns, then the cards scroll up.
-body.home-v2.home-oval .hero-oval {
-	&::after {
-		content: "";
-		display: block;
-		height: 45vh;
-	}
-}
-
-body.home-v2.home-oval .hero-v2__banner {
-	position: sticky;
-	top: 0;
-}
-
-// Scroll exit: type rises and dissolves first (gone at --flip ≈ 0.74 from the
-// 1.35 curve). The oval holds, then fades over the remaining stretch so it
-// only starts after the text is fully out.
-body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__name {
-	opacity: clamp(0, calc(1 - var(--flip) * 1.35), 1);
-	filter: blur(calc(var(--flip) * 14px));
-	transform: translateY(calc(var(--flip) * -5vh));
-	letter-spacing: calc(var(--flip) * 0.08em);
-	pointer-events: none;
-}
-
-body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__tagline {
-	opacity: clamp(0, calc(1 - var(--flip) * 1.35), 1);
-	filter: blur(calc(var(--flip) * 10px));
-	transform: translateY(calc(var(--flip) * -12vh));
-	pointer-events: none;
-}
-
-body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__stage {
-	opacity: clamp(0, calc(1 - (var(--flip) * 1.35 - 1) / 0.35), 1);
-	filter: blur(calc(clamp(0, (var(--flip) * 1.35 - 1) / 0.35, 1) * 16px));
-}
-
-// Landing: while the disc swings open (home-oval-flip.js), the name and then
-// the tagline pull into focus, rising and tightening as they sharpen. They
-// animate `translate` / opacity / filter; flip.js drops .oval-landing after
-// those finish so the scroll-exit rules above can take over.
+// Landing. Letters fade in from a blur; the last starts at 2.29s.
+// The glow, nav, cards, and footer start at 2.8s. flip.js drops .oval-landing after.
 html.oval-landing body.home-v2.home-oval .hero-oval:not(.is-flip-ready) .hero-oval__stage {
 	visibility: hidden;
 }
@@ -1138,22 +1174,56 @@ html.oval-landing body.home-v2.home-oval .hero-oval__name {
 	animation: oval-focus-in 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s both;
 }
 
-html.oval-landing body.home-v2.home-oval .hero-oval__tagline {
-	animation: oval-rise-in 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.85s both;
+// Fade Blur, character by character. Opacity and an 8px blur share one
+// ease-in-out. Each letter takes 444ms, the same length as the component's
+// default, and the next letter starts 24ms later.
+body.home-v2.home-oval .hero-oval__tagline .hero-v2__word {
+	white-space: nowrap;
 }
 
-// The tagline wraps, so it keeps its spacing to hold its line breaks.
-@keyframes oval-rise-in {
+body.home-v2.home-oval .hero-oval__tagline .hero-v2__char {
+	display: inline-block;
+}
+
+html.oval-landing body.home-v2.home-oval .hero-oval__tagline .hero-v2__char {
+	animation: oval-char-in 444.44ms ease-in-out both;
+	animation-delay: calc(var(--i) * 24.155ms);
+}
+
+html.oval-landing body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__stage {
+	animation: oval-glow-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) 2.8s both;
+}
+
+// Nav, cards, and footer fade in with the glow.
+html.oval-landing body.home-v2.home-oval {
+	> header.site-nav,
+	#my-work.work-v2,
+	.footer-v2 {
+		animation: hero-rest-in 1.95s cubic-bezier(0.22, 1, 0.36, 1) 2.8s both;
+	}
+}
+
+@keyframes oval-char-in {
 	from {
 		opacity: 0;
-		filter: blur(10px);
-		translate: 0 0.75em;
+		filter: blur(8px);
 	}
 
 	to {
 		opacity: 1;
 		filter: blur(0);
-		translate: 0 0;
+	}
+}
+
+@keyframes oval-glow-in {
+	from {
+		opacity: 0;
+		scale: 0.72;
+	}
+
+	to {
+		opacity: 1;
+		scale: 1;
 	}
 }
 
@@ -1173,91 +1243,226 @@ html.oval-landing body.home-v2.home-oval .hero-oval__tagline {
 	}
 }
 
-@media (prefers-reduced-motion: reduce) {
-	body.home-v2.home-oval .hero-oval::after {
-		display: none;
-	}
-
-	body.home-v2.home-oval .hero-v2__banner {
-		position: relative;
-		top: auto;
-	}
-}
-
-// The cards wait out 80% of the flip: they start 80% of the hero's 45vh room
-// (36vh) below the window, so they reach the bottom edge as the disc is 80%
-// flat, then scroll up normally. The banner is --hero-h plus --hero-shift
-// tall.
+// The oval and type stay in the upper frame. The first card row is pulled up
+// so its top sits --card-peek above the bottom of the window, leaving a
+// little air under the hero. The page then scrolls normally.
 body.home-v2.home-oval {
-	--flip: 0;
 	--hero-h: 727px;
-	--oval-y: 366px;
-	--hero-shift: #{unquote("max(0px, 50vh - var(--oval-y))")};
-
-	@supports (height: 100svh) {
-		--hero-shift: #{unquote("max(0px, 50svh - var(--oval-y))")};
-	}
-
-	@include tablet1 {
-		--hero-h: 640px;
-		--oval-y: 330px;
-	}
+	--hero-shift: 0px;
+	--card-peek: 80px;
 
 	@include phone {
-		// Mobile crop is ~389px; oval sits high (no vertical centering).
+		// Mobile crop is ~389px. The glow's vertical center lives on the banner.
 		--hero-h: 389px;
-		--oval-y: 155px;
-		--hero-shift: 0px;
+		--card-peek: 64px;
 	}
 }
 
 body.home-v2.home-oval #my-work.work-v2 {
 	position: relative;
 	z-index: 1;
-	margin-top: calc(91vh - var(--hero-h) - var(--hero-shift));
-	margin-top: calc(91svh - var(--hero-h) - var(--hero-shift));
+	margin-top: calc(100vh - var(--card-peek) - var(--hero-h) - var(--hero-shift));
+
+	@supports (height: 100svh) {
+		margin-top: calc(100svh - var(--card-peek) - var(--hero-h) - var(--hero-shift));
+	}
+}
+
+// Bento from the 1422×1066 frame: two rows of 527, 12px apart. At that width
+// checkout is 617 and travel is 610; the other tile in each row fills the rest.
+.bento {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+
+	@include phone {
+		gap: 24px;
+	}
+}
+
+.bento__row {
+	display: grid;
+	gap: 12px;
+	aspect-ratio: 1422 / 527;
+
+	@include phone {
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+		aspect-ratio: auto;
+	}
+}
+
+.bento__row--top {
+	grid-template-columns: 617fr 793fr;
+}
+
+.bento__row--bottom {
+	grid-template-columns: 800fr 610fr;
+}
+
+.bento__tile {
+	position: relative;
+	display: block;
+	min-width: 0;
+	overflow: hidden;
+	text-decoration: none;
+
+	&:focus-visible {
+		outline: 2px solid #282828;
+		outline-offset: 3px;
+	}
+
+	// On a phone the caption sits under the image, so the tile grows past
+	// the picture instead of cropping the label inside it.
+	@include phone {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		aspect-ratio: auto;
+		overflow: visible;
+		background-color: transparent;
+	}
+}
+
+.bento__tile img {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+
+	@include phone {
+		position: relative;
+		top: auto;
+		right: auto;
+		bottom: auto;
+		left: auto;
+		width: 100%;
+		height: auto;
+		aspect-ratio: var(--tile-ratio);
+		background-color: #f0eeeb;
+	}
+}
+
+.bento__label {
+	position: absolute;
+	z-index: 1;
+	left: 12px;
+	bottom: 12px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 6px;
+	color: #000;
+	font-family: $font-sans;
+	font-size: 14px;
+	font-weight: 400;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 400;
+	line-height: 1;
+
+	@include phone {
+		position: static;
+		top: auto;
+		right: auto;
+		bottom: auto;
+		left: auto;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+		width: 100%;
+		white-space: nowrap;
+	}
+}
+
+.bento__tag {
+	color: #707070;
+}
+
+// Names stay in the link for assistive tech. On a pointer they rise into
+// place on hover; touch keeps them visible, since those screens have no hover.
+@media (hover: hover) and (pointer: fine) {
+	.bento__label {
+		opacity: 0;
+		translate: 0 12px;
+		transition:
+			opacity 180ms cubic-bezier(0.23, 1, 0.32, 1),
+			translate 240ms cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.bento__tile:hover .bento__label,
+	.bento__tile:focus-visible .bento__label {
+		opacity: 1;
+		translate: 0 0;
+	}
 
 	@media (prefers-reduced-motion: reduce) {
-		margin-top: 0;
+		.bento__label {
+			translate: none;
+			transition: none;
+		}
+	}
+
+	// The phone caption is below the image, so it stays put instead of
+	// waiting for a hover the screen does not have.
+	@include phone {
+		.bento__label {
+			opacity: 1;
+			translate: none;
+			transition: none;
+		}
 	}
 }
 
-// Cards fade up with the scroll: home-oval-reveal.js sets --card-in (0 at
-// the window's bottom edge, 1 once risen) on each card and adds
-// .is-reveal-ready, so cards stay visible without the script.
-body.home-v2.home-oval .work-v2__grid.is-reveal-ready > li {
-	opacity: var(--card-in, 0);
-	transform: translateY(calc((1 - var(--card-in, 0)) * 40px));
+.bento__tile--checkout {
+	--tile-ratio: 617 / 527;
+	background-color: #f0eeeb;
 
-	&:focus-within {
-		opacity: 1;
-		transform: none;
+	// The modifier color is declared after the shared phone rule, so it has
+	// to be cleared here or the caption sits on the thumbnail's fill.
+	@include phone {
+		background-color: transparent;
 	}
 }
 
-// Per-project fills from the Portfolio card grid (not the shared beige).
-body.home-v2.home-oval .work-v2__grid > li:nth-child(1) .work-v2__card {
-	background-color: #a4b0cc;
+.bento__tile--ae {
+	--tile-ratio: 793 / 527;
+	background-color: #f0eeeb;
+
+	@include phone {
+		background-color: transparent;
+	}
 }
 
-body.home-v2.home-oval .work-v2__grid > li:nth-child(2) .work-v2__card {
-	background-color: #d8dcc0;
+.bento__tile--tapestry {
+	--tile-ratio: 800 / 527;
+	background-color: #f0eeeb;
+
+	@include phone {
+		background-color: transparent;
+	}
 }
 
-body.home-v2.home-oval .work-v2__grid > li:nth-child(3) .work-v2__card {
-	background-color: #fccc00;
+.bento__tile--travel {
+	--tile-ratio: 610 / 527;
+	background-color: #f0eeeb;
+
+	@include phone {
+		background-color: transparent;
+	}
 }
 
-body.home-v2.home-oval .work-v2__grid > li:nth-child(4) .work-v2__card {
-	background-color: #eca880;
+// Case studies and other subpages share the homepage's white page. The
+// dark sheet was the old footer showing through the rounded corners.
+html:has(body.site-v2:not(.home-explore):not(.home-oval)),
+body.site-v2:not(.home-explore):not(.home-oval) {
+	background-color: #fff;
+	background-image: none;
 }
 
-body.home-v2.home-oval .work-v2__name {
-	background-color: #77695c;
-	color: #ffeed7;
-}
-
-body.home-v2.home-oval .footer-v2 {
+body.home-v2.home-oval .footer-v2,
+body.site-v2:not(.home-v2) .footer-v2 {
 	position: relative;
 	z-index: 1;
 	background-color: transparent;
@@ -1265,10 +1470,78 @@ body.home-v2.home-oval .footer-v2 {
 
 body.home-v2.home-oval .footer-v2,
 body.home-v2.home-oval .footer-v2__copy,
-body.home-v2.home-oval .footer-v2 .footer-v2__bar {
+body.home-v2.home-oval .footer-v2 .footer-v2__bar,
+body.site-v2:not(.home-v2) .footer-v2,
+body.site-v2:not(.home-v2) .footer-v2 .footer-v2__bar {
 	color: $oval-ink;
 }
 
-body.home-v2.home-oval .footer-v2 .footer-v2__bar a:focus-visible {
+// Subpages keep the bar only, so the about block's top space comes out.
+body.site-v2:not(.home-v2) .footer-v2 {
+	gap: 0;
+	padding-top: 48px;
+
+	@include tablet1 {
+		padding-top: 40px;
+	}
+
+	@include phone {
+		padding-top: 32px;
+	}
+}
+
+body.home-v2.home-oval .footer-v2 .footer-v2__bar,
+body.site-v2:not(.home-v2) .footer-v2 .footer-v2__bar {
+	font-weight: 500;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
+
+	a:hover {
+		text-decoration: none;
+	}
+}
+
+body.home-v2.home-oval .footer-v2 .footer-v2__bar a:focus-visible,
+body.site-v2:not(.home-v2) .footer-v2 .footer-v2__bar a:focus-visible {
 	outline-color: $oval-ink;
+}
+
+// Same roll as the nav: the label slides up and the copy below it slides in.
+body.home-v2.home-oval .footer-v2__label,
+body.site-v2:not(.home-v2) .footer-v2__label {
+	display: inline-block;
+	overflow: hidden;
+	height: 20px;
+	line-height: 20px;
+	vertical-align: top;
+}
+
+body.home-v2.home-oval .footer-v2__label > span,
+body.site-v2:not(.home-v2) .footer-v2__label > span {
+	display: block;
+	text-shadow: 0 20px currentColor;
+	transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+body.home-v2.home-oval .footer-v2__links a:hover .footer-v2__label > span,
+body.home-v2.home-oval .footer-v2__links a:focus-visible .footer-v2__label > span,
+body.site-v2:not(.home-v2) .footer-v2__links a:hover .footer-v2__label > span,
+body.site-v2:not(.home-v2) .footer-v2__links a:focus-visible .footer-v2__label > span {
+	transform: translateY(-20px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body.home-v2.home-oval .footer-v2__label > span,
+	body.site-v2:not(.home-v2) .footer-v2__label > span {
+		text-shadow: none;
+		transition: none;
+	}
+
+	body.home-v2.home-oval .footer-v2__links a:hover .footer-v2__label > span,
+	body.home-v2.home-oval .footer-v2__links a:focus-visible .footer-v2__label > span,
+	body.site-v2:not(.home-v2) .footer-v2__links a:hover .footer-v2__label > span,
+	body.site-v2:not(.home-v2) .footer-v2__links a:focus-visible .footer-v2__label > span {
+		transform: none;
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
 }

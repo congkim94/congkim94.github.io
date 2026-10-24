@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cong Kim</title>
-    <link href="/assets/stylesheets/main.css?v=90" rel="stylesheet">
+    <link href="/assets/stylesheets/main.css?v=142" rel="stylesheet">
     {% if page.legacy %}
     <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -16,6 +16,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:GRAD,ROND,opsz,slnt,wdth,wght@0..100,0..100,6..144,-10..0,25..151,1..1000&display=swap">
     {% endif %}
     <link rel="shortcut icon" type="image/png" href="/favicon.jpg">
+    {% unless page.oval %}
+    <script>
+      try { sessionStorage.setItem("oval-return", "1"); } catch (e) {}
+    </script>
+    {% endunless %}
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-76317743-1"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
@@ -41,9 +46,12 @@
     {% if page.explore %}
     <canvas id="home-canopy-shader" class="home-canopy" aria-hidden="true"></canvas>
     {% endif %}
-    {% unless page.hide_nav %}
+    {% if page.oval %}
+    {% include site-nav.html %}
+    {% elsif page.hide_nav %}
+    {% else %}
     {% include site-nav.html overlay=true %}
-    {% endunless %}
+    {% endif %}
     <main>
     {{ content }}
     </main>

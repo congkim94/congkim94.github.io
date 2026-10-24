@@ -1,5 +1,6 @@
 <div id="contact" class="footer-v2-anchor" tabindex="-1"></div>
 <footer class="footer-v2">
+	{% if page.oval %}
 	<div class="footer-v2__intro">
 		<div class="footer-v2__portrait">
 			<img
@@ -16,12 +17,13 @@
 			<p>Outside of work , you’ll likely find me hanging out with my family and hitting some tennis balls :)</p>
 		</div>
 	</div>
+	{% endif %}
 	<div class="footer-v2__bar">
 		<p class="footer-v2__name">Kim Hoàng Công</p>
 		<p class="footer-v2__year">© 2026</p>
 		<nav class="footer-v2__links" aria-label="Contact">
-			<a href="https://www.linkedin.com/in/cong-k-04618a63/" target="_blank" rel="noopener noreferrer">Linkedin</a>
-			<a href="mailto:congkim94@gmail.com">Email</a>
+			<a href="https://www.linkedin.com/in/cong-k-04618a63/" target="_blank" rel="noopener noreferrer"><span class="footer-v2__label"><span>Linkedin</span></span></a>
+			<a href="mailto:congkim94@gmail.com"><span class="footer-v2__label"><span>Email</span></span></a>
 		</nav>
 	</div>
 </footer>

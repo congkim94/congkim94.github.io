@@ -1,4 +1,40 @@
 <section id="my-work" class="work-v2" aria-label="Selected work">
+	{% if page.oval %}
+	<div class="bento">
+		<div class="bento__row bento__row--top">
+			<a class="bento__tile bento__tile--checkout" href="/checkout-protected.html">
+				<img src="/assets/images/home-v2/bento/checkout.png" alt="" width="907" height="1024" decoding="async">
+				<span class="bento__label">
+					<span class="bento__name">Redesigned Checkout</span>
+					<span class="bento__tag">Web Design</span>
+				</span>
+			</a>
+			<a class="bento__tile bento__tile--ae" href="/ae-protected.html">
+				<img src="/assets/images/home-v2/bento/ae.png" alt="" width="1024" height="572" decoding="async">
+				<span class="bento__label">
+					<span class="bento__name">Adaptable Experience</span>
+					<span class="bento__tag">Web Design</span>
+				</span>
+			</a>
+		</div>
+		<div class="bento__row bento__row--bottom">
+			<a class="bento__tile bento__tile--tapestry" href="/ds-protected.html">
+				<img src="/assets/images/home-v2/bento/DS.png" alt="" width="1024" height="731" decoding="async" loading="lazy">
+				<span class="bento__label">
+					<span class="bento__name">Multi-brand Design System</span>
+					<span class="bento__tag">Design System</span>
+				</span>
+			</a>
+			<a class="bento__tile bento__tile--travel" href="/travel/">
+				<img src="/assets/images/home-v2/bento/travel-app.png" alt="" width="1024" height="803" decoding="async" loading="lazy">
+				<span class="bento__label">
+					<span class="bento__name">Travel App</span>
+					<span class="bento__tag">App Design</span>
+				</span>
+			</a>
+		</div>
+	</div>
+	{% else %}
 	<ul class="work-v2__grid">
 		<li>
 			<a
@@ -68,4 +104,5 @@
 			</a>
 		</li>
 	</ul>
+	{% endif %}
 </section>

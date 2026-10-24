@@ -1,12 +1,35 @@
 <script>
 	// Holds the hero in its pre-landing state before first paint. The timer
-	// lets everything show if the flip script never runs.
-	if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+	// lets everything show if the flip script never runs. A return from a
+	// project skips this and shows the finished page.
+	(function () {
+		var skip = false;
+		try {
+			var nav = performance.getEntriesByType("navigation")[0];
+			if (nav && nav.type === "back_forward") skip = true;
+			if (sessionStorage.getItem("oval-return") === "1") skip = true;
+			sessionStorage.removeItem("oval-return");
+			if (document.referrer) {
+				var from = new URL(document.referrer);
+				var path = from.pathname.replace(/\/+$/, "") || "/";
+				var home = path === "/" || path === "/index.html" || path === "/oval.html";
+				if (from.origin === location.origin && !home) skip = true;
+			}
+		} catch (e) {}
+
+		window.addEventListener("pageshow", function (event) {
+			if (!event.persisted) return;
+			document.documentElement.classList.remove("oval-landing");
+			clearTimeout(window.ovalLandingFallback);
+		});
+
+		if (skip || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
 		document.documentElement.classList.add("oval-landing");
 		window.ovalLandingFallback = setTimeout(function () {
 			document.documentElement.classList.remove("oval-landing");
-		}, 4000);
-	}
+		}, 8200);
+	})();
 </script>
 <section class="hero-v2 hero-oval" aria-labelledby="hero-v2-headline">
 	<div class="hero-v2__banner">
@@ -16,14 +39,25 @@
 			</div>
 		</div>
 
-		{% include site-nav.html %}
-
 		<h1 id="hero-v2-headline" class="hero-oval__name">Cong Kim</h1>
-		<p class="hero-oval__tagline">A product designer building intuitive and thoughtful digital experiences for everyone.</p>
+		<p class="hero-oval__tagline" aria-label="I’m Cong, a product designer building intuitive and thoughtful digital experiences for everyone.">
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:0">I</span><span class="hero-v2__char" style="--i:1">’</span><span class="hero-v2__char" style="--i:2">m</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:4">C</span><span class="hero-v2__char" style="--i:5">o</span><span class="hero-v2__char" style="--i:6">n</span><span class="hero-v2__char" style="--i:7">g</span><span class="hero-v2__char" style="--i:8">,</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:10">a</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:12">p</span><span class="hero-v2__char" style="--i:13">r</span><span class="hero-v2__char" style="--i:14">o</span><span class="hero-v2__char" style="--i:15">d</span><span class="hero-v2__char" style="--i:16">u</span><span class="hero-v2__char" style="--i:17">c</span><span class="hero-v2__char" style="--i:18">t</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:20">d</span><span class="hero-v2__char" style="--i:21">e</span><span class="hero-v2__char" style="--i:22">s</span><span class="hero-v2__char" style="--i:23">i</span><span class="hero-v2__char" style="--i:24">g</span><span class="hero-v2__char" style="--i:25">n</span><span class="hero-v2__char" style="--i:26">e</span><span class="hero-v2__char" style="--i:27">r</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:29">b</span><span class="hero-v2__char" style="--i:30">u</span><span class="hero-v2__char" style="--i:31">i</span><span class="hero-v2__char" style="--i:32">l</span><span class="hero-v2__char" style="--i:33">d</span><span class="hero-v2__char" style="--i:34">i</span><span class="hero-v2__char" style="--i:35">n</span><span class="hero-v2__char" style="--i:36">g</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:38">i</span><span class="hero-v2__char" style="--i:39">n</span><span class="hero-v2__char" style="--i:40">t</span><span class="hero-v2__char" style="--i:41">u</span><span class="hero-v2__char" style="--i:42">i</span><span class="hero-v2__char" style="--i:43">t</span><span class="hero-v2__char" style="--i:44">i</span><span class="hero-v2__char" style="--i:45">v</span><span class="hero-v2__char" style="--i:46">e</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:48">a</span><span class="hero-v2__char" style="--i:49">n</span><span class="hero-v2__char" style="--i:50">d</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:52">t</span><span class="hero-v2__char" style="--i:53">h</span><span class="hero-v2__char" style="--i:54">o</span><span class="hero-v2__char" style="--i:55">u</span><span class="hero-v2__char" style="--i:56">g</span><span class="hero-v2__char" style="--i:57">h</span><span class="hero-v2__char" style="--i:58">t</span><span class="hero-v2__char" style="--i:59">f</span><span class="hero-v2__char" style="--i:60">u</span><span class="hero-v2__char" style="--i:61">l</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:63">d</span><span class="hero-v2__char" style="--i:64">i</span><span class="hero-v2__char" style="--i:65">g</span><span class="hero-v2__char" style="--i:66">i</span><span class="hero-v2__char" style="--i:67">t</span><span class="hero-v2__char" style="--i:68">a</span><span class="hero-v2__char" style="--i:69">l</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:71">e</span><span class="hero-v2__char" style="--i:72">x</span><span class="hero-v2__char" style="--i:73">p</span><span class="hero-v2__char" style="--i:74">e</span><span class="hero-v2__char" style="--i:75">r</span><span class="hero-v2__char" style="--i:76">i</span><span class="hero-v2__char" style="--i:77">e</span><span class="hero-v2__char" style="--i:78">n</span><span class="hero-v2__char" style="--i:79">c</span><span class="hero-v2__char" style="--i:80">e</span><span class="hero-v2__char" style="--i:81">s</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:83">f</span><span class="hero-v2__char" style="--i:84">o</span><span class="hero-v2__char" style="--i:85">r</span></span>
+			<span class="hero-v2__word" aria-hidden="true"><span class="hero-v2__char" style="--i:87">e</span><span class="hero-v2__char" style="--i:88">v</span><span class="hero-v2__char" style="--i:89">e</span><span class="hero-v2__char" style="--i:90">r</span><span class="hero-v2__char" style="--i:91">y</span><span class="hero-v2__char" style="--i:92">o</span><span class="hero-v2__char" style="--i:93">n</span><span class="hero-v2__char" style="--i:94">e</span><span class="hero-v2__char" style="--i:95">.</span></span>
+		</p>
 	</div>
 </section>
 <script type="module" src="/assets/javascripts/home-oval-shader.js?v=1"></script>
-<script type="module" src="/assets/javascripts/home-oval-flip.js?v=21"></script>
-<script type="module" src="/assets/javascripts/home-oval-reveal.js?v=6"></script>
+<script type="module" src="/assets/javascripts/home-oval-flip.js?v=33"></script>
 <script type="module" src="/assets/javascripts/home-oval-tilt.js?v=3"></script>
 <script type="module" src="/assets/javascripts/home-oval-nav.js?v=1"></script>
