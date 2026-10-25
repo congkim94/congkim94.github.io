@@ -8,8 +8,8 @@ if (hero && disc && motionOk) {
   // The ellipse's tall axis at 90° lies level. The rest outline uses this
   // so a 45° tilt still fits inside the stage.
   const LEVEL_DEG = 90;
-  // Letters fade in over 444ms, 24ms apart. The last finishes near 2.74s.
-  // The glow, nav, cards, and footer start at 2.8s. Drop .oval-landing after.
+  // Letters fade in over 533ms, 29ms apart. The last finishes near 3.29s.
+  // The glow, nav, cards, and footer start at 3.2s. Drop .oval-landing after.
   const LANDING_DONE_MS = 7600;
   const landing = document.documentElement.classList.contains("oval-landing");
 
