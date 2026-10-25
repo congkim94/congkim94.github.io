@@ -1,19 +1,4 @@
-<div id="wrapper">
-	<div class="lightbox" >
-		<img class="doodle" src="/assets/images/MessyDoodle.png">
-
-		<div class="horizontal">
-			<div class="vertical">
-				<p>This case study is password-protected. <br>Please contact me at <a href="mailto:congkim94@gmail.com">congkim94@gmail.com</a> for details.</p>
-				<div class="box">
-					<input id="password" type="password" placeholder="Password" /> <br />
-					<button id="loginbutton" type="button">Enter</button>
-					<p id="wrongPassword" style="display: none">wrong password</p>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+{% include password-gate.html %}
 
 
 	<script type="text/javascript" src="/assets/javascripts/jquery-3.5.1.min.js"></script>
@@ -42,9 +27,8 @@
 
 				parent.location.hash= hash;
 
-				//$("#wrongPassword").show();
-				$("#password").attr("placeholder","wrong password");
 				$("#password").val("");
+				$("#wrongPassword").prop("hidden", false);
 			}
 		});
 	}
@@ -59,6 +43,8 @@
 			loadPage($("#password").val());
 		}
 	});
-	$("#password").focus();
+	$("#password").on("input", function() {
+		$("#wrongPassword").prop("hidden", true);
+	});
 
 	</script>

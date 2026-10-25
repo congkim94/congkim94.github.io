@@ -1,145 +1,272 @@
-#wrapper{
-	position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
-	height: 100%;
-
-.lightbox {
-	position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 140px 0 80px;
-
-
- 	@include phone {
- 	    padding: 120px 20px 100px;
-	 }
-
-
-.doodle{
-		margin-bottom: 30px;
-		width: 25%;
-
-	 	@include phone {
-	 		width: 80%;
-	 }
-	}
-	
-.horizontal {
-	justify-content: center;
-	height: 100%;
-
-.vertical {
-
+// Password gate. The sheet fills the screen and the footer sits on the
+// bottom edge. The oval's box, tilt, and feather match the 1470×762 frame.
+body.site-v2:has(.gate-page) {
+	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	width: 100%;
-
-
-	input{
-	background: transparent;
-    height: 10px;
-    border: 0;
-    width: 300px;
-    max-width: 300px;
-    border-bottom: .5px solid #8c8c8c;
-    font-size: 14px;
-    font-family: $font-sans;
-    margin:20px;
-    padding: 15px;
-   
-
-	 &:focus{
-	 	outline: none;
-	 }
-
-	 @include phone{
-	 	width: 200px;
-	 }
-	}
-
-
-	p{
-	color: #2b2b2b; 
-	font-size: 22px;
-	font-family: $font-sans; 
-	line-height: 33px;
-
-	 @include phone {
-	 	font-size: 18px;
-	 }
-
-	a{
-		text-decoration: underline;
-		font-family: $font-sans;  
-		color: black;
-
+	min-height: 100svh;
 }
 
+body.site-v2:has(.gate-page) main {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	min-height: 0;
+	padding-bottom: 0;
 }
 
-button {
-	display: inline-flex;
+.gate-page {
+	position: relative;
+	display: flex;
+	flex: 1 1 auto;
 	align-items: center;
 	justify-content: center;
-	border: 1px solid #d4d4d4;
-	font-family: $font-sans;
+	width: 100%;
+	min-height: 0;
+	overflow: visible;
+}
+
+// Same box as the homepage glow (.hero-oval__stage): centered on the
+// tagline's right edge, and the same size at every width.
+.gate-page__oval {
+	--copy-top: calc(180px + (100vw - 550px) * 120 / 920);
+	--copy-left: calc(32px + (100vw - 550px) * 399 / 920);
+	--copy-w: calc(280px + (100vw - 550px) * 263 / 920);
+	--oval-box: calc(440px + (100vw - 550px) * 340 / 920);
+	--oval-y: calc(var(--copy-top) + 66px);
+	position: absolute;
+	top: calc(var(--oval-y) - var(--oval-box) / 2);
+	left: calc(var(--copy-left) + var(--copy-w) - var(--oval-box) / 2);
+	width: var(--oval-box);
+	height: var(--oval-box);
+	filter: blur(30px);
+	pointer-events: none;
+
+	html.gate-reveal & {
+		animation: oval-glow-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+	}
+
+	@media (max-height: 520px) and (min-width: 550px) {
+		--copy-top: 72px;
+		--oval-y: calc(var(--copy-top) + 48px);
+	}
+}
+
+// Same ellipse as the homepage disc, blurred by the oval above it.
+.gate-page__disc {
+	position: absolute;
+	inset: 0;
+	-webkit-mask-image: $oval-mask;
+	mask-image: $oval-mask;
+	-webkit-mask-repeat: no-repeat;
+	mask-repeat: no-repeat;
+	-webkit-mask-position: center;
+	mask-position: center;
+	-webkit-mask-size: 100% 100%;
+	mask-size: 100% 100%;
+}
+
+.gate-page__spin {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 58.64%;
+	height: 82.78%;
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.gate-page__fallback {
+	position: absolute;
+	top: -8.47%;
+	left: -11.96%;
+	display: block;
+	width: 123.92%;
+	height: 116.94%;
+	max-width: none;
+}
+
+.gate-page__shader-frame {
+	position: absolute;
+	inset: 0;
+}
+
+.gate-page__shader {
+	display: block;
+	width: 100%;
+	height: 100%;
+	visibility: hidden;
+}
+
+.gate-page.is-shader .gate-page__shader {
+	visibility: visible;
+}
+
+.gate-page.is-shader .gate-page__fallback {
+	visibility: hidden;
+}
+
+.gate-page__panel {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: unquote("min(554px, calc(100% - 48px))");
+	padding-top: 22px;
+}
+
+.gate-page__line {
+	display: block;
+}
+
+.gate-page__copy {
+	margin: 0;
+	color: #000;
 	font-size: 16px;
-	font-weight: 500;
-	line-height: 1.25;
-	padding: 10px 24px;
-	background: #fff;
-	border-radius: 999px;
-	color: #2b2b2b;
+	font-weight: 400;
+	line-height: 1.4;
+	letter-spacing: 0;
+	text-align: center;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 400;
+
+	a {
+		color: #000;
+		text-decoration: underline;
+		text-decoration-thickness: from-font;
+		text-underline-offset: from-font;
+
+		&:hover {
+			color: #000;
+		}
+
+		&:focus-visible {
+			outline: 2px solid #282828;
+			outline-offset: 3px;
+		}
+	}
+}
+
+.gate {
+	display: flex;
+	align-items: center;
+	width: 100%;
+	max-width: 322px;
+	height: 44px;
+	margin-top: 16px;
+	padding: 0 8px 0 14px;
+	border: 1px solid #d7d7d7;
+	background: rgba(255, 255, 255, 0.76);
+	-webkit-backdrop-filter: blur(45px);
+	backdrop-filter: blur(45px);
+	box-sizing: border-box;
+
+	&:focus-within {
+		border-color: #282828;
+	}
+
+	input {
+		flex: 1 1 auto;
+		min-width: 0;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: transparent;
+		color: #000;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: normal;
+		letter-spacing: 0;
+		text-align: left;
+		caret-color: #000;
+		appearance: none;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 400;
+
+		&:focus {
+			outline: none;
+		}
+
+		&::placeholder {
+			color: #707070;
+			opacity: 1;
+		}
+	}
+}
+
+.gate__submit {
+	display: inline-flex;
+	flex: 0 0 auto;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
 	cursor: pointer;
-	transition: background 0.2s ease, color 0.2s ease;
+	appearance: none;
+
+	img {
+		display: block;
+		width: 24px;
+		height: 24px;
+	}
+
+	&:focus {
+		outline: none;
+	}
 
 	&:hover {
-		color: #fff;
-		background: #2b2b2b;
-	}
-
-	&:focus-visible {
-		outline: 2px solid #2b2b2b;
-		outline-offset: 3px;
+		opacity: 0.7;
 	}
 }
-::-webkit-input-placeholder {
-	font-size: 16px;
-	color: #969696;	
-	text-align: start;
- 	@include phone {
-	 	font-size:14px;
-	 }
 
+.gate__error {
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 50%;
+	width: 100%;
+	max-width: 322px;
+	margin: 0;
+	color: #282828;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.4;
+	text-align: left;
+	transform: translateX(-50%);
 }
 
-::-moz-placeholder {
-	font-size: 16px;
-	color: #969696;	
-	text-align: start;
- 	@include phone {
-	 	font-size:14px;
-	 }
-
-
+@media (prefers-reduced-motion: reduce) {
+	html.gate-reveal .gate-page__oval {
+		animation: none;
+	}
 }
 
-:-ms-input-placeholder {
-	font-size: 16px;
-	color: #969696;
-	text-align: start;
- 	@include phone {
-	 	font-size:14px;
-	 }
-
-}
-}
+@media (prefers-reduced-transparency: reduce) {
+	.gate {
+		background: #fff;
+		-webkit-backdrop-filter: none;
+		backdrop-filter: none;
+	}
 }
 
+@include phone {
+	.gate-page__oval {
+		--oval-box: calc(761.177 / 440 * 100vw);
+		--oval-y: calc(395.76 / 956 * 100svh);
+		top: calc(var(--oval-y) - var(--oval-box) / 2);
+		left: calc(370.146 / 440 * 100% - var(--oval-box) / 2);
+	}
 
-}
+	.gate-page__copy .gate-page__line {
+		display: inline;
+	}
+
+	.gate-page__copy .gate-page__line + .gate-page__line::before {
+		content: " ";
+	}
+
+	.gate-page__panel {
+		width: unquote("min(554px, calc(100% - 32px))");
+	}
 }
