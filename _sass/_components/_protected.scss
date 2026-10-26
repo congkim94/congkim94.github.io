@@ -1,9 +1,16 @@
 // Password gate. The sheet fills the screen and the footer sits on the
 // bottom edge. The oval's box, tilt, and feather match the 1470×762 frame.
+html:has(.gate-page) {
+	overflow: clip;
+	// The root otherwise scrolls smoothly, so a correction on load slides the copy.
+	scroll-behavior: auto;
+}
+
 body.site-v2:has(.gate-page) {
 	display: flex;
 	flex-direction: column;
-	min-height: 100svh;
+	height: 100svh;
+	overflow: clip;
 }
 
 body.site-v2:has(.gate-page) main {
@@ -55,6 +62,9 @@ body.site-v2:has(.gate-page) main {
 .gate-page__disc {
 	position: absolute;
 	inset: 0;
+	// The rotated fallback is bigger than the ellipse. Clipping it here keeps
+	// that box from growing the page as the glow scales in.
+	overflow: clip;
 	-webkit-mask-image: $oval-mask;
 	mask-image: $oval-mask;
 	-webkit-mask-repeat: no-repeat;
