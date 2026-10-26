@@ -23,29 +23,6 @@ main {
   z-index: 1;
 }
 
-// *, *::before, *::after {
-//     box-sizing: border-box;
-// }
-
-
-@font-face {
-  font-family: "argesta";
-  src: url("../fonts/argestadisplay-regular-webfont.woff2");
-}
-
-@font-face {
-  font-family: "salome";
-  src: url("../fonts/salome-webfont.woff2");
-}
-
-@font-face {
-  font-family: "Safiro";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url("../fonts/safiro-medium-webfont.woff2") format("woff2");
-}
-
 /* Inter variable (self-hosted; latin + latin-ext). Source: fonts.gstatic.com / SIL OFL 1.1 */
 @font-face {
   font-family: "Inter";

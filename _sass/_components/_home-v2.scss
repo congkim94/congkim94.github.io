@@ -903,7 +903,6 @@ body.home-v2.home-oval .hero-v2__banner {
 	--copy-w: calc(280px + (100vw - 550px) * 263 / 920);
 	--oval-box: calc(440px + (100vw - 550px) * 340 / 920);
 	--oval-y: calc(var(--copy-top) + 66px);
-	--oval-x: 0px;
 	position: relative;
 	overflow: visible;
 	width: 100%;
@@ -924,7 +923,6 @@ body.home-v2.home-oval .hero-v2__banner {
 	@include phone {
 		// Larger than the 586px landing frame, still centered at (370, 396).
 		--oval-box: calc(761.177 / 440 * 100vw);
-		--oval-x: 0px;
 		--oval-y: calc(395.76 / 956 * 100svh);
 	}
 }
@@ -1104,10 +1102,6 @@ body.site-v2:not(.home-v2) header.site-nav {
 	}
 }
 
-// The name and tagline overlap the oval's edges. Multiply prints them like
-// ink: a deep brown on the sand, and a lighter brown on the oval that
-// carries the light's streaks through the letters.
-body.home-v2.home-oval .hero-oval__name,
 body.home-v2.home-oval .hero-oval__tagline {
 	position: absolute;
 	z-index: 2;
@@ -1119,27 +1113,6 @@ body.home-v2.home-oval .hero-oval__tagline {
 
 body.home-v2.home-oval .hero-oval__name {
 	display: none;
-	top: calc(270px + var(--hero-shift));
-	left: unquote("max(24px, calc(50% - 531px))");
-	font-family: "Safiro", $font-sans;
-	font-size: 96px;
-	font-weight: 500;
-	line-height: 1;
-	letter-spacing: 0;
-	white-space: nowrap;
-
-	@include tablet1 {
-		top: calc(180px + var(--hero-shift));
-		left: 32px;
-		font-size: 72px;
-	}
-
-	@include phone {
-		top: calc(209px + var(--hero-shift));
-		left: 12px;
-		font-size: 42px;
-		line-height: 52px;
-	}
 }
 
 body.home-v2.home-oval .hero-oval__tagline {
@@ -1170,10 +1143,6 @@ html.oval-landing body.home-v2.home-oval .hero-oval:not(.is-flip-ready) .hero-ov
 	visibility: hidden;
 }
 
-html.oval-landing body.home-v2.home-oval .hero-oval__name {
-	animation: oval-focus-in 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) 0.55s both;
-}
-
 // Fade Blur, character by character. Opacity and an 8px blur share one
 // ease-in-out. Each letter takes 533ms, and the next letter starts 29ms later.
 body.home-v2.home-oval .hero-oval__tagline .hero-v2__word {
@@ -1193,7 +1162,18 @@ html.oval-landing body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__st
 	animation: oval-glow-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) 3.2s both;
 }
 
-// Nav, cards, and footer fade in with the glow.
+// Nav, cards, and footer fade in with the glow. They stay out of reach
+// until that fade finishes, including a skip, so a tap cannot open a link
+// that is still invisible.
+html.oval-landing body.home-v2.home-oval,
+html.is-skip-fading body.home-v2.home-oval {
+	> header.site-nav,
+	#my-work.work-v2,
+	.footer-v2 {
+		pointer-events: none;
+	}
+}
+
 html.oval-landing body.home-v2.home-oval {
 	> header.site-nav,
 	#my-work.work-v2,
@@ -1226,19 +1206,60 @@ html.oval-landing body.home-v2.home-oval {
 	}
 }
 
-@keyframes oval-focus-in {
-	from {
-		opacity: 0;
-		filter: blur(14px);
-		translate: 0 0.5em;
-		letter-spacing: 0.08em;
-	}
+// Skip sits in until the type, glow, and cards are actually loaded. A pointer
+// becomes the word. A touch screen gets a line of copy at the bottom, and
+// that line leaves just before the last word of the sentence starts.
+.landing-skip-cursor {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 7;
+	color: $oval-ink;
+	font-family: $font-sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: 0;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
+}
 
-	to {
+html.oval-landing.is-skip-ready.is-skip-cursor .landing-skip-cursor {
+	opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	html.oval-landing.is-skip-ready.is-skip-cursor,
+	html.oval-landing.is-skip-ready.is-skip-cursor * {
+		cursor: none !important;
+	}
+}
+
+.landing-skip {
+	position: fixed;
+	z-index: 6;
+	left: 50%;
+	bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+	transform: translateX(-50%);
+	margin: 0;
+	color: $oval-ink;
+	font-family: $font-sans;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 0;
+	white-space: nowrap;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+@media (hover: none) and (pointer: coarse) {
+	html.oval-landing.is-skip-ready:not(.is-skip-hint-gone) .landing-skip {
 		opacity: 1;
-		filter: blur(0);
-		translate: 0 0;
-		letter-spacing: 0;
 	}
 }
 

@@ -4,13 +4,31 @@ html:has(.gate-page) {
 	overflow: clip;
 	// The root otherwise scrolls smoothly, so a correction on load slides the copy.
 	scroll-behavior: auto;
+	overscroll-behavior: none;
 }
 
 body.site-v2:has(.gate-page) {
 	display: flex;
 	flex-direction: column;
-	height: 100svh;
+	// --gate-h is the visible height, locked before paint. 100svh alone
+	// settles a frame later on a phone and the centered copy slides up.
+	height: var(--gate-h, 100svh);
 	overflow: clip;
+	overscroll-behavior: none;
+	// The footer is parsed after the panel. Reserving its height here keeps
+	// the centered copy from jumping up when that bar arrives.
+	// 48px top + one 20px line + 24px bottom.
+	--gate-footer: 92px;
+
+	@include tablet1 {
+		// 40 + 20 + 16
+		--gate-footer: 76px;
+	}
+
+	@include phone {
+		// 32 + two lines (48) + 16
+		--gate-footer: 96px;
+	}
 }
 
 body.site-v2:has(.gate-page) main {
@@ -27,9 +45,33 @@ body.site-v2:has(.gate-page) main {
 	flex: 1 1 auto;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	width: 100%;
 	min-height: 0;
+	padding-bottom: var(--gate-footer, 0px);
 	overflow: visible;
+}
+
+body.site-v2:has(.gate-page) .footer-v2 {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+}
+
+// The phone glow is wider than the screen. Clip it to the viewport so the
+// scaled oval cannot lengthen the page. Mobile browsers still scroll for
+// that overflow when only the root is clipped, and the centered copy slides.
+.gate-page__glowclip {
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: var(--gate-h, 100svh);
+	overflow: clip;
+	pointer-events: none;
 }
 
 // Same box as the homepage glow (.hero-oval__stage): centered on the
@@ -263,7 +305,7 @@ body.site-v2:has(.gate-page) main {
 @include phone {
 	.gate-page__oval {
 		--oval-box: calc(761.177 / 440 * 100vw);
-		--oval-y: calc(395.76 / 956 * 100svh);
+		--oval-y: calc(395.76 / 956 * var(--gate-h, 100svh));
 		top: calc(var(--oval-y) - var(--oval-box) / 2);
 		left: calc(370.146 / 440 * 100% - var(--oval-box) / 2);
 	}
