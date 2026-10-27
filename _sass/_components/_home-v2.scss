@@ -1207,8 +1207,8 @@ html.oval-landing body.home-v2.home-oval {
 }
 
 // Skip sits in until the type, glow, and cards are actually loaded. A pointer
-// becomes the word. A touch screen gets a line of copy at the bottom, and
-// that line leaves just before the last word of the sentence starts.
+// becomes the word. A touch screen waits a beat, then a line of copy rises
+// from the bottom, and that line leaves just before the last word starts.
 .landing-skip-cursor {
 	position: fixed;
 	top: 0;
@@ -1242,7 +1242,6 @@ html.oval-landing.is-skip-ready.is-skip-cursor .landing-skip-cursor {
 	z-index: 6;
 	left: 50%;
 	bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-	transform: translateX(-50%);
 	margin: 0;
 	color: $oval-ink;
 	font-family: $font-sans;
@@ -1253,13 +1252,27 @@ html.oval-landing.is-skip-ready.is-skip-cursor .landing-skip-cursor {
 	white-space: nowrap;
 	pointer-events: none;
 	opacity: 0;
-	transition: opacity 200ms cubic-bezier(0.22, 1, 0.36, 1);
+	transform: translate(-50%, 16px);
+	transition:
+		opacity 200ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
 	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
 }
 
 @media (hover: none) and (pointer: coarse) {
 	html.oval-landing.is-skip-ready:not(.is-skip-hint-gone) .landing-skip {
 		opacity: 1;
+		transform: translate(-50%, 0);
+		transition:
+			opacity 400ms cubic-bezier(0.22, 1, 0.36, 1),
+			transform 400ms cubic-bezier(0.22, 1, 0.36, 1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.landing-skip {
+		transform: translate(-50%, 0);
+		transition: none;
 	}
 }
 

@@ -9,8 +9,12 @@ const SKIP_FADE_MS = 700;
 // The hint fades out over this long, and that fade finishes as the last
 // word's first letter begins.
 const HINT_FADE_MS = 200;
+// A touch can land the moment the page appears. Hold the skip, and the
+// line that offers it, so the opening has a beat first.
+const TOUCH_SKIP_DELAY_MS = 300;
 let hintTimer = 0;
 let hintHideTimer = 0;
+let hintArmTimer = 0;
 
 function release(el) {
 	el.style.opacity = "";
@@ -130,13 +134,25 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 		...[...document.querySelectorAll(".bento img:not([loading='lazy'])")].map(whenDecoded),
 	]);
 
+	function armSkip() {
+		if (!root.classList.contains("oval-landing")) return;
+		// Paint the line at rest (down, invisible) before the entrance
+		// class, or the fade-up never runs.
+		if (coarsePointer.matches && !root.classList.contains("is-skip-hint-gone")) {
+			button.hidden = false;
+			button.offsetWidth;
+		}
+		root.classList.add("is-skip-ready");
+	}
+
 	ready.then(() => {
 		if (!root.classList.contains("oval-landing")) return;
 		scheduleHintHide();
-		root.classList.add("is-skip-ready");
-		// The sentence is the control on a touch screen. Keep it out of the
-		// tree on a pointer, where the cursor already says Skip.
-		if (coarsePointer.matches && !root.classList.contains("is-skip-hint-gone")) button.hidden = false;
+		if (coarsePointer.matches) {
+			hintArmTimer = window.setTimeout(armSkip, TOUCH_SKIP_DELAY_MS);
+			return;
+		}
+		armSkip();
 	});
 
 	scheduleHintHide();
@@ -200,6 +216,9 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 function hideHint(immediate) {
 	window.clearTimeout(hintTimer);
 	window.clearTimeout(hintHideTimer);
+	// A scheduled fade-out still leaves the tap itself available. Only a
+	// finished landing should cancel the delayed arm.
+	if (immediate) window.clearTimeout(hintArmTimer);
 	root.classList.add("is-skip-hint-gone");
 	if (!button) return;
 	if (immediate) {
