@@ -183,14 +183,25 @@ body.home-v2.home-oval > header.site-nav {
 }
 
 body.home-v2.home-oval > header.site-nav {
-	background-color: rgba(255, 255, 255, 0.72);
-	-webkit-backdrop-filter: blur(20px);
-	backdrop-filter: blur(10px);
+	background-color: transparent;
+	transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease;
+
+	&.is-scrolled {
+		background-color: rgba(255, 255, 255, 0.72);
+		-webkit-backdrop-filter: blur(20px);
+		backdrop-filter: blur(10px);
+	}
 
 	@media (prefers-reduced-transparency: reduce) {
-		background-color: #fff;
-		-webkit-backdrop-filter: none;
-		backdrop-filter: none;
+		&.is-scrolled {
+			background-color: #fff;
+			-webkit-backdrop-filter: none;
+			backdrop-filter: none;
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
 	}
 }
 
@@ -590,8 +601,12 @@ body.site-v2 .footer-v2 {
 	flex-shrink: 0;
 	width: 145px;
 	height: 193px;
-	border-radius: 16px;
 	overflow: hidden;
+
+	@include min-width-from($screen-md1) {
+		width: calc(145px * 1.1);
+		height: calc(193px * 1.1);
+	}
 
 	// Scale 125% around the origin that lands the face (about 47% / 43% of
 	// the photo) at the center of the frame: origin = 5 × face − 4 × 50%.
