@@ -19,16 +19,87 @@
 
 		window.addEventListener("pageshow", function (event) {
 			if (!event.persisted) return;
-			document.documentElement.classList.remove("oval-landing");
+			document.documentElement.classList.remove("oval-landing", "is-scroll-locked");
 			clearTimeout(window.ovalLandingFallback);
 		});
 
 		if (skip || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-		document.documentElement.classList.add("oval-landing");
+		document.documentElement.classList.add("oval-landing", "is-scroll-locked");
 		window.ovalLandingFallback = setTimeout(function () {
 			document.documentElement.classList.remove("oval-landing");
 		}, 8200);
+
+		// Nav, cards, and footer start fading at 3.2s. Scrolling and the
+		// Skip cursor return at that moment, while the fade is still running.
+		var revealDone = false;
+
+		function blockScroll(event) {
+			event.preventDefault();
+		}
+		function blockScrollKeys(event) {
+			var key = event.key;
+			if (
+				key === " " ||
+				key === "Spacebar" ||
+				key === "ArrowDown" ||
+				key === "ArrowUp" ||
+				key === "ArrowLeft" ||
+				key === "ArrowRight" ||
+				key === "PageDown" ||
+				key === "PageUp" ||
+				key === "Home" ||
+				key === "End"
+			) {
+				event.preventDefault();
+			}
+		}
+		window.addEventListener("wheel", blockScroll, { passive: false });
+		window.addEventListener("touchmove", blockScroll, { passive: false });
+		window.addEventListener("keydown", blockScrollKeys);
+
+		function releaseScrollLock() {
+			var root = document.documentElement;
+			// A skip removes the landing class immediately. Don't wait for
+			// its fade; the page should scroll on that click.
+			if (root.classList.contains("oval-landing") && !revealDone) return;
+			root.classList.remove("is-scroll-locked");
+			window.removeEventListener("wheel", blockScroll);
+			window.removeEventListener("touchmove", blockScroll);
+			window.removeEventListener("keydown", blockScrollKeys);
+			scrollLock.disconnect();
+		}
+
+		function beginRest() {
+			if (revealDone) return;
+			revealDone = true;
+			var root = document.documentElement;
+			root.classList.add("is-rest-started", "is-skip-hint-gone");
+			root.classList.remove("is-skip-ready", "is-skip-cursor");
+			var hint = document.querySelector(".landing-skip");
+			if (hint) hint.hidden = true;
+			releaseScrollLock();
+		}
+
+		var scrollLock = new MutationObserver(releaseScrollLock);
+		scrollLock.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+		function watchRestStart() {
+			if (revealDone) return;
+			var footer = document.querySelector(".footer-v2");
+			var anims = footer ? footer.getAnimations() : [];
+			for (var i = 0; i < anims.length; i++) {
+				if (anims[i].animationName !== "hero-rest-in" || !anims[i].effect) continue;
+				var progress = anims[i].effect.getComputedTiming().progress;
+				if (progress > 0) {
+					beginRest();
+					return;
+				}
+			}
+			window.requestAnimationFrame(watchRestStart);
+		}
+		window.requestAnimationFrame(watchRestStart);
+		window.setTimeout(beginRest, 3400);
 	})();
 </script>
 <section class="hero-v2 hero-oval" aria-labelledby="hero-v2-headline">
@@ -61,6 +132,6 @@
 </section>
 <script type="module" src="/assets/javascripts/home-oval-shader.js?v=1"></script>
 <script type="module" src="/assets/javascripts/home-oval-flip.js?v=33"></script>
-<script type="module" src="/assets/javascripts/home-oval-skip.js?v=6"></script>
+<script type="module" src="/assets/javascripts/home-oval-skip.js?v=7"></script>
 <script type="module" src="/assets/javascripts/home-oval-tilt.js?v=3"></script>
 <script type="module" src="/assets/javascripts/home-oval-nav.js?v=1"></script>

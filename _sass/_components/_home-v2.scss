@@ -1177,6 +1177,16 @@ html.oval-landing body.home-v2.home-oval .hero-oval.is-flip-ready .hero-oval__st
 	animation: oval-glow-in 1.45s cubic-bezier(0.22, 1, 0.36, 1) 3.2s both;
 }
 
+// Held until the nav, cards, and footer start to appear. Skip drops it
+// on the click, while that fade is still running.
+html.is-scroll-locked,
+html.is-scroll-locked body.home-v2.home-oval {
+	height: 100%;
+	overflow: hidden;
+	overscroll-behavior: none;
+	touch-action: none;
+}
+
 // Nav, cards, and footer fade in with the glow. They stay out of reach
 // until that fade finishes, including a skip, so a tap cannot open a link
 // that is still invisible.

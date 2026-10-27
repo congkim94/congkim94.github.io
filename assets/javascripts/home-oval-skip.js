@@ -136,6 +136,7 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 
 	function armSkip() {
 		if (!root.classList.contains("oval-landing")) return;
+		if (root.classList.contains("is-rest-started")) return;
 		// Paint the line at rest (down, invisible) before the entrance
 		// class, or the fade-up never runs.
 		if (coarsePointer.matches && !root.classList.contains("is-skip-hint-gone")) {
@@ -162,6 +163,7 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 	// if that click never comes, so the following click still works.
 	let skipPointerId = null;
 	document.addEventListener("pointerdown", (event) => {
+		if (root.classList.contains("is-rest-started")) return;
 		if (!root.classList.contains("is-skip-ready")) return;
 		if (!root.classList.contains("oval-landing")) return;
 		if (event.button !== 0) return;
@@ -189,6 +191,7 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 	}, true);
 
 	document.addEventListener("pointermove", (event) => {
+		if (root.classList.contains("is-rest-started")) return;
 		if (!finePointer.matches) return;
 		if (!root.classList.contains("is-skip-ready")) return;
 		if (event.pointerType === "touch") return;
