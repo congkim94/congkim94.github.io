@@ -36,6 +36,7 @@ if (canvas && hero && navigator.gpu && motionOk) {
 						angle: 196,
 						frequency: 0.8,
 						strength: 0.45,
+						speed: 1.5,
 					},
 				},
 				{

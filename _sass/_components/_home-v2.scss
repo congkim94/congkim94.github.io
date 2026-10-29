@@ -79,41 +79,7 @@ body.home-v2 main {
 	}
 }
 
-// Grey only covers the hero when coming back from a project, before the
-// shader has a frame. A fresh landing keeps the banner empty while the
-// sentence reveals. The white veil fades off once that return frame is ready
-// so the page eases in without fading the canvas itself.
-body.home-v2.is-return:not(:has(.hero-v2.is-shader, .hero-v2.is-fallback)) .hero-v2__banner {
-	background-color: #e6e6e6;
-}
-
-body.home-v2.is-return::before {
-	content: "";
-	position: fixed;
-	inset: 0;
-	z-index: 4;
-	background: #fff;
-	pointer-events: none;
-	opacity: 1;
-	transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-body.home-v2.is-return:has(.hero-v2.is-shader, .hero-v2.is-fallback)::before,
-body.home-v2.is-return.is-return-in::before {
-	opacity: 0;
-}
-
-// The canvas stays hidden until it has drawn. The shade above it fades off
-// with the rest of the page.
-.hero-v2__media {
-	position: absolute;
-	inset: 0;
-	z-index: 0;
-	overflow: hidden;
-	pointer-events: none;
-	border-radius: inherit;
-}
-
+// The canvas stays hidden until it has drawn.
 .hero-v2__shader {
 	position: absolute;
 	inset: 0;
@@ -127,22 +93,6 @@ body.home-v2.is-return.is-return-in::before {
 
 .hero-v2.is-shader .hero-v2__shader {
 	visibility: visible;
-}
-
-.hero-v2.is-fallback .hero-v2__media {
-	background: #e6e6e6 url("/assets/images/home-v2/hero-fallback.jpg") 75% center / cover no-repeat;
-}
-
-// Sits over the canvas and under the sentence. Fades off with the rest of
-// the page so the rays ease in instead of cutting on.
-.hero-v2__shade {
-	position: absolute;
-	inset: 0;
-	z-index: 1;
-	border-radius: inherit;
-	background: #fff;
-	pointer-events: none;
-	opacity: 0;
 }
 
 header.site-nav {
@@ -278,105 +228,11 @@ body.home-v2.home-oval > header.site-nav {
 	}
 }
 
-.hero-v2__headline {
-	position: relative;
-	z-index: 2;
-	align-self: stretch;
-	width: 100%;
-	margin: 0;
-	padding-top: 20px;
-	font-family: $font-sans;
-	font-size: 40px;
-	font-weight: 450;
-	font-stretch: 92%;
-	font-style: normal;
-	line-height: 1.3;
-	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 92, "wght" 450;
-	color: #2B2B2B;
-
-	@include tablet1 {
-		padding-top: 80px;
-		font-size: 28px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 32, "slnt" 0, "wdth" 92, "wght" 450;
-	}
-
-	@include phone {
-		padding-top: 48px;
-		font-size: 24px;
-		font-weight: 500;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 92, "wght" 500;
-
-		.hero-v2__line {
-			font-weight: 500;
-		}
-	}
-}
-
-// Desktop (1001px and up) keeps the sentence on exactly two lines.
-.hero-v2__line {
-	font-family: $font-sans;
-	font-weight: 450;
-	font-stretch: 92%;
-	color: #383838;
-
-	@include min-width-from($screen-md1) {
-		display: block;
-		white-space: nowrap;
-	}
-}
-
 .hero-v2__word {
 	display: inline-block;
 	color: inherit;
 	font: inherit;
 	font-variation-settings: inherit;
-}
-
-// Hold the viewport still while only the sentence is on screen. The lock
-// lifts the moment the rest of the page starts to appear.
-html:has(body.home-v2.is-intro-locked),
-body.home-v2.is-intro-locked {
-	height: 100%;
-	overflow: hidden;
-	overscroll-behavior: none;
-	touch-action: none;
-}
-
-// Homepage load: the sentence fades in word by word, then the navigation
-// and the rest of the page follow. Reduced motion skips it.
-@media (prefers-reduced-motion: no-preference) {
-	body.home-v2.is-intro {
-		.hero-v2__word {
-			animation: hero-word-in 2.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-			animation-delay: calc(0.12s + (var(--i) * 0.13s));
-		}
-
-		.hero-v2 .site-nav,
-		.work-v2,
-		.footer-v2 {
-			// Longer and slower at the start than the return veil. That veil
-			// lifts off a finished page; these elements are appearing.
-			animation: hero-rest-in 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
-			animation-delay: 2.8s;
-		}
-
-		.hero-v2__shade {
-			animation: hero-veil-out 800ms cubic-bezier(0.4, 0, 0.2, 1) both;
-			animation-delay: 2.8s;
-		}
-	}
-}
-
-@keyframes hero-word-in {
-	from {
-		opacity: 0.001;
-		filter: blur(2px);
-	}
-
-	to {
-		opacity: 1;
-		filter: blur(0);
-	}
 }
 
 @keyframes hero-rest-in {
@@ -386,16 +242,6 @@ body.home-v2.is-intro-locked {
 
 	to {
 		opacity: 1;
-	}
-}
-
-@keyframes hero-veil-out {
-	from {
-		opacity: 1;
-	}
-
-	to {
-		opacity: 0;
 	}
 }
 
@@ -424,112 +270,6 @@ body.home-v2 #my-work.work-v2 {
 	margin: 24px 0 0;
 	padding: 0;
 	scroll-margin-top: 16px;
-}
-
-.work-v2__grid {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(0, 1fr));
-	gap: 24px;
-	margin: 0;
-	padding: 0;
-	list-style: none;
-
-	@include tablet1 {
-		grid-template-columns: 1fr;
-	}
-
-	@include phone {
-		grid-template-columns: 1fr;
-	}
-}
-
-.work-v2__card {
-	position: relative;
-	display: block;
-	height: 476px;
-	border: 0;
-	border-radius: 12px;
-	overflow: hidden;
-	background: #e8e4dc;
-	text-decoration: none;
-	transition: transform 0.25s ease;
-
-	&:hover {
-		transform: translateY(-2px);
-	}
-
-	&:focus-visible {
-		outline: 2px solid #053eff;
-		outline-offset: 3px;
-	}
-
-	img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		transition: transform 0.5s ease;
-	}
-
-	&:hover img {
-		transform: scale(1.02);
-	}
-
-	@media (prefers-reduced-motion: reduce) {
-		transition: none;
-
-		img {
-			transition: none;
-		}
-
-		&:hover,
-		&:hover img {
-			transform: none;
-		}
-	}
-
-	@include tablet1 {
-		height: 320px;
-	}
-
-	@include phone {
-		height: 280px;
-		border-radius: 20px;
-	}
-}
-
-.work-v2__name {
-	position: absolute;
-	bottom: 24px;
-	left: 24px;
-	z-index: 1;
-	margin: 0;
-	padding: 10px 20px;
-	border-radius: 24px;
-	background: #e2e2e2;
-	color: #3d3d3d;
-	font-family: $font-sans;
-	font-size: 16px;
-	font-weight: 500;
-	font-style: normal;
-	line-height: normal;
-	letter-spacing: 0;
-	white-space: nowrap;
-	pointer-events: none;
-	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
-
-	@include tablet1 {
-		bottom: 16px;
-		left: 16px;
-	}
-
-	@include phone {
-		bottom: 12px;
-		left: 12px;
-		padding: 8px 14px;
-		font-size: 14px;
-		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
-	}
 }
 
 body.site-v2 #contact.footer-v2-anchor {
@@ -735,144 +475,7 @@ body.site-v2 .footer-v2 .footer-v2__bar {
 	text-align: center;
 }
 
-// Homepage exploration (/explore): afternoon sunlight across the top, a
-// gradient into the canopy wall, and the canopy shadow at the bottom left.
-html:has(body.home-explore),
-body.home-v2.home-explore {
-	--home-sun: #c4c4c4;
-	--home-canopy: #f2f1f1;
-	position: relative;
-	background-color: var(--home-canopy);
-	background-image: linear-gradient(
-		180deg,
-		var(--home-sun) 0,
-		var(--home-sun) 640px,
-		var(--home-canopy) 1280px
-	);
-
-	@include tablet1 {
-		background-image: linear-gradient(
-			180deg,
-			var(--home-sun) 0,
-			var(--home-sun) 480px,
-			var(--home-canopy) 960px
-		);
-	}
-
-	@include phone {
-		background-image: linear-gradient(
-			180deg,
-			var(--home-sun) 0,
-			var(--home-sun) 420px,
-			var(--home-canopy) 900px
-		);
-	}
-}
-
-body.home-v2.home-explore main {
-	background-color: transparent;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-// Full bleed: the negative top margin cancels main's top padding.
-body.home-v2.home-explore .hero-v2 {
-	width: 100vw;
-	margin: -22px 0 0 calc(50% - 50vw);
-
-	@include tablet1 {
-		margin-top: -16px;
-	}
-
-	@include phone {
-		margin-top: -12px;
-	}
-}
-
-body.home-v2.home-explore .hero-v2__banner {
-	overflow: visible;
-	border-radius: 0;
-	background: transparent;
-}
-
-body.home-v2.home-explore .hero-v2__media,
-body.home-v2.home-explore .hero-v2__shade {
-	top: 0;
-	right: 0;
-	bottom: auto;
-	left: 0;
-	width: 100%;
-	height: 860px;
-	border-radius: 0;
-
-	@include tablet1 {
-		height: 680px;
-	}
-
-	@include phone {
-		height: 620px;
-	}
-}
-
-body.home-v2.home-explore .hero-v2__shader {
-	-webkit-mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
-	mask-image: linear-gradient(to bottom, #000 82%, transparent 100%);
-}
-
-body.home-v2.home-explore #my-work.work-v2 {
-	position: relative;
-	z-index: 1;
-}
-
-body.home-v2.home-explore .work-v2__name {
-	background-color: #ded5cd;
-}
-
-body.home-v2.home-explore .work-v2__card {
-	background-color: rgba(235, 230, 219, 0.46);
-	-webkit-backdrop-filter: blur(10px);
-	backdrop-filter: blur(10px);
-
-	@media (prefers-reduced-transparency: reduce) {
-		background-color: rgba(235, 230, 219, 0.88);
-		-webkit-backdrop-filter: none;
-		backdrop-filter: none;
-	}
-}
-
-.home-canopy {
-	position: absolute;
-	left: 0;
-	bottom: 0;
-	z-index: 0;
-	display: block;
-	width: 46vw;
-	height: 46vh;
-	pointer-events: none;
-	visibility: hidden;
-}
-
-.home-canopy.is-ready {
-	visibility: visible;
-}
-
-body.home-v2.home-explore .footer-v2 {
-	position: relative;
-	z-index: 1;
-	background-color: transparent;
-	color: #3d3d3d;
-}
-
-body.home-v2.home-explore .footer-v2__copy,
-body.home-v2.home-explore .footer-v2 .footer-v2__bar {
-	color: #3d3d3d;
-}
-
-body.home-v2.home-explore .footer-v2 .footer-v2__bar a:focus-visible {
-	outline-color: #2b2b2b;
-}
-
-// Homepage oval (/oval): the afternoon light sits in a tilted ellipse
+// Homepage oval: the afternoon light sits in a tilted ellipse
 // between the name and the tagline, on a warm sand page.
 $oval-ink: #272727;
 $oval-page: #ffffff;
@@ -1513,8 +1116,8 @@ body.home-v2.home-oval #my-work.work-v2 {
 
 // Case studies and other subpages share the homepage's white page. The
 // dark sheet was the old footer showing through the rounded corners.
-html:has(body.site-v2:not(.home-explore):not(.home-oval)),
-body.site-v2:not(.home-explore):not(.home-oval) {
+html:has(body.site-v2:not(.home-oval)),
+body.site-v2:not(.home-oval) {
 	background-color: #fff;
 	background-image: none;
 }

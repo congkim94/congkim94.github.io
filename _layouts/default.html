@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Cong Kim</title>
-    <link href="/assets/stylesheets/main.css?v=163" rel="stylesheet">
+    <link href="/assets/stylesheets/main.css?v=185" rel="stylesheet">
     {% if page.legacy %}
     <meta name="robots" content="noindex">
     <link rel="preconnect" href="https://use.typekit.net" crossorigin>
@@ -43,10 +43,7 @@
     <script src="/assets/javascripts/script.js"></script>
   </body>
   {% else %}
-  <body class="site-v2{% if page.body_class %} {{ page.body_class }}{% endif %}{% if page.intro %} is-intro is-intro-locked{% endif %}">
-    {% if page.explore %}
-    <canvas id="home-canopy-shader" class="home-canopy" aria-hidden="true"></canvas>
-    {% endif %}
+  <body class="site-v2{% if page.body_class %} {{ page.body_class }}{% endif %}">
     {% if page.oval %}
     {% include site-nav.html %}
     {% elsif page.hide_nav %}
