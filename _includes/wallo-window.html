@@ -1,0 +1,252 @@
+<div class="wallo-window{% if page.wallo_open %} is-open{% endif %}" {% unless page.wallo_open %}hidden{% endunless %} data-case-window data-case="wallo" data-case-path="/wallo.html">
+	<div class="wallo-window__frame" role="dialog" aria-modal="true" aria-labelledby="wallo-title" tabindex="-1">
+		<div class="wallo-window__scroll">
+			<div class="wallo-window__bar">
+				<button type="button" class="wallo-window__close" data-case-close>Close</button>
+			</div>
+			{% include wallo.html %}
+		</div>
+	</div>
+</div>
+
+<div class="wallo-window{% if page.travel_open %} is-open{% endif %}" {% unless page.travel_open %}hidden{% endunless %} data-case-window data-case="travel">
+	<div class="wallo-window__frame" role="dialog" aria-modal="true" aria-labelledby="travel-title" tabindex="-1">
+		<div class="wallo-window__scroll">
+			<div class="wallo-window__bar">
+				<button type="button" class="wallo-window__close" data-case-close>Close</button>
+			</div>
+			{% include travel.html %}
+		</div>
+	</div>
+</div>
+
+<script>
+(function () {
+	var windows = Array.prototype.slice.call(document.querySelectorAll("[data-case-window]"));
+	if (!windows.length) return;
+	var opener = null;
+
+	function backgrounds() {
+		return [
+			document.querySelector("header.site-nav"),
+			document.querySelector("main"),
+			document.querySelector(".footer-v2")
+		].filter(Boolean);
+	}
+
+	function setInert(on) {
+		backgrounds().forEach(function (el) { el.inert = on; });
+	}
+
+	function startWallo(win) {
+		win.querySelectorAll(".wallo__section.is-quiet").forEach(function (section) {
+			section.classList.remove("is-quiet");
+		});
+		videos(win, window.matchMedia("(max-width: 549px)").matches);
+	}
+
+	function videos(root, play) {
+		var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		root.querySelectorAll("video").forEach(function (video) {
+			if (play && !reduce) {
+				var pending = video.play();
+				if (pending && pending.catch) pending.catch(function () {});
+			} else {
+				video.pause();
+			}
+		});
+	}
+
+	function focusDialog(win) {
+		var dialog = win.querySelector("[role=dialog]");
+		if (dialog) dialog.focus({ preventScroll: true });
+	}
+
+	function keyOf(win) {
+		return win.getAttribute("data-case");
+	}
+
+	function pathOf(win) {
+		return win.getAttribute("data-case-path") || ("/" + keyOf(win) + "/");
+	}
+
+	function onPath(win) {
+		var path = pathOf(win);
+		if (path.slice(-1) === "/") return location.pathname.indexOf("/" + keyOf(win)) !== -1;
+		return location.pathname === path;
+	}
+
+	function setOpenClass(on) {
+		document.documentElement.classList.toggle("is-case-open", on);
+		document.body.classList.toggle("is-case-open", on);
+	}
+
+	function hide(win) {
+		win.classList.remove("is-open");
+		win.classList.remove("is-closing");
+		win.hidden = true;
+		videos(win, false);
+	}
+
+	function sheetCloses() {
+		return !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+			&& window.matchMedia("(max-width: 549px)").matches;
+	}
+
+	function open(win, fromHistory) {
+		windows.forEach(function (other) {
+			if (other !== win && !other.hidden) hide(other);
+		});
+		opener = document.activeElement;
+		win.hidden = false;
+		setOpenClass(true);
+		setInert(true);
+		var scroll = win.querySelector(".wallo-window__scroll");
+		if (scroll) scroll.scrollTop = 0;
+		window.requestAnimationFrame(function () {
+			win.classList.add("is-open");
+		});
+		focusDialog(win);
+		if (keyOf(win) === "wallo") startWallo(win);
+		else videos(win, true);
+		if (!fromHistory && !onPath(win)) {
+			history.pushState({ case: keyOf(win) }, "", pathOf(win));
+		}
+	}
+
+	function close(win, fromHistory) {
+		if (win.hidden || win.classList.contains("is-closing")) return;
+		videos(win, false);
+		if (sheetCloses()) win.classList.add("is-closing");
+		if (!fromHistory && onPath(win)) {
+			if (history.state && history.state.case === keyOf(win)) history.back();
+			else history.pushState({ case: false }, "", "/");
+		}
+
+		function finish() {
+			hide(win);
+			var anyOpen = windows.some(function (other) { return !other.hidden; });
+			if (!anyOpen) {
+				setOpenClass(false);
+				setInert(false);
+			}
+			if (opener && typeof opener.focus === "function") opener.focus();
+		}
+
+		if (!win.classList.contains("is-closing")) {
+			finish();
+			return;
+		}
+
+		var frame = win.querySelector(".wallo-window__frame");
+		var done = false;
+		function end() {
+			if (done) return;
+			done = true;
+			if (frame) frame.removeEventListener("animationend", onEnd);
+			finish();
+		}
+		function onEnd(event) {
+			if (event.target !== frame || event.animationName !== "wallo-sheet-out") return;
+			end();
+		}
+		if (frame) frame.addEventListener("animationend", onEnd);
+		window.setTimeout(end, 480);
+	}
+
+	document.querySelectorAll("[data-case-open]").forEach(function (link) {
+		link.addEventListener("click", function (event) {
+			if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) return;
+			var win = document.querySelector('[data-case-window][data-case="' + link.getAttribute("data-case-open") + '"]');
+			if (!win) return;
+			event.preventDefault();
+			open(win, false);
+		});
+	});
+
+	windows.forEach(function (win) {
+		win.addEventListener("click", function (event) {
+			if (event.target === win || event.target.closest("[data-case-close]")) close(win, false);
+		});
+	});
+
+	document.addEventListener("keydown", function (event) {
+		if (event.key !== "Escape") return;
+		var openWin = windows.filter(function (win) { return !win.hidden; })[0];
+		if (!openWin) return;
+		event.preventDefault();
+		close(openWin, false);
+	});
+
+	window.addEventListener("popstate", function () {
+		var match = windows.filter(onPath)[0];
+		if (match) open(match, true);
+		else windows.forEach(function (win) {
+			if (!win.hidden) close(win, true);
+		});
+	});
+
+	windows.forEach(function (win) {
+		if (win.hidden) return;
+		setOpenClass(true);
+		setInert(true);
+		if (keyOf(win) === "wallo") startWallo(win);
+		else videos(win, true);
+		focusDialog(win);
+	});
+
+	var story = document.querySelector(".wallo .wallo__story");
+	if (story && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+		var hovered = null;
+
+		function motionOk() {
+			return !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		}
+
+		function caseOpen() {
+			var win = story.closest("[data-case-window]");
+			return win && !win.hidden;
+		}
+
+		function play(video) {
+			if (!motionOk()) return;
+			var pending = video.play();
+			if (pending && pending.catch) pending.catch(function () {});
+		}
+
+		function restart(video) {
+			video.pause();
+			if (video.currentTime === 0) return;
+			var reset = function () {
+				try { video.currentTime = 0; } catch (e) {}
+			};
+			if (video.readyState >= 1) reset();
+			else video.addEventListener("loadedmetadata", reset, { once: true });
+		}
+
+		function focusSection(section) {
+			if (!caseOpen()) return;
+			story.querySelectorAll(".wallo__section").forEach(function (other) {
+				var quiet = section && other !== section;
+				other.classList.toggle("is-quiet", quiet);
+				var video = other.querySelector("video");
+				if (!video) return;
+				if (section && other === section) play(video);
+				else restart(video);
+			});
+		}
+
+		story.addEventListener("mouseover", function (event) {
+			var section = event.target.closest(".wallo__section");
+			if (!section || section === hovered) return;
+			hovered = section;
+			focusSection(section);
+		});
+
+		story.addEventListener("mouseleave", function () {
+			hovered = null;
+			focusSection(null);
+		});
+	}
+})();
+</script>

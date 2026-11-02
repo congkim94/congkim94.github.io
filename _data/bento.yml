@@ -1,0 +1,34 @@
+- name: Wallo
+  tag: App Design
+  href: /wallo.html
+  image: /assets/images/home-v2/bento/wallo.png
+  width: 1234
+  height: 1054
+
+- name: Redesigned Checkout
+  tag: Web Design
+  href: /checkout-protected.html
+  image: /assets/images/home-v2/bento/checkout.png
+  width: 1276
+  height: 1054
+
+- name: Adaptable Experience
+  tag: Web Design
+  href: /ae-protected.html
+  image: /assets/images/home-v2/bento/ae.png
+  width: 1544
+  height: 1054
+
+- name: Multi-brand Design System
+  tag: Design System
+  href: /ds-protected.html
+  image: /assets/images/home-v2/bento/DS.png
+  width: 1600
+  height: 1054
+
+- name: Travel App
+  tag: App Design
+  href: /travel/
+  image: /assets/images/home-v2/bento/travel-app.png
+  width: 1220
+  height: 1054

@@ -54,6 +54,9 @@
     {{ content }}
     </main>
     {% include home-v2/footer.html %}
+    {% if page.oval %}
+    {% include wallo-window.html %}
+    {% endif %}
 
     <script src="/assets/javascripts/script.js"></script>
   </body>

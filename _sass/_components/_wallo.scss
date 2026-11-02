@@ -1,0 +1,485 @@
+.wallo,
+.wallo * {
+	box-sizing: border-box;
+}
+
+.wallo {
+	width: 100%;
+	margin: 0;
+	padding: 88px 24px 96px;
+	color: #272727;
+
+	@include tablet1 {
+		padding: 80px 16px 48px;
+	}
+
+	@include phone {
+		padding: 72px 12px 40px;
+	}
+}
+
+.wallo :is(h1, h2, p, button) {
+	color: inherit;
+}
+
+body.site-v2 .wallo h1 {
+	font-weight: 500;
+}
+
+body.site-v2 .wallo h2 {
+	font-weight: 500;
+}
+
+.wallo__intro {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+	max-width: 38em;
+	margin-bottom: 32px;
+}
+
+.wallo__intro :is(h1, p) {
+	margin: 0;
+}
+
+.wallo__name {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+
+.wallo__icon {
+	display: block;
+	flex: none;
+	width: 56px;
+	height: 56px;
+	border-radius: 14px;
+
+	@include phone {
+		width: 48px;
+		height: 48px;
+		border-radius: 12px;
+	}
+}
+
+.wallo__kicker {
+	margin: 0;
+	color: #707070;
+	font-size: 14px;
+	font-weight: 450;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 450;
+}
+
+.wallo h1 {
+	margin: 0;
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 48px;
+	letter-spacing: -0.8px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+.wallo .wallo__hint {
+	display: none;
+	margin: 0 0 0 auto;
+	color: #707070;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+	.wallo .wallo__hint {
+		display: block;
+	}
+}
+
+.wallo__story {
+	display: flex;
+	gap: 16px;
+	min-width: 0;
+	margin-inline: -4px;
+	padding-inline: 4px 16px;
+	padding-bottom: 8px;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	scroll-snap-type: x mandatory;
+	scroll-padding-inline: 4px;
+	scrollbar-width: thin;
+	scrollbar-color: rgba(39, 39, 39, 0.35) transparent;
+}
+
+.wallo__section {
+	display: flex;
+	flex: 0 0 168px;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 12px;
+	max-width: 180px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	scroll-snap-align: start;
+}
+
+@include phone {
+	.wallo__story {
+		display: grid;
+		grid-template-columns: minmax(0, 1fr);
+		gap: 32px;
+		margin-inline: 0;
+		padding: 0;
+		overflow: visible;
+		scroll-snap-type: none;
+	}
+
+	.wallo__section {
+		flex: none;
+		width: 100%;
+		max-width: none;
+	}
+}
+
+@container case (min-width: 860px) {
+	.wallo__story {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 16px;
+		margin-inline: 0;
+		padding: 0;
+		overflow: visible;
+		scroll-snap-type: none;
+	}
+
+	.wallo__section {
+		flex: none;
+		max-width: none;
+		min-width: 0;
+		scroll-snap-align: none;
+	}
+
+	.wallo-shot__phone,
+	.wallo__copy {
+		width: 100%;
+		max-width: none;
+	}
+}
+
+@container case (min-width: 980px) {
+	.wallo {
+		display: grid;
+		grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
+		column-gap: 48px;
+		align-items: start;
+	}
+
+	.wallo__intro {
+		position: sticky;
+		top: 68px;
+		max-width: none;
+		margin-bottom: 0;
+	}
+}
+
+.wallo__copy {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	min-width: 0;
+}
+
+.wallo h2 {
+	margin: 0;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 22px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+.wallo p {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 430;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 430;
+}
+
+.wallo p:last-child {
+	margin-bottom: 0;
+}
+
+.wallo__intro p {
+	font-size: 14px;
+	line-height: 22px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 430;
+}
+
+.wallo__meta {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	width: 100%;
+	margin: 0;
+}
+
+.wallo .wallo__tag {
+	display: inline-block;
+	padding: 2px 8px;
+	border-radius: 999px;
+	background-color: #f0eeeb;
+	color: #272727;
+	font-size: 13px;
+	font-weight: 500;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 13, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+.wallo-shot {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.wallo-shot__screen {
+		transition: filter 200ms ease;
+	}
+
+	.wallo__section.is-quiet .wallo-shot__screen {
+		filter: brightness(0.1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.wallo-shot__screen {
+		transition: none;
+	}
+}
+
+.wallo-shot__phone {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1398 / 2934;
+}
+
+.wallo-shot__screen {
+	position: absolute;
+	z-index: 0;
+	left: calc(81 / 1398 * 100%);
+	top: calc(81 / 2934 * 100%);
+	width: calc(1236 / 1398 * 100%);
+	height: calc(2772 / 2934 * 100%);
+	object-fit: cover;
+	border-radius: 0;
+	background: #000;
+}
+
+.wallo-shot__bezel {
+	position: absolute;
+	z-index: 1;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+html:has(body.is-case-open),
+body.is-case-open {
+	overflow: hidden;
+}
+
+.wallo-window {
+	position: fixed;
+	z-index: 30;
+	inset: 0;
+	display: flex;
+	padding: 20px;
+	box-sizing: border-box;
+
+	&::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(39, 39, 39, 0.85);
+		pointer-events: none;
+	}
+
+	@include tablet1 {
+		padding: 12px;
+	}
+
+	@include phone {
+		align-items: flex-end;
+		padding: 0;
+	}
+}
+
+.wallo-window[hidden] {
+	display: none !important;
+}
+
+.wallo-window__frame {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-width: 0;
+	height: 100%;
+	overflow: hidden;
+	border-radius: 0;
+	background: #fff;
+	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
+
+	@include phone {
+		box-sizing: border-box;
+		height: 90vh;
+		height: 90dvh;
+		padding-bottom: env(safe-area-inset-bottom);
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.wallo-window__frame {
+		opacity: 0;
+	}
+
+	.wallo-window.is-open .wallo-window__frame {
+		animation: wallo-window-in 240ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+	}
+
+	@include phone {
+		.wallo-window.is-open .wallo-window__frame {
+			animation: wallo-sheet-in 450ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+		}
+
+		.wallo-window.is-closing .wallo-window__frame {
+			opacity: 1;
+			animation: wallo-sheet-out 400ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
+		}
+	}
+}
+
+@keyframes wallo-window-in {
+	from {
+		opacity: 0;
+		transform: translateY(8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes wallo-sheet-in {
+	from {
+		opacity: 1;
+		transform: translateY(100%);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes wallo-sheet-out {
+	from {
+		opacity: 1;
+		transform: none;
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(100%);
+	}
+}
+
+.wallo-window__scroll {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
+	overflow: auto;
+	overscroll-behavior: contain;
+	container: case / inline-size;
+}
+
+.wallo-window__bar {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	flex: none;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	padding: 20px 24px 12px;
+	background: #fff;
+
+	@include min-width-from($screen-md1) {
+		justify-content: flex-start;
+	}
+
+	@include tablet1 {
+		padding: 16px 16px 12px;
+	}
+
+	@include phone {
+		padding: 12px 12px 8px;
+	}
+}
+
+.wallo-window__frame:focus {
+	outline: none;
+}
+
+.wallo-window__close {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: transparent;
+	color: #282828;
+	font-family: $font-sans;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.25;
+	cursor: pointer;
+	caret-color: transparent;
+
+	&:focus-visible {
+		outline: 2px solid #282828;
+		outline-offset: 3px;
+		border-radius: 4px;
+	}
+}
+
+.wallo-window .wallo {
+	padding-top: 0;
+	padding-bottom: 0;
+	margin-top: auto;
+	margin-bottom: auto;
+
+	@include phone {
+		padding-bottom: 64px;
+	}
+}
+
+.wallo-window .travel {
+	padding-top: 20px;
+}
+
+@media (min-width: #{$screen-md1}) {
+	.wallo-window .travel {
+		padding-top: 20px;
+	}
+
+	.wallo-window .travel__intro {
+		top: 68px;
+	}
+}
+

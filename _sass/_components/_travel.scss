@@ -25,502 +25,302 @@
         grid-column: 3 / span 8;
     }
 }
-#travel-header {
-    h1 {
-        padding-top: 80px;
-        font-family: $font-sans;
-        font-weight: 560;
-        font-style: normal;
-        font-size: 2.625rem;
-        @include tablet1 {
-            font-size: 2.375rem;
-        }
 
-        @include phone {
-            font-size: 1.75rem;
-        }
-    }
+.travel,
+.travel * {
+	box-sizing: border-box;
 }
 
-#travel-content {
+.travel {
+	width: 100%;
+	margin: 0;
+	padding: 88px 24px 96px;
+	color: #272727;
 
-    @include phone {
-        padding: 0 16px;
-        margin: auto;
-    }
-    
-    h1 {
-        padding: 80px 0;
-        font-family: $font-sans;
-        font-weight: 560;
-        font-style: normal;
-        font-size: 42px;
-        font-size: 2.625rem;
-        @include tablet1 {
-            font-size: 2.375rem;
-        }
+	@include tablet1 {
+		padding: 80px 16px 48px;
+	}
 
-        @include phone {
-            font-size: 1.75rem;
-        }
-    }
-    .project-section-title {
-        h2 {
-            font-family: $font-sans;
-            font-size: 2.625rem;
-            margin-top: 16px;
-            @include phone {
-                font-size: 1.75rem;
-            }
-            span {
-                background-color: #efaa82;
-                height: 5px;
-                display: block;
-                width: 15%;
-                margin-top: 5px;
-            }
-        }
-    }
-
-    h3 {
-        font-size: 2rem;
-        margin-top: 0;
-        margin-bottom: 15px;
-        font-weight: 600;
-        @include phone {
-        font-size: 1.5rem;
-        }
-    }
-
-    h4 {
-        color: #b5b5b5;
-        font-size: 1rem;
-    }
-
-    h5 {
-        font-size: 1rem;
-        font-weight: 700;
-        margin-bottom: 15px;
-        opacity: 0.8;
-
-    }
-
-    h6 {
-        margin-top: 20px;
-        font-size: 1.125rem;
-        margin-bottom: 7px;
-    }
-
-    p {
-        font-size: 1.125rem;
-        line-height: 30px;
-        margin: 0;
-        @include phone {
-            font-size: 1rem;
-        }
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        font-size: 1.125rem;
-        line-height: 30px;
-        @include phone {
-            font-size: 1rem;
-            margin-top: 10px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            @include phone {
-                margin-bottom: 0;
-            }
-        }
-    }
+	@include phone {
+		padding: 72px 12px 40px;
+	}
 }
 
-///HEADER////
-
-#travel-header {
-    background-color: #efaa82;
-    top: 0px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 6%;
-
-    h1 {
-        margin-bottom: 0;
-    }
-
-    p {
-        font-family: $font-sans;
-        font-size: 1.5rem;
-        font-weight: 500;
-        text-align: center;
-
-        @include phone {
-            font-size: 1.125rem;
-            width: 90%;
-        }
-    }
-
-    img {
-        max-width: 65%;
-        margin-top: 40px;
-        border-radius: 10px;
-        margin-bottom: -130px;
-
-    }
+body:has(.travel) header.site-nav--overlay {
+	background-color: #fff;
 }
 
-///PROJECT OVERVIEW///
-
-#travel-overview {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 200px;
-
-    @include phone {
-        display: block;
-        margin-top: 150px;
-    }
-
-    .project-background {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-
-        @include phone {
-            flex-wrap: wrap;
-        }
-    }
-
-    .overview-text {
-        margin-bottom: 20px;
-    }
+.travel :is(h1, h2, h3, p, li, dt, dd, a) {
+	color: inherit;
 }
 
-/// PROJECT OVERVIEW END ////////
-
-//// RESEARCH PHASE /////
-#research-phase {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-bottom: 100px;
-    margin-top: 120px;
-
-    @include phone {
-        display: block;
-    }
-
-    .project-section-content {
-        ul {
-            margin: 10px 20px;
-            margin-bottom: 20px;
-
-            li {
-                list-style-image: url(../images/travel/bulletpoints.png);
-            }
-        }
-    }
-
-    .competitors {
-        grid-column: 4 / span 5;
-        width: 100%;
-        margin-top: 50px;
-    }
+body.site-v2 .travel :is(h1, h2, h3) {
+	font-weight: 500;
 }
 
-//// RESEARCH PHASE END /////
-
-//// IDEATION /////
-
-#ideation {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-
-    @include phone {
-        display: block;
-    }
-
-    .feature-box {
-        grid-column: 2 / span 10;
-        background: #f3f3f3;
-        border-radius: 10px;
-        margin-top: 40px;
-        display: flex;
-        justify-content: space-around;
-        padding: 60px;
-
-        @include tablet {
-            grid-column: 1 / span 12;
-            padding-top: 30px;
-        }
-
-        @include tablet1 {
-            grid-column: 1 / span 12;
-            display: block;
-            padding-top: 30px;
-        }
-
-        @include phone {
-            grid-column: 1 / span 12;
-            display: block;
-            padding: 20px;
-        }
-
-        .feature {
-            width: 100%;
-            padding: 50px;
-
-            img {
-                @include phone {
-                    width: 20%;
-                }
-            }
-            @include tablet {
-                padding: 30px;
-            }
-
-            @include tablet1 {
-                padding: 30px;
-                width: inherit;
-                text-align: center;
-            }
-
-            @include phone {
-                padding: 20px;
-                width: inherit;
-                text-align: center;
-            }
-        }
-    }
+.travel__intro {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 20px;
+	margin-bottom: 56px;
+	container-type: inline-size;
 }
 
-////////////////// IDEATION END /////////////////////
+@media (min-width: #{$screen-md1}) {
+	.travel {
+		display: grid;
+		grid-template-columns: minmax(240px, 1fr) minmax(0, 821px);
+		column-gap: 80px;
+		align-items: start;
+		padding: 88px 24px 96px;
+	}
 
-////////////////// OOUX /////////////////////
-
-#ooux {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 120px;
-
-    @include phone {
-        display: block;
-    }
-
-    .ooux-model {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        grid-column: 3 / span 8;
-        position: relative;
-        overflow: hidden;
-        padding-top: 56.25%;
-
-        .ooux-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    }
-
-    p {
-        grid-column: 4 / span 6;
-
-        @include tablet {
-            grid-column: 3 / span 8;
-        }
-
-        @include tablet1 {
-            grid-column: 3 / span 8;
-        }
-    }
+	.travel__intro {
+		position: sticky;
+		top: 80px;
+		margin-bottom: 0;
+	}
 }
 
-////////////////// OOUX END /////////////////////
-
-////////////////// USERFLOW /////////////////////
-
-#userflow {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 120px;
-
-    @include phone {
-        display: block;
-    }
-
-    .userflow-model {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        grid-column: 3 / span 8;
-        position: relative;
-        overflow: hidden;
-        padding-top: 56.25%;
-
-        .userflow-iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
-        }
-    }
+.travel__intro :is(h1, h2, p) {
+	margin: 0;
 }
 
-////////////////// USERFLOW END /////////////////////
-
-////////////////// WIREFRAME /////////////////////
-
-#wireframe {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 120px;
-
-    @include phone {
-        display: block;
-    }
-
-    .wireframe-container {
-        grid-column: 3 / span 8;
-        .wireframes {
-            margin-top: 80px;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-
-            @include tablet1 {
-                flex-direction: column-reverse;
-                align-items: center;
-            }
-
-            @include phone {
-                flex-direction: column-reverse;
-                align-items: start;
-            }
-
-            img {
-                width: 50%;
-                @include tablet1 {
-                    width: 80%;
-                }
-                @include phone {
-                    width: 100%;
-                }
-            }
-
-            .text {
-                width: 45%;
-                padding-bottom: 20px;
-                @include tablet1 {
-                    width: 100%;
-                }
-                @include phone {
-                    width: 100%;
-                }
-            }
-        }
-
-        .explore-map {
-            flex-direction: row-reverse;
-
-            @include tablet1 {
-                flex-direction: column-reverse;
-            }
-
-            @include phone {
-                flex-direction: column-reverse;
-                align-items: start;
-            }
-        }
-    }
+.travel__intro h2 {
+	font-size: 20px;
+	line-height: 28px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 20, "slnt" 0, "wdth" 100, "wght" 500;
 }
 
-////////////////// WIREFRAME END/////////////////////
-
-////////////////// REVISION /////////////////////
-
-#revision {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 120px;
-
-    @include phone {
-        display: block;
-    }
-
-    .revision-wireframe {
-        grid-column: 4 / span 5;
-        margin-top: 80px;
-        img {
-            width: 100%;
-        }
-    }
+.travel .travel__intro :is(p, li, dd) {
+	font-size: 14px;
+	font-weight: 430;
+	line-height: 22px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 430;
 }
-////////////////// REVISION END /////////////////////
 
-////////////////// FINAL DESIGN /////////////////////
+.travel h1 {
+	margin: 0;
+	font-size: 40px;
+	font-weight: 500;
+	line-height: 48px;
+	letter-spacing: -0.8px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 40, "slnt" 0, "wdth" 100, "wght" 500;
+}
 
-#final-design {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-gap: 10px;
-    margin: auto;
-    margin-top: 120px;
+.travel__story {
+	display: flex;
+	flex-direction: column;
+	gap: 72px;
+	min-width: 0;
 
-    @include phone {
-        display: block;
-    }
+	@media (max-width: #{$screen-md1 - 1px}) {
+		gap: 48px;
+	}
+}
 
-    .app-screens {
-        margin-top: 50px;
-        grid-column: 2 / span 10;
-        padding: 10%;
-        background-color: #f3f3f3;
-        img {
-            width: 100%;
-        }
-    }
+.travel__section {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 16px;
+	margin: 0;
+}
 
-    a{
-        margin-top: 40px;
-        grid-column: 5 / span 4;
-        font-family: $font-sans;
-        font-size: 2.5rem;
-        text-decoration: none;
-        justify-self:center;
-        transition: all 300ms ease 0s;
-        border-bottom: 4px solid transparent;
+.travel__copy {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	min-width: 0;
+}
 
-        &:hover{
-            border-bottom: 4px solid #000;
-        }
+.travel p.travel__label {
+	margin: 0;
+	color: #707070;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
+}
 
-        @include phone {
-            margin-top: 40px;
-            font-size: 1.5rem;
-            display: block;
-        }
+.travel h2 {
+	margin: 0;
+	font-size: 28px;
+	font-weight: 500;
+	line-height: 36px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 28, "slnt" 0, "wdth" 100, "wght" 500;
 
-    }
+	@include phone {
+		font-size: 24px;
+		line-height: 32px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 24, "slnt" 0, "wdth" 100, "wght" 500;
+	}
+}
+
+.travel h3 {
+	margin: 0;
+	font-size: 20px;
+	font-weight: 500;
+	line-height: 28px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 20, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+.travel p,
+.travel li,
+.travel dd {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 430;
+	line-height: 28px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 18, "slnt" 0, "wdth" 100, "wght" 430;
+
+	@include phone {
+		font-size: 16px;
+		line-height: 24px;
+		font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 430;
+	}
+}
+
+.travel__copy ul,
+.travel__meta ul {
+	margin: 0;
+	padding-left: 1.25em;
+}
+
+.travel__copy li + li,
+.travel__meta li + li {
+	margin-top: 8px;
+}
+
+.travel a {
+	text-underline-offset: 3px;
+
+	&:focus-visible {
+		outline: 2px solid #282828;
+		outline-offset: 3px;
+		border-radius: 2px;
+	}
+}
+
+.travel__meta {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 24px;
+	width: 100%;
+	margin: 0;
+}
+
+@container (min-width: 420px) {
+	.travel__meta {
+		grid-template-columns: minmax(11em, auto) minmax(0, 1fr) auto;
+		column-gap: 32px;
+	}
+}
+
+.travel__meta div {
+	min-width: 0;
+}
+
+.travel__meta dt {
+	margin: 0 0 8px;
+	color: #707070;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
+}
+
+.travel-shot {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	margin: 0;
+	padding: 28px;
+	background-color: #faf9f8;
+
+	@include phone {
+		padding: 20px;
+	}
+
+	img {
+		display: block;
+		width: 100%;
+		height: auto;
+	}
+}
+
+.travel__features {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 32px;
+	margin: 0;
+	padding: 28px;
+	background-color: #faf9f8;
+
+	@media (max-width: #{$screen-md1 - 1px}) {
+		grid-template-columns: 1fr;
+		gap: 28px;
+	}
+
+	@include phone {
+		padding: 20px;
+	}
+}
+
+.travel__feature {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+	min-width: 0;
+
+	img {
+		display: block;
+		width: 48px;
+		height: 48px;
+	}
+}
+
+.travel__embed {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	background-color: #faf9f8;
+
+	iframe {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+		border: 0;
+	}
+}
+
+.travel__pairs {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+}
+
+.travel__pair {
+	display: flex;
+	align-items: flex-start;
+	gap: 24px;
+
+	img {
+		display: block;
+		width: 46%;
+		height: auto;
+	}
+
+	@media (max-width: #{$screen-md1 - 1px}) {
+		flex-direction: column;
+		gap: 16px;
+
+		img {
+			width: 100%;
+			max-width: 420px;
+		}
+	}
 }
