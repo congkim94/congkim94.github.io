@@ -143,10 +143,10 @@ body.site-v2 .wallo h2 {
 	}
 }
 
-@container case (min-width: 860px) {
+@container case (min-width: 1200px) {
 	.wallo__story {
 		display: grid;
-		grid-template-columns: repeat(4, minmax(0, 1fr));
+		grid-template-columns: repeat(5, minmax(0, 1fr));
 		gap: 16px;
 		margin-inline: 0;
 		padding: 0;
@@ -191,12 +191,16 @@ body.site-v2 .wallo h2 {
 	min-width: 0;
 }
 
+.wallo__copy p {
+	color: #707070;
+}
+
 .wallo h2 {
 	margin: 0;
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: 500;
-	line-height: 22px;
-	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 16, "slnt" 0, "wdth" 100, "wght" 500;
+	line-height: 20px;
+	font-variation-settings: "GRAD" 0, "ROND" 0, "opsz" 14, "slnt" 0, "wdth" 100, "wght" 500;
 }
 
 .wallo p {
