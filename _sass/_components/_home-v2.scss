@@ -933,9 +933,8 @@ body.home-v2.home-oval #my-work.work-v2 {
 	}
 }
 
-// Bento from the 1422×1066 frame: two rows of 527, 12px apart. The top row
-// holds Wallo, checkout, and Adaptable Experience. Travel is 610 wide on the
-// bottom row; the other tile there fills the rest.
+// Bento from the 1422×1066 frame: two rows of 527, 12px apart. Wallo is wider
+// than Adaptable Experience on the top row. The bottom row is three equal covers.
 .bento {
 	display: flex;
 	flex-direction: column;
@@ -960,11 +959,11 @@ body.home-v2.home-oval #my-work.work-v2 {
 }
 
 .bento__row--top {
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-columns: 7fr 5fr;
 }
 
 .bento__row--bottom {
-	grid-template-columns: 800fr 610fr;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 
 .bento__tile {
@@ -1093,7 +1092,7 @@ body.home-v2.home-oval #my-work.work-v2 {
 }
 
 .bento__tile--ae {
-	--tile-ratio: 466 / 527;
+	--tile-ratio: 588 / 527;
 	background-color: #f0eeeb;
 
 	@include phone {
@@ -1102,7 +1101,7 @@ body.home-v2.home-oval #my-work.work-v2 {
 }
 
 .bento__tile--tapestry {
-	--tile-ratio: 800 / 527;
+	--tile-ratio: 466 / 527;
 	background-color: #f0eeeb;
 
 	@include phone {
@@ -1111,7 +1110,7 @@ body.home-v2.home-oval #my-work.work-v2 {
 }
 
 .bento__tile--travel {
-	--tile-ratio: 610 / 527;
+	--tile-ratio: 466 / 527;
 	background-color: #f0eeeb;
 
 	@include phone {
@@ -1120,7 +1119,7 @@ body.home-v2.home-oval #my-work.work-v2 {
 }
 
 .bento__tile--wallo {
-	--tile-ratio: 466 / 527;
+	--tile-ratio: 823 / 527;
 	background-color: #f0eeeb;
 
 	@include phone {
