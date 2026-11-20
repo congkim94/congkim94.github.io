@@ -759,7 +759,7 @@ body.home-v2.home-oval .hero-oval__tagline {
 	}
 }
 
-// Landing. Letters fade in from a blur; the last starts at 2.75s.
+// Landing. Letters fade in from a blur; the last starts at 2.55s.
 // The glow, nav, cards, and footer start at 3.2s. flip.js drops .oval-landing after.
 html.oval-landing body.home-v2.home-oval .hero-oval:not(.is-flip-ready) .hero-oval__stage {
 	visibility: hidden;
