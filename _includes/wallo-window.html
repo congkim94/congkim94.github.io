@@ -81,8 +81,9 @@
 		document.body.classList.toggle("is-case-open", on);
 	}
 
-	var EASE_DRAWER = "cubic-bezier(0.32, 0.72, 0, 1)";
 	var EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
+	var FRAME_MS = 260;
+	var FRAME_HIDDEN = "scale(0.45)";
 
 	function reducedMotion() {
 		return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -109,56 +110,40 @@
 		win._motion = [];
 	}
 
-	// The opening tile's visible area, as an inset of the frame. Null when the
-	// tile is off screen, so the window doesn't grow out of an invisible spot.
-	function tileClip(win) {
+	// The cover's centre in the frame's own coordinates, so the frame scales
+	// toward the cover it belongs to. Offsets ignore the in-flight transform.
+	function coverOrigin(win, frame) {
 		var tile = document.querySelector('main [data-case-open="' + keyOf(win) + '"]');
-		var frame = frameOf(win);
-		if (!tile || !frame) return null;
+		if (!tile) return "50% 50%";
 		var t = tile.getBoundingClientRect();
-		var f = frame.getBoundingClientRect();
-		var top = Math.max(t.top, f.top);
-		var right = Math.min(t.right, f.right);
-		var bottom = Math.min(t.bottom, f.bottom);
-		var left = Math.max(t.left, f.left);
-		if (bottom - top < 48 || right - left < 48) return null;
-		return "inset(" + (top - f.top) + "px " + (f.right - right) + "px "
-			+ (f.bottom - bottom) + "px " + (left - f.left) + "px)";
+		var w = win.getBoundingClientRect();
+		var x = (t.left + t.right) / 2 - w.left - frame.offsetLeft;
+		var y = (t.top + t.bottom) / 2 - w.top - frame.offsetTop;
+		x = Math.min(Math.max(x, 0), frame.offsetWidth);
+		y = Math.min(Math.max(y, 0), frame.offsetHeight);
+		return x + "px " + y + "px";
 	}
 
-	function animateIn(win) {
+	// Opening and closing are the same motion in reverse. Each starts from the
+	// frame's current state, so interrupting one never makes the frame jump.
+	function animateFrame(win, opening) {
 		var frame = frameOf(win);
-		stopMotion(win);
-		var clip = tileClip(win);
-		win._motion = clip ? [
-			frame.animate({ clipPath: [clip, "inset(0px)"] }, { duration: 420, easing: EASE_DRAWER }),
-			frame.animate({ opacity: [0, 1] }, { duration: 180, easing: EASE_OUT })
-		] : [
-			frame.animate(
-				{ opacity: [0, 1], transform: ["scale(0.97)", "none"] },
-				{ duration: 260, easing: EASE_OUT }
-			)
-		];
-	}
-
-	function animateOut(win) {
-		var frame = frameOf(win);
+		frame.style.transformOrigin = coverOrigin(win, frame);
 		var current = window.getComputedStyle(frame);
-		var fromClip = current.clipPath === "none" ? "inset(0px)" : current.clipPath;
-		var fromOpacity = current.opacity;
-		var fromTransform = current.transform;
+		var from = { opacity: current.opacity, transform: current.transform };
+		if (opening && !(win._motion && win._motion.length)) from = { opacity: 0, transform: FRAME_HIDDEN };
 		stopMotion(win);
-		win._motion = [
-			frame.animate(
-				{
-					clipPath: [fromClip, fromClip],
-					opacity: [fromOpacity, 0],
-					transform: [fromTransform, "scale(0.98)"]
-				},
-				{ duration: 200, easing: EASE_OUT, fill: "forwards" }
-			)
-		];
-		return Promise.all(win._motion.map(function (animation) { return animation.finished; }));
+		var animation = frame.animate(
+			{
+				opacity: [from.opacity, opening ? 1 : 0],
+				transform: [from.transform, opening ? "none" : FRAME_HIDDEN]
+			},
+			{ duration: FRAME_MS, easing: EASE_OUT, fill: "forwards" }
+		);
+		win._motion = [animation];
+		return animation.finished.then(function () {
+			if (opening && win._motion[0] === animation) stopMotion(win);
+		});
 	}
 
 	function hide(win) {
@@ -187,7 +172,7 @@
 			void win.offsetWidth;
 		}
 		win.classList.add("is-open");
-		if (morphs()) animateIn(win);
+		if (morphs()) animateFrame(win, true).catch(function () {});
 		focusDialog(win);
 		if (keyOf(win) === "wallo") startWallo(win);
 		else videos(win, true);
@@ -219,7 +204,7 @@
 		}
 
 		if (morphs()) {
-			animateOut(win).then(finish, function () {});
+			animateFrame(win, false).then(finish, function () {});
 			return;
 		}
 
