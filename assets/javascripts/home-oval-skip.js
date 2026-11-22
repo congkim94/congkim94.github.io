@@ -214,7 +214,7 @@ if (root.classList.contains("oval-landing") && button && cursor) {
 	landing.observe(root, { attributes: true, attributeFilter: ["class"] });
 }
 
-// The last word is "everyone." Its first letter waits --i * 29ms. The hint
+// The last tagline word's first letter waits --i * 29ms. The hint
 // starts fading one fade earlier, so it is gone as that word begins.
 function hideHint(immediate) {
 	window.clearTimeout(hintTimer);
