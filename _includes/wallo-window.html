@@ -81,31 +81,113 @@
 		document.body.classList.toggle("is-case-open", on);
 	}
 
+	var EASE_DRAWER = "cubic-bezier(0.32, 0.72, 0, 1)";
+	var EASE_OUT = "cubic-bezier(0.23, 1, 0.32, 1)";
+
+	function reducedMotion() {
+		return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+	}
+
+	function isPhone() {
+		return window.matchMedia("(max-width: 549px)").matches;
+	}
+
+	function sheetCloses() {
+		return !reducedMotion() && isPhone();
+	}
+
+	function morphs() {
+		return !reducedMotion() && !isPhone() && typeof Element.prototype.animate === "function";
+	}
+
+	function frameOf(win) {
+		return win.querySelector(".wallo-window__frame");
+	}
+
+	function stopMotion(win) {
+		(win._motion || []).forEach(function (animation) { animation.cancel(); });
+		win._motion = [];
+	}
+
+	// The opening tile's visible area, as an inset of the frame. Null when the
+	// tile is off screen, so the window doesn't grow out of an invisible spot.
+	function tileClip(win) {
+		var tile = document.querySelector('main [data-case-open="' + keyOf(win) + '"]');
+		var frame = frameOf(win);
+		if (!tile || !frame) return null;
+		var t = tile.getBoundingClientRect();
+		var f = frame.getBoundingClientRect();
+		var top = Math.max(t.top, f.top);
+		var right = Math.min(t.right, f.right);
+		var bottom = Math.min(t.bottom, f.bottom);
+		var left = Math.max(t.left, f.left);
+		if (bottom - top < 48 || right - left < 48) return null;
+		return "inset(" + (top - f.top) + "px " + (f.right - right) + "px "
+			+ (f.bottom - bottom) + "px " + (left - f.left) + "px)";
+	}
+
+	function animateIn(win) {
+		var frame = frameOf(win);
+		stopMotion(win);
+		var clip = tileClip(win);
+		win._motion = clip ? [
+			frame.animate({ clipPath: [clip, "inset(0px)"] }, { duration: 420, easing: EASE_DRAWER }),
+			frame.animate({ opacity: [0, 1] }, { duration: 180, easing: EASE_OUT })
+		] : [
+			frame.animate(
+				{ opacity: [0, 1], transform: ["scale(0.97)", "none"] },
+				{ duration: 260, easing: EASE_OUT }
+			)
+		];
+	}
+
+	function animateOut(win) {
+		var frame = frameOf(win);
+		var current = window.getComputedStyle(frame);
+		var fromClip = current.clipPath === "none" ? "inset(0px)" : current.clipPath;
+		var fromOpacity = current.opacity;
+		var fromTransform = current.transform;
+		stopMotion(win);
+		win._motion = [
+			frame.animate(
+				{
+					clipPath: [fromClip, fromClip],
+					opacity: [fromOpacity, 0],
+					transform: [fromTransform, "scale(0.98)"]
+				},
+				{ duration: 200, easing: EASE_OUT, fill: "forwards" }
+			)
+		];
+		return Promise.all(win._motion.map(function (animation) { return animation.finished; }));
+	}
+
 	function hide(win) {
+		win._token = null;
+		stopMotion(win);
 		win.classList.remove("is-open");
 		win.classList.remove("is-closing");
 		win.hidden = true;
 		videos(win, false);
 	}
 
-	function sheetCloses() {
-		return !window.matchMedia("(prefers-reduced-motion: reduce)").matches
-			&& window.matchMedia("(max-width: 549px)").matches;
-	}
-
 	function open(win, fromHistory) {
 		windows.forEach(function (other) {
 			if (other !== win && !other.hidden) hide(other);
 		});
-		opener = document.activeElement;
-		win.hidden = false;
-		setOpenClass(true);
-		setInert(true);
-		var scroll = win.querySelector(".wallo-window__scroll");
-		if (scroll) scroll.scrollTop = 0;
-		window.requestAnimationFrame(function () {
-			win.classList.add("is-open");
-		});
+		var reopening = !win.hidden;
+		win._token = {};
+		win.classList.remove("is-closing");
+		if (!reopening) {
+			opener = document.activeElement;
+			win.hidden = false;
+			setOpenClass(true);
+			setInert(true);
+			var scroll = win.querySelector(".wallo-window__scroll");
+			if (scroll) scroll.scrollTop = 0;
+			void win.offsetWidth;
+		}
+		win.classList.add("is-open");
+		if (morphs()) animateIn(win);
 		focusDialog(win);
 		if (keyOf(win) === "wallo") startWallo(win);
 		else videos(win, true);
@@ -117,13 +199,16 @@
 	function close(win, fromHistory) {
 		if (win.hidden || win.classList.contains("is-closing")) return;
 		videos(win, false);
-		if (sheetCloses()) win.classList.add("is-closing");
+		var token = win._token = {};
+		win.classList.add("is-closing");
+		win.classList.remove("is-open");
 		if (!fromHistory && onPath(win)) {
 			if (history.state && history.state.case === keyOf(win)) history.back();
 			else history.pushState({ case: false }, "", "/");
 		}
 
 		function finish() {
+			if (win._token !== token) return;
 			hide(win);
 			var anyOpen = windows.some(function (other) { return !other.hidden; });
 			if (!anyOpen) {
@@ -133,25 +218,24 @@
 			if (opener && typeof opener.focus === "function") opener.focus();
 		}
 
-		if (!win.classList.contains("is-closing")) {
+		if (morphs()) {
+			animateOut(win).then(finish, function () {});
+			return;
+		}
+
+		if (!sheetCloses()) {
 			finish();
 			return;
 		}
 
-		var frame = win.querySelector(".wallo-window__frame");
-		var done = false;
-		function end() {
-			if (done) return;
-			done = true;
-			if (frame) frame.removeEventListener("animationend", onEnd);
-			finish();
-		}
+		var frame = frameOf(win);
 		function onEnd(event) {
 			if (event.target !== frame || event.animationName !== "wallo-sheet-out") return;
-			end();
+			frame.removeEventListener("animationend", onEnd);
+			finish();
 		}
-		if (frame) frame.addEventListener("animationend", onEnd);
-		window.setTimeout(end, 480);
+		frame.addEventListener("animationend", onEnd);
+		window.setTimeout(finish, 480);
 	}
 
 	document.querySelectorAll("[data-case-open]").forEach(function (link) {

@@ -70,8 +70,8 @@ body.site-v2 .travel :is(h1, h2, h3) {
 @media (min-width: #{$screen-md1}) {
 	.travel {
 		display: grid;
-		grid-template-columns: minmax(240px, 1fr) minmax(0, 821px);
-		column-gap: 80px;
+		grid-template-columns: var(--case-side, minmax(240px, 1fr)) minmax(0, 821px);
+		column-gap: var(--case-gap, 80px);
 		align-items: start;
 		padding: 88px 24px 96px;
 	}
@@ -79,6 +79,7 @@ body.site-v2 .travel :is(h1, h2, h3) {
 	.travel__intro {
 		position: sticky;
 		top: 80px;
+		gap: 24px;
 		margin-bottom: 0;
 	}
 }

@@ -168,17 +168,20 @@ body.site-v2 .wallo h2 {
 	}
 }
 
-@container case (min-width: 980px) {
+// The window frame is the viewport minus 20px each side here, so this is the
+// same point the case container reaches 980px.
+@media (min-width: 1020px) {
 	.wallo {
 		display: grid;
-		grid-template-columns: minmax(220px, 340px) minmax(0, 1fr);
-		column-gap: 48px;
+		grid-template-columns: var(--case-side, 340px) minmax(0, 1fr);
+		column-gap: var(--case-gap, 48px);
 		align-items: start;
 	}
 
 	.wallo__intro {
 		position: sticky;
 		top: 68px;
+		gap: 24px;
 		max-width: none;
 		margin-bottom: 0;
 	}
@@ -309,6 +312,25 @@ body.is-case-open {
 	overflow: hidden;
 }
 
+// The left column is tinted edge to edge: 24px of page padding, the column,
+// then 32px before the tint stops and 40px more before the story starts.
+// Both the frame and its sticky bar paint it, so it runs the full height.
+$case-surface: linear-gradient(to right, #faf9f8 calc(var(--case-side, -56px) + 56px), #fff 0);
+
+@media (min-width: #{$screen-md1}) {
+	.wallo-window[data-case="travel"] {
+		--case-side: clamp(260px, calc(100vw - 981px), 440px);
+		--case-gap: 72px;
+	}
+}
+
+@media (min-width: 1020px) {
+	.wallo-window[data-case="wallo"] {
+		--case-side: 320px;
+		--case-gap: 72px;
+	}
+}
+
 .wallo-window {
 	position: fixed;
 	z-index: 30;
@@ -323,6 +345,12 @@ body.is-case-open {
 		inset: 0;
 		background: rgba(39, 39, 39, 0.85);
 		pointer-events: none;
+		opacity: 0;
+		transition: opacity 300ms cubic-bezier(0.32, 0.72, 0, 1);
+	}
+
+	&.is-open::before {
+		opacity: 1;
 	}
 
 	@include tablet1 {
@@ -349,7 +377,7 @@ body.is-case-open {
 	height: 100%;
 	overflow: hidden;
 	border-radius: 0;
-	background: #fff;
+	background: $case-surface;
 	box-shadow: 0 24px 80px rgba(0, 0, 0, 0.16);
 
 	@include phone {
@@ -360,16 +388,14 @@ body.is-case-open {
 	}
 }
 
+// Above the phone breakpoint the frame is animated from script, expanding
+// out of the tile that opened it.
 @media (prefers-reduced-motion: no-preference) {
-	.wallo-window__frame {
-		opacity: 0;
-	}
-
-	.wallo-window.is-open .wallo-window__frame {
-		animation: wallo-window-in 240ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
-	}
-
 	@include phone {
+		.wallo-window__frame {
+			opacity: 0;
+		}
+
 		.wallo-window.is-open .wallo-window__frame {
 			animation: wallo-sheet-in 450ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
 		}
@@ -378,18 +404,6 @@ body.is-case-open {
 			opacity: 1;
 			animation: wallo-sheet-out 400ms cubic-bezier(0.32, 0.72, 0, 1) forwards;
 		}
-	}
-}
-
-@keyframes wallo-window-in {
-	from {
-		opacity: 0;
-		transform: translateY(8px);
-	}
-
-	to {
-		opacity: 1;
-		transform: none;
 	}
 }
 
@@ -436,7 +450,7 @@ body.is-case-open {
 	align-items: center;
 	justify-content: flex-end;
 	padding: 20px 24px 12px;
-	background: #fff;
+	background: $case-surface;
 
 	@include min-width-from($screen-md1) {
 		justify-content: flex-start;
